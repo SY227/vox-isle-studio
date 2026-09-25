@@ -49,7 +49,7 @@ async def main():
   await ok('bundled playback highlights a timed lyric token',await page.locator('.token.current').count()>0)
   await page.locator('#play-toggle').click()
   await page.locator('[data-token="0:2"]').click()
-  await ok('run syllable opens three-note teaching detail','G4' in await page.locator('#coach-detail').inner_text() and 'A4' in await page.locator('#coach-detail').inner_text())
+  await ok('word selection still works without companion panel',await page.locator('[data-token="0:2"]').evaluate("e=>e.classList.contains('selected')") and await page.locator('.coach-panel').count()==0)
   await page.locator('[data-action=roman]').click();await ok('romanization visibility toggles',await page.locator('#lyrics-scroll').evaluate("x=>x.classList.contains('no-roman')"))
   await page.locator('[data-action=roman]').click()
   await page.locator('[data-filter=run]').click();await ok('run filter selects',await page.locator('[data-filter=run]').evaluate("x=>x.classList.contains('active')"))

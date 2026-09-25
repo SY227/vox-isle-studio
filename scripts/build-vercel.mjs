@@ -10,4 +10,4 @@ await cp(path.join(root,'public'),dest,{recursive:true});
 await cp(path.join(root,'shared'),path.join(dest,'shared'),{recursive:true});
 const html=await readFile(path.join(dest,'index.html'),'utf8');
 if(!html.includes('vox-production-style'))throw new Error('Production style missing');
-console.log('VOX ISLE build: static app + shared imports; API handled by api/index.mjs.');
+console.log('Singing Fox build: static app + shared imports; API handled by api/index.mjs.');

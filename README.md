@@ -1,4 +1,4 @@
-# 聲嶼 VOX ISLE v1.2.1
+# 聲狐 Singing Fox v1.2.2
 
 Traditional Chinese music practice studio. One top transport, full lyrics, a side-by-side original YouTube player, an animated companion, and progressive teaching. The backend remains Gemini 3.8 Flash (`gemini-3.8-flash`). No provider keys or developer setup controls are exposed in the app.
 

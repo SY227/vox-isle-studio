@@ -32,7 +32,7 @@ export function createApp(config=getConfig(),dependencies={}){
   const handler=async(req,res)=>{
     const requestId=randomBytes(8).toString('hex');
     res.setHeader('X-Request-Id',requestId);
-    res.setHeader('X-Vox-Build','1.2.1');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
+    res.setHeader('X-Vox-Build','1.2.2');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
     res.setHeader('Permissions-Policy','microphone=(self), camera=(), geolocation=()');
     res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.ytimg.com; media-src 'self' blob:; connect-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; worker-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");
     try {
@@ -44,7 +44,7 @@ export function createApp(config=getConfig(),dependencies={}){
         if(origin && origin!==(origins.find(o=>new URL(o).host===host)||`http://${host}`))throw new AppError('拒絕跨網站請求。',403,'ORIGIN');
         if(req.headers['sec-fetch-site']==='cross-site')throw new AppError('拒絕跨網站請求。',403,'ORIGIN');
       }
-      if(route==='/api/status'&&req.method==='GET')return json(res,200,{configured:Boolean(config.apiKey),model:config.model,authenticated:Boolean(authenticated(req)),requiresAccessCode:Boolean(config.accessCode),language:'zh-Hant',maxDuration:900,maxRequestBytes:config.maxBodyBytes||17000000,version:'1.2.1'});
+      if(route==='/api/status'&&req.method==='GET')return json(res,200,{configured:Boolean(config.apiKey),model:config.model,authenticated:Boolean(authenticated(req)),requiresAccessCode:Boolean(config.accessCode),language:'zh-Hant',maxDuration:900,maxRequestBytes:config.maxBodyBytes||17000000,version:'1.2.2'});
       if(route==='/api/session'&&req.method==='POST'){
         limited(req,'login',10,900000);const input=await body(req,2048);
         if(typeof input.code!=='string'||!timingSafeEqual(hash(input.code),hash(config.accessCode)))throw new AppError('存取碼不正確。',401,'AUTH');
@@ -125,5 +125,5 @@ if(process.argv[1]&&fileURLToPath(import.meta.url)===path.resolve(process.argv[1
     console.error('公開部署前，請設定 APP_ORIGIN 與至少 16 字元 APP_ACCESS_CODE。');process.exit(1);
   }
   if(config.production&&!config.origin.startsWith('https://')){console.error('正式部署必須透過 HTTPS 的 APP_ORIGIN。');process.exit(1);}
-  createApp(config).listen(config.port,config.host,()=>{console.log(`\n  聲嶼 VOX ISLE\n  http://localhost:${config.port}\n  模型：${config.model}\n  API Key：${config.apiKey?'已設定（不顯示）':'未設定 — 可先體驗原創示範'}\n`);}).on('error',e=>{console.error(e.code==='EADDRINUSE'?`連接埠 ${config.port} 已使用。可執行 PORT=3001 npm start。`:e.message);process.exit(1);});
+  createApp(config).listen(config.port,config.host,()=>{console.log(`\n  聲狐 Singing Fox\n  http://localhost:${config.port}\n  模型：${config.model}\n  API Key：${config.apiKey?'已設定（不顯示）':'未設定 — 可先體驗原創示範'}\n`);}).on('error',e=>{console.error(e.code==='EADDRINUSE'?`連接埠 ${config.port} 已使用。可執行 PORT=3001 npm start。`:e.message);process.exit(1);});
 }

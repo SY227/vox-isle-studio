@@ -62,6 +62,7 @@ button:hover{background:#17383e08}a{color:#147b69}input,select,textarea{color:va
 .youtube-parking{display:none!important}
 .studio-performance-grid{grid-template-columns:minmax(0,1fr) minmax(340px,410px);gap:22px;align-items:start}
 .score-column{min-width:0;display:flex;flex-direction:column;gap:20px}
+.studio-performance-grid.single-column{grid-template-columns:minmax(0,1fr)}
 .studio-side-rail{min-width:0;display:flex;flex-direction:column;gap:18px;position:sticky;top:82px;align-self:start;max-height:calc(100vh - 96px);overflow:auto;scrollbar-width:thin;scrollbar-color:#b5cec6 transparent;padding-bottom:3px}
 .lyrics-panel{overflow:visible}
 .lyrics-scroll{max-height:none!important;overflow:visible!important;padding-bottom:8px}

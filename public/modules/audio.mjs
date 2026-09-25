@@ -1,5 +1,5 @@
-import {midiToHz,clamp} from '/shared/music.mjs?v=1.2.1';
-import {detectPitch,summarizePitch} from '/shared/pitch.mjs?v=1.2.1';
+import {midiToHz,clamp} from '/shared/music.mjs?v=1.2.2';
+import {detectPitch,summarizePitch} from '/shared/pitch.mjs?v=1.2.2';
 export function encodeWav(samples,rate=16000){
   const b=new ArrayBuffer(44+samples.length*2),v=new DataView(b),put=(at,s)=>{for(let i=0;i<s.length;i++)v.setUint8(at+i,s.charCodeAt(i));};
   put(0,'RIFF');v.setUint32(4,b.byteLength-8,true);put(8,'WAVE');put(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,rate,true);v.setUint32(28,rate*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);put(36,'data');v.setUint32(40,samples.length*2,true);
@@ -23,7 +23,7 @@ export async function decodeFile(file){
 }
 export function waveform(samples,bins=110){const output=[];const hop=Math.max(1,Math.floor(samples.length/bins));for(let i=0;i<bins;i++){let peak=0;for(let j=i*hop;j<Math.min(samples.length,(i+1)*hop);j+=8)peak=Math.max(peak,Math.abs(samples[j]));output.push(peak);}return output;}
 export function scanPitch(samples,onProgress=()=>{},signal){return new Promise((resolve,reject)=>{
-  const worker=new Worker('/workers/pitch-worker.mjs?v=1.2.1',{type:'module'});let done=false;
+  const worker=new Worker('/workers/pitch-worker.mjs?v=1.2.2',{type:'module'});let done=false;
   const finish=(fn,arg)=>{if(done)return;done=true;signal?.removeEventListener('abort',abort);worker.terminate();fn(arg);};
   const abort=()=>finish(reject,new DOMException('Cancelled','AbortError'));if(signal?.aborted)return abort();signal?.addEventListener('abort',abort,{once:true});
   worker.onmessage=({data})=>{if(data.type==='progress')onProgress(data.progress);if(data.type==='done')finish(resolve,data);if(data.type==='error')finish(reject,new Error(data.error));};
@@ -52,7 +52,7 @@ export class Recorder {
     try{
       this.stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}});
       if(this.cancelStart){this.stream.getTracks().forEach(t=>t.stop());return;}
-      this.context=new AudioContext();await this.context.resume();await this.context.audioWorklet.addModule('/pcm-capture.js?v=1.2.1');
+      this.context=new AudioContext();await this.context.resume();await this.context.audioWorklet.addModule('/pcm-capture.js?v=1.2.2');
       this.source=this.context.createMediaStreamSource(this.stream);this.capture=new AudioWorkletNode(this.context,'pcm-capture');this.silent=this.context.createGain();this.silent.gain.value=0;
       this.source.connect(this.capture).connect(this.silent).connect(this.context.destination);
       this.chunks=[];this.frames=[];this.total=0;this.startTime=this.context.currentTime;this.active=true;

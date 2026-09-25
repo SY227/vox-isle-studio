@@ -29,7 +29,7 @@ const redact=s=>String(s||'').replaceAll(config.apiKey||'\u0000','[REDACTED]').s
 function check(name,status,detail=''){report.checks.push({name,status,detail:redact(detail)});console.log(`${status==='passed'?'✓':status==='blocked'?'!':'✕'} ${name}${detail?' — '+redact(detail):''}`);}
 let server,chrome,cdp,profile,chromeDone,failed=false;
 try {
-  console.log('\n聲嶼 · 真實歌曲驗收\n來源：'+target.url+'\n本次會呼叫 AI 服務，請保持測試視窗可見；不需再次輸入金鑰。\n');
+  console.log('\n聲狐 · 真實歌曲驗收\n來源：'+target.url+'\n本次會呼叫 AI 服務，請保持測試視窗可見；不需再次輸入金鑰。\n');
   const internet=await Promise.all(['www.youtube.com','generativelanguage.googleapis.com'].map(async host=>{
     try{await Promise.race([lookup(host),new Promise((_,reject)=>{const t=setTimeout(()=>reject(new Error('DNS timeout')),8000);t.unref();})]);check('DNS '+host,'passed');return true;}
     catch(e){check('DNS '+host,'blocked',e.code||e.message);return false;}

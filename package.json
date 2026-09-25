@@ -1,9 +1,9 @@
 {
   "name": "vox-isle-studio",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "type": "module",
-  "description": "聲嶼 — Traditional Chinese, Gemini 3.8 Flash vocal practice studio",
+  "description": "聲狐 Singing Fox — Traditional Chinese vocal practice studio",
   "engines": {
     "node": "22.x"
   },

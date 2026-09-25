@@ -23,7 +23,7 @@ test('index embeds the complete production stylesheet so layout does not depend 
 
 test('app entry and player module URLs are versioned, not only CSS',async()=>{
  const html=await readFile(path.join(ROOT,'public/index.html'),'utf8'),app=await readFile(path.join(ROOT,'public/app.mjs'),'utf8');
- assert.match(html,/app\.mjs\?v=1\.2\.1/);assert.match(app,/player\.mjs\?v=1\.2\.1/);
+ assert.match(html,/app\.mjs\?v=1\.2\.2/);assert.match(app,/player\.mjs\?v=1\.2\.2/);
 });
 test('rights gate removed; passive processing notice and stage progress retained',async()=>{
  const app=await readFile(path.join(ROOT,'public/app.mjs'),'utf8');assert.ok(!app.includes('rights-input'));assert.match(app,/source-disclosure/);assert.match(app,/role="progressbar"/);assert.match(app,/非音訊處理百分比/);
@@ -37,4 +37,12 @@ test('release metadata and all executable browser asset URLs have the same versi
   const text=await readFile(path.join(ROOT,file),'utf8');
   for(const match of text.matchAll(/\?v=(\d+\.\d+\.\d+)/g))assert.equal(match[1],pkg.version,`stale cache tag in ${file}`);
  }
+});
+
+test('Singing Fox branding is visible and legacy companion/setup UI is absent',async()=>{
+ const html=await readFile(path.join(ROOT,'public','index.html'),'utf8'),app=await readFile(path.join(ROOT,'public','app.mjs'),'utf8');
+ assert.match(html,/聲狐 Singing Fox/);
+ assert.match(app,/SINGING FOX/);
+ assert.doesNotMatch(app,/分析說明/);
+ assert.doesNotMatch(app,/澄 · 你的聲音嚮導|YOUR VOCAL COMPANION|逐句陪練/);
 });

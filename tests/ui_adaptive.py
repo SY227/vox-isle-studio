@@ -20,7 +20,7 @@ async def main():
    page.on('pageerror',lambda e:errors.append(str(e)))
    async def route(r):
     u=urlparse(r.request.url);headers={'Access-Control-Allow-Origin':'*'}
-    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.1'})
+    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.2'})
     if u.path=='/qa-adaptive.json':return await r.fulfill(status=200,headers=headers,json=json.loads((ROOT/'tests/fixtures/adaptive-cases.json').read_text()))
     f=ROOT/u.path[1:] if u.path.startswith('/shared/') else ROOT/'public'/u.path[1:]
     if u.path.endswith('.css'):return await r.fulfill(status=404,headers=headers,body='Deliberate CSS failure')
@@ -65,14 +65,12 @@ async def main():
   await ok('completed first-half labels appear while later labels still pending',await page.locator('#phrase-0 .tech-mini').filter(has_text='分析中').count()==0 and await page.locator('#phrase-7 .tech-mini').filter(has_text='分析中').count()>0)
   await ok('progress reports processed tasks only',await page.locator('.refinement-meter').get_attribute('aria-valuenow')=='4')
   await ok('playback-driven selection does not issue paid lesson requests',await page.evaluate('window.__qa.lessonRequests.length')==0)
-  # Stop playback to inspect stable UI; a deliberate word click must not pause it.
-  await page.locator('#play-toggle').click();await page.locator('[data-token="0:2"]').click()
-  await page.wait_for_function('window.__qa.lessonRequests.length===1')
-  await page.wait_for_function('window.voxDiagnostics().lessonPending===-1')
-  await ok('manual word click requests exactly one on-demand lesson',await page.evaluate('window.__qa.lessonRequests.length')==1)
-  await ok('on-demand lesson displays its response','本句專屬練習' in await page.locator('#coach-detail').inner_text())
-  await page.locator('[data-token="0:3"]').click();await page.wait_for_timeout(500)
-  await ok('same phrase lesson is cached across different words',await page.evaluate('window.__qa.lessonRequests.length')==1)
+  # Stop playback to inspect stable UI. Word clicks select lyrics only while the visible companion UI is removed.
+  await page.locator('#play-toggle').click();await page.locator('[data-token="0:2"]').click();await page.wait_for_timeout(250)
+  await ok('manual word click selects lyric without hidden paid lesson request',await page.evaluate('window.__qa.lessonRequests.length')==0 and await page.locator('[data-token="0:2"]').evaluate("e=>e.classList.contains('selected')"))
+  await ok('companion panel is absent from focused studio',await page.locator('.coach-panel').count()==0)
+  await page.locator('[data-token="0:3"]').click();await page.wait_for_timeout(250)
+  await ok('same phrase navigation remains local-only',await page.evaluate('window.__qa.lessonRequests.length')==0)
   await page.evaluate('window.__qa.stream.duplicate()');await page.wait_for_timeout(200)
   await ok('out-of-order snapshot cannot undo newer labels',await page.evaluate('window.voxDiagnostics().adaptive.revision')==5)
   # Keep source iframe mounted through edit and later server snapshots.
@@ -81,7 +79,6 @@ async def main():
   await page.evaluate('window.__qa.stream.done()');await page.wait_for_function('!window.voxDiagnostics().refining&&window.voxDiagnostics().adaptive.state==="complete"')
   await ok('manual provenance survives final background snapshot','已手動校正' in await page.locator('.song-meta').inner_text())
   await ok('manual correction survives final background snapshot',await page.locator('[data-token="0:0"]').get_attribute('data-technique')=='falsetto')
-  await ok('cached lesson survives final background snapshot','本句專屬練習' in await page.locator('#coach-detail').inner_text())
   await ok('last verse obtains annotations, never cut off by readiness',await page.locator('#phrase-7 .tech-mini').filter(has_text='分析中').count()==0)
   await ok('finalization leaves same playable iframe intact',await page.evaluate('window.__keptIframe===document.querySelector("#youtube-mount iframe")'))
   await page.evaluate('window.scrollTo(0,0)');await page.screenshot(path=str(OUT/'desktop-complete.png'),full_page=True)

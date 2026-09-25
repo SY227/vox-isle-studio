@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {normalizeGeminiApiKey,isPlausibleGeminiApiKey,envAssignment} from '../shared/credentials.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 if(Number(process.versions.node.split('.')[0])<22){console.error('請先安裝 Node.js 22 或更新版本。');process.exit(1);}
-console.log('\n聲嶼 · Gemini 3.8 Flash 設定\n金鑰只寫入本機 .env，不進入前端、不加入 Git。\n支援目前 Google AI Studio 的 AQ. Auth Key 與舊版 AIza API Key。');
+console.log('\n聲狐 · AI 服務設定\n金鑰只寫入本機 .env，不進入前端、不加入 Git。\n支援目前 Google AI Studio 的 AQ. Auth Key 與舊版 AIza API Key。');
 if(!process.stdin.isTTY){console.error('請在互動式終端機執行 npm run setup。亦可複製 .env.example 至 .env 後編輯。');process.exit(1);}
 const rawKey=await new Promise(resolve=>{
   let value='';process.stdin.setRawMode(true);
