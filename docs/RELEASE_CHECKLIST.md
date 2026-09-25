@@ -1,15 +1,16 @@
-> Historical design/checklist retained from the v1.2.0 baseline. Current deployment, retry budgets and line-first pipeline are documented in `README.md` and `QA_STABILITY_V1.2.1.md`. Historical checklist items are not a new live certification.
+# v1.3.0 Release checklist
 
-# v1.2.0 acceptance checklist
+- [x] Full source package; no key, .env, .git, .vercel, dist or node_modules inside ZIP.
+- [x] Node 380/380; browser 310/310; syntax 74/74; Vercel build.
+- [x] Original/practice separation, blind window evidence, dedicated key consensus.
+- [x] First playable result before added optional work.
+- [x] Missing observations preserved as missing, not fake reviewed labels.
+- [x] Existing player unchanged; same iframe while data/view changes.
+- [x] Late HTTP/provider failure keeps usable score.
+- [x] Lyrics/prompts/keys excluded from live report.
+- [ ] Live new-build provider and YouTube playback on configured deployment.
+- [ ] Independent listening-reference assessment of key/register/timing.
+- [ ] Safari/iPhone/audio-device and screen-reader acceptance.
+- [ ] Public abuse/spend controls and distributed scaling review.
 
-Completed automated checks are in QA_REPORT.md. Before public rollout, separately verify:
-
-- Both supplied video URLs using `npm run verify:links` on a connected machine with a locally configured key.
-- First-pass studio entry before optional work finishes; record real first-result latency and provider usage.
-- Native YouTube play, top play/pause, seek, buffering, speed and lyric follow during progressive updates.
-- Listen to the actual song and compare line/word times against a reference; model confidence is not sufficient.
-- Observe low-confidence, missing-text and partial-state disclosure. Later failures cannot clear usable lyrics.
-- Actual iPhone/Safari/Chrome hardware, accessibility, WebGL, long-running tabs and embedded video restrictions.
-- Set quota/cost limits, origin/access code/HTTPS before deploying beyond loopback.
-
-Current package is tested for local behavior, not certified for live YouTube musical accuracy.
+Checked items are executed software gates, not a claim that unchecked music/device/deployment gates passed.

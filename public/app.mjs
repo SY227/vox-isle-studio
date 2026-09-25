@@ -1,22 +1,23 @@
-import {Avatar} from './modules/avatar.mjs?v=1.2.3';
-import {icon,esc,toast,modal,closeModal,saveFile} from './modules/ui.mjs?v=1.2.3';
-import {Player} from './modules/player.mjs?v=1.2.3';
-import {Recorder,decodeFile,toBase64,scanPitch,playNotes,stopNotes,speak} from './modules/audio.mjs?v=1.2.3';
-import * as api from './modules/api.mjs?v=1.2.3';
-import {noteName,clock,clamp,TECHNIQUES,ORNAMENTS,parseYouTube,rangeFromPhrases} from '/shared/music.mjs?v=1.2.3';
-import {normalizeAnalysis} from '/shared/schema.mjs?v=1.2.3';
-import {lyricState,tokenLyricState} from '/shared/lyric-clock.mjs?v=1.2.3';
-import {teachingCoverage} from '/shared/annotations.mjs?v=1.2.3';
+import {OBSERVED_VOICES,voiceForToken,vocalCoverage,phraseVoiceLabel,tonalityLabel,keyLabel} from '/shared/vocal-intelligence.mjs?v=1.3.0';
+import {Avatar} from './modules/avatar.mjs?v=1.3.0';
+import {icon,esc,toast,modal,closeModal,saveFile} from './modules/ui.mjs?v=1.3.0';
+import {Player} from './modules/player.mjs?v=1.3.0';
+import {Recorder,decodeFile,toBase64,scanPitch,playNotes,stopNotes,speak} from './modules/audio.mjs?v=1.3.0';
+import * as api from './modules/api.mjs?v=1.3.0';
+import {noteName,clock,clamp,TECHNIQUES,ORNAMENTS,parseYouTube,rangeFromPhrases} from '/shared/music.mjs?v=1.3.0';
+import {normalizeAnalysis} from '/shared/schema.mjs?v=1.3.0';
+import {lyricState,tokenLyricState} from '/shared/lyric-clock.mjs?v=1.3.0';
+import {teachingCoverage} from '/shared/annotations.mjs?v=1.3.0';
 
 const $=q=>document.querySelector(q),$$=q=>[...document.querySelectorAll(q)];
-const state={page:'home',mode:'youtube',url:'',language:'auto',lyrics:'',advanced:false,solo:false,file:null,
+const state={voiceView:'original',page:'home',mode:'youtube',url:'',language:'auto',lyrics:'',advanced:false,solo:false,file:null,
   analysis:null,source:null,selectedPhrase:0,selectedToken:0,showRoman:true,filter:'all',transpose:0,offset:0,rate:1,time:0,
   loading:false,phase:'accepted',error:'',backend:{configured:false},take:null,feedback:null,recording:false,micPending:false,coaching:false,measured:null,localPitchFrames:[],library:[],coachRights:false,playerIssue:''};
 let avatar,abortController,loadingTimer,recorder,recordUrl,uploadUrl,activation=0;
 let analysisRun=0,analysisInput=null,lessonAbort=null,lessonTimer=null;
 const lessons=new Map(),editedPhrases=new Set();
 state.refining=false;state.lessonPending=-1;state.lessonError=-1;
-const BUILD='1.2.3';
+const BUILD='1.3.0';
 try{const saved=JSON.parse(localStorage.getItem('vox-isle-library-v1')||'[]');state.library=Array.isArray(saved)?saved.slice(0,8):[];}catch{}
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const player=new Player(onTick,onPlayerState,message=>{state.playerIssue=message;});
@@ -70,11 +71,37 @@ function renderHome(){
   <div class="source-input">${state.mode==='youtube'?`<div class="url-wrap">${icon('link',18)}<input class="url-input" id="song-url" type="url" value="${esc(state.url)}" placeholder="貼上 YouTube 歌曲連結…" aria-label="YouTube 歌曲連結" autocomplete="off"></div>`:`<label class="drop-zone" for="song-file">${icon('upload',23)}<span><strong id="file-title">${esc(state.file?.name||'選擇你的音訊檔')}</strong><small>MP3 / WAV / M4A 等 · 最多 6 分鐘、50 MB</small></span><input id="song-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.flac,.ogg" class="hidden"></label>`}<button class="primary warm" type="submit">打開這首歌 ${icon('upRight',17)}</button></div>
   <div class="form-foot"><select id="song-language" aria-label="歌曲語言"><option value="auto" ${state.language==='auto'?'selected':''}>自動辨識 · 粵語／國語</option><option value="cantonese" ${state.language==='cantonese'?'selected':''}>粵語歌曲</option><option value="mandarin" ${state.language==='mandarin'?'selected':''}>國語歌曲</option></select><span class="hint">${state.mode==='youtube'?'公開單曲 · 最多 15 分鐘':'本機轉換 · 按下分析才上傳'}</span></div>
   ${state.mode==='upload'?`<label class="consent"><input type="checkbox" id="solo-input" ${state.solo?'checked':''}><span>這是清唱或已分離主唱；額外執行本機音高量測。</span></label>`:''}
-  <p class="source-disclosure">直接聆聽原聲，自動產生歌詞、時間與唱法。不需要準備歌詞。按下按鈕後，來源會送往 Google 分析。</p>
+  <p class="source-disclosure">直接聆聽原聲，自動產生歌詞、時間與唱法。不需要準備歌詞。按下按鈕後，來源會送往 AI 分析。</p>
     </form>${state.error?`<div class="error-banner" role="alert">${esc(state.error)}</div>`:''}
   <button class="demo-link" data-action="demo"><span>還沒有準備好歌曲？<strong>先體驗《微光練習曲》</strong></span>${icon('arrow',17)}</button></div>
   <div class="hero-art" aria-label="動畫聲音練習展示"><div class="orbit"></div><div class="orbit two"></div><div class="orbit three"></div><span class="hero-note">A LITTLE GUIDANCE.</span><div id="avatar" class="avatar-canvas hero-avatar"></div><div class="floating-tag tag-a"><span class="tag-icon">${icon('wave',18)}</span><span>讓聲音自然連起來<small>FIND YOUR FLOW</small></span></div><div class="floating-tag tag-b"><span class="tag-icon">${icon('music',18)}</span><span>真聲・混聲・假聲<small>ONE LINE AT A TIME</small></span></div><div class="floating-tag tag-c"><span class="tag-icon">${icon('spark',18)}</span><span>轉音，慢慢就會了<small>SMALL STEPS. YOUR VOICE.</small></span></div></div></div>
   <div class="arrival-bottom"><article class="feature-item"><span class="feature-number">01 /</span><div><h3>歌詞，就是你的練習譜</h3><p>自動轉錄、同步亮字。在哪裡轉音、如何銜接，<br>直接在歌詞上看懂。</p></div></article><article class="feature-item"><span class="feature-number">02 /</span><div><h3>難的地方，一個字一個字拆</h3><p>點開一句，聽慢速提示音。帶著具體建議，<br>找到更適合自己的唱法。</p></div></article><article class="feature-item"><span class="feature-number">03 /</span><div><h3>原片與歌詞，同一個時間軸</h3><p>按一次播放，原片、進度與逐字歌詞一起走。<br>已播放、正在唱、還未到，一眼分清。</p></div></article></div><footer class="landing-footer"><span>SINGING FOX — A STUDIO FOR YOUR OWN VOICE.</span><span>繁體中文 / 粵語 · 國語</span></footer></section>`;
+}
+function interpretationControls(){
+  return `<div class="interpretation-switch" role="group" aria-label="原唱聽感或建議練法"><button data-action="view-original" aria-pressed="${state.voiceView==='original'}" class="${state.voiceView==='original'?'active':''}">原唱聽感 <small>估計</small></button><button data-action="view-practice" aria-pressed="${state.voiceView==='practice'}" class="${state.voiceView==='practice'?'active':''}">建議練法</button></div><p class="interpretation-note">${state.voiceView==='original'?'先聽整句，再標出聲音的轉變。聽感是估計，不是聲帶機制判定。':'可嘗試的唱法，不等同原唱的演唱方式。原唱聽感與練習建議分開顯示。'}</p>`;
+}
+function directionCoverage(){
+  const a=state.analysis;if(state.voiceView==='original'){const c=vocalCoverage(a);return `${c.identified} / ${c.total} 字有聽感${c.pending?' · '+c.pending+(state.refining?' 聽辨中':' 待補上'):''}${c.uncertain?' · '+c.uncertain+' 待確認':''}${c.missing?' · '+c.missing+' 待補上':''}`;}
+  const c=teachingCoverage(a),untimed=(a.unalignedLyrics||[]).reduce((n,x)=>n+Array.from(x).filter(ch=>!/[\s\p{P}\p{S}]/u.test(ch)).length,0);
+  const pending=a.phrases.flatMap(p=>p.tokens).filter(t=>t.annotationStatus==='pending').length;
+  const missing=c.missing+pending+untimed,uncertain=Math.max(0,c.unknown-c.missing-pending);
+  return `${c.identified} / ${c.total+untimed} 字有唱法${uncertain?' · '+uncertain+' 待確認':''}${missing?' · '+missing+(state.refining?' 分析中':' 待補上'):''}`;
+}
+function techniqueLegend(){
+  const palette=state.voiceView==='original'?OBSERVED_VOICES:TECHNIQUES;
+  return `<span class="legend-label">${state.voiceView==='original'?'原唱聽感':'建議唱法'}</span><button data-filter="all" aria-pressed="${state.filter==='all'}" class="${state.filter==='all'?'active':''}">全部</button>${Object.entries(palette).map(([k,v])=>`<button data-filter="${k}" aria-pressed="${state.filter===k}" class="${state.filter===k?'active':''}" style="--tech:${v.color}"><i></i>${v.label}</button>`).join('')}<button data-filter="run" aria-pressed="${state.filter==='run'}" class="${state.filter==='run'?'active':''}">↝ 轉音</button>`;
+}
+function displayedVoice(p,t){
+ if(state.voiceView==='practice')return {voice:t.practiceTechnique||t.technique,status:t.annotationStatus,confidence:t.confidence,scope:'practice',
+  label:['pending','missing','unavailable'].includes(t.annotationStatus)?(state.refining?'分析中':'待補上'):TECHNIQUES[t.technique].label,evidence:'建議練法，不是原唱聲區判定。'};
+ const d=voiceForToken(p,t);return {...d,label:d.transition&&d.voice==='unknown'?'轉聲':d.status==='pending'?(state.refining?'聽辨中':'待聽辨'):['missing','unavailable'].includes(d.status)?'待補上':OBSERVED_VOICES[d.voice].label};
+}
+function keyPanel(){
+ const t=state.analysis?.tonality;
+ if(!t)return `<div class="key-summary empty"><span>調性</span><strong>待重新分析</strong><small>舊版短句結果不作全曲調性依據。</small></div>`;
+ const stopped=t.status==='pending'&&!state.refining;
+ const label=stopped?'調性尚未完成':tonalityLabel(t),note=stopped?'目前結果已保留':t.status==='stable'?'多段一致 · AI 估計':t.status==='modulating'?'可能轉調 · 邊界僅為區間':t.status==='pending'?'正在比較全曲不同位置':'證據不足或存在分歧';
+ return `<details class="key-summary"><summary><span class="key-icon">${icon('music',16)}</span><span><small>全曲調性 · 獨立聽辨</small><strong>${esc(label)}</strong></span><span class="key-note">${note}</span>${icon('chevron',14)}</summary><div class="key-evidence"><p>已回覆 ${t.received} / ${t.expected} 個窗口。多段一致不等於已由音樂專家核實。</p>${t.alternative?`<p>另一可能：${esc(keyLabel(t.alternative))}</p>`:''}${t.changes.map(c=>`<p>可能轉調區間 ${clock(c.earliest)}–${clock(c.latest)}：${esc(keyLabel(c.from))} → ${esc(keyLabel(c.to))}</p>`).join('')}<div class="key-window-list">${t.samples.map(w=>`<div><span class="mono">${clock(w.start)}–${clock(w.end)}</span><strong>${esc(w.key?keyLabel(w.key):w.status==='pending'?(state.refining?'聽辨中':'待補上'):'待確認')}</strong><span>${esc(w.evidence||'尚無足夠和聲證據')}</span></div>`).join('')}</div></div></details>`;
 }
 function renderStudio(){
   if(!state.analysis){state.page='home';renderHome();return;}
@@ -83,17 +110,17 @@ function renderStudio(){
   const aligned=a.phrases.reduce((n,p)=>n+p.tokens.filter(t=>Number.isFinite(t.start)).length,0),unaligned=(a.unalignedLyrics||[]).reduce((n,line)=>n+Array.from(line).length,0);
   $('#main').innerHTML=`<section class="studio"><div class="breadcrumb"><button data-action="home">練歌室</button><span>/</span><span>${esc(a.title)}</span><span style="margin-left:auto" class="mono">VOCAL BLUEPRINT / 01</span></div><div class="song-top"><div class="song-id"><div><h1>${esc(a.title)}</h1><div class="song-meta"><span class="artist">${esc(a.artist||'演唱者待確認')}</span><span>·</span><span>${languageLabel(a.language)}</span><button class="pill ${a.provenance?.kind==='demo-score'?'warm':'mint'}" data-action="limits">${esc(labelKind())}</button></div></div></div><div class="song-actions"><div class="song-tools"><button class="secondary" data-action="export" title="匯出樂譜" aria-label="匯出樂譜">${icon('download',15)}<span class="button-label">匯出</span></button><button class="secondary" data-action="home" title="匯入另一首" aria-label="匯入另一首">${icon('plus',16)}</button></div></div></div>
   <div class="range-strip"><div class="range-block"><div class="range-stat"><small>最低旋律音 ${a.provenance?.kind==='demo-score'?'':'· 估計'}</small><strong>${noteName(r.low)}</strong></div><div class="range-stat"><small>最高旋律音 ${a.provenance?.kind==='demo-score'?'':'· 估計'}</small><strong>${noteName(r.high)}</strong></div><div class="range-stat"><small>常見音區 · 音符分布</small><strong class="tiny">${noteName(r.typicalLow)} <span style="color:#5f8385">—</span> ${noteName(r.typicalHigh)}</strong></div><div class="range-stat"><small>標記的轉音</small><strong>${runs}<sup>處</sup></strong></div></div><button class="range-note" data-action="limits">${icon('info',14)}<span>${a.provenance?.kind==='demo-score'?'原創合成旋律示範，非真人演唱。唱法標記是可探索的教學選項。':'音高與逐字時間為 AI 估計。唱法是練習建議，不是原唱聲區判定。'}</span></button></div>
-  <div id="refinement-status">${refinementStatus()}</div><div id="quality-slot">${qualityNotice(a)}</div><div class="workspace studio-performance-grid ${state.source?.kind==='youtube'?'':'single-column'}"><div class="score-column"><section class="panel lyrics-panel"><div class="section-head"><div><h2>完整歌詞 · 跟著原聲走</h2><div class="caption">FULL SONG · ${a.phrases.length} 個同步樂句 · ${aligned} 字有時間估計${unaligned?` · ${unaligned} 字待對齊`:''}</div></div><div class="lyric-toolbar"><button class="mini-btn ${state.showRoman?'active':''}" data-action="roman" aria-pressed="${state.showRoman}">拼音</button><button class="mini-btn" data-action="edit" aria-label="校正歌詞與時間">${icon('edit',12)} 校正</button></div></div><div class="notation-heading"><span>每一段，都有練習方向</span><span class="tech-coverage" aria-label="全曲唱法覆蓋">${coverage.identified} / ${coverage.total} 字有唱法${coverage.unknown?` · ${coverage.unknown} 字待確認`:""}</span></div><div class="legend" aria-label="全曲唱法篩選"><span class="legend-label">建議唱法</span><button data-filter="all" aria-pressed="${state.filter==='all'}" class="${state.filter==='all'?'active':''}">全部</button>${Object.entries(TECHNIQUES).filter(([k])=>k!=='unknown'||coverage.unknown>0).map(([k,v])=>`<button data-filter="${k}" aria-pressed="${state.filter===k}" class="${state.filter===k?'active':''}" style="--tech:${v.color}"><i></i>${v.label}</button>`).join('')}<button data-filter="run" aria-pressed="${state.filter==='run'}" class="${state.filter==='run'?'active':''}" style="color:var(--peach)">↝ 轉音</button></div><div class="lyrics-scroll ${state.showRoman?'':'no-roman'}" id="lyrics-scroll">${renderLyrics()}</div><div class="lyric-bottom"><span>整首歌詞完整列出 · <span class="sync-key sync-done">已播放</span> · <span class="sync-key sync-now">正在唱</span> · <span class="sync-key sync-next">未播放</span> · <span style="color:var(--peach)">↝</span> 轉音</span><div class="timing-control"><span>歌詞偏移</span><button data-action="offset-minus" aria-label="歌詞提前零點一秒">−</button><code id="offset-label">${signed(state.offset)}s</code><button data-action="offset-plus" aria-label="歌詞延後零點一秒">＋</button></div></div></section><section class="panel score-map"><div class="section-head"><h2>這首歌的高低起伏</h2><span class="pill">${esc(a.key||'調性待確認')} · ${clock(a.duration)}</span></div><div id="pitch-map">${pitchMap()}</div><div class="map-foot">${a.provenance?.kind==='demo-score'?'DEMO SCORE':'AI-ESTIMATED MELODY'} · 點擊音圖定位 · 字內分音時間僅為示意</div></section>${state.measured?`<div class="source-note">${icon('wave',12)}<span>清唱音訊的本機單音量測：${noteName(state.measured.low)}–${noteName(state.measured.high)}，保留 ${state.measured.events?.length||0} 個持續音。這不等於完整個人音域。</span></div>`:''}<div class="source-note">${icon('shield',12)}<span>${state.source?.kind==='demo'?'示範歌詞與旋律為本專案原創；不含商業歌曲或人聲素材。':'分析只包含這次來源可聽到的內容；可逐句校正，也可匯出你的樂譜。'}</span></div></div>
+  <div id="key-analysis">${keyPanel()}</div><div id="refinement-status">${refinementStatus()}</div><div id="quality-slot">${qualityNotice(a)}</div><div class="workspace studio-performance-grid ${state.source?.kind==='youtube'?'':'single-column'}"><div class="score-column"><section class="panel lyrics-panel"><div class="section-head"><div><h2>完整歌詞 · 跟著原聲走</h2><div class="caption">FULL SONG · ${a.phrases.length} 個同步樂句 · ${aligned} 字有時間估計${unaligned?` · ${unaligned} 字待對齊`:''}</div></div><div class="lyric-toolbar"><button class="mini-btn ${state.showRoman?'active':''}" data-action="roman" aria-pressed="${state.showRoman}">拼音</button><button class="mini-btn" data-action="edit" aria-label="校正歌詞與時間">${icon('edit',12)} 校正</button></div></div><div id="interpretation-controls">${interpretationControls()}</div><div class="notation-heading"><span>${state.voiceView==='original'?'原唱聽感，與建議練法分開看':'每一段，都有練習方向'}</span><span class="tech-coverage" aria-label="全曲方向覆蓋">${directionCoverage()}</span></div><div class="legend" aria-label="全曲唱法篩選">${techniqueLegend()}</div><div class="lyrics-scroll ${state.showRoman?'':'no-roman'}" id="lyrics-scroll">${renderLyrics()}</div><div class="lyric-bottom"><span>整首歌詞完整列出 · <span class="sync-key sync-done">已播放</span> · <span class="sync-key sync-now">正在唱</span> · <span class="sync-key sync-next">未播放</span> · <span style="color:var(--peach)">↝</span> 轉音</span><div class="timing-control"><span>歌詞偏移</span><button data-action="offset-minus" aria-label="歌詞提前零點一秒">−</button><code id="offset-label">${signed(state.offset)}s</code><button data-action="offset-plus" aria-label="歌詞延後零點一秒">＋</button></div></div></section><section class="panel score-map"><div class="section-head"><h2>這首歌的高低起伏</h2><span id="score-key-label" class="pill">${esc(a.tonality?tonalityLabel(a.tonality):a.provenance?.kind==='demo-score'?a.key:'調性待重新分析')} · ${clock(a.duration)}</span></div><div id="pitch-map">${pitchMap()}</div><div class="map-foot">${a.provenance?.kind==='demo-score'?'DEMO SCORE':'AI-ESTIMATED MELODY'} · 點擊音圖定位 · 字內分音時間僅為示意</div></section>${state.measured?`<div class="source-note">${icon('wave',12)}<span>清唱音訊的本機單音量測：${noteName(state.measured.low)}–${noteName(state.measured.high)}，保留 ${state.measured.events?.length||0} 個持續音。這不等於完整個人音域。</span></div>`:''}<div class="source-note">${icon('shield',12)}<span>${state.source?.kind==='demo'?'示範歌詞與旋律為本專案原創；不含商業歌曲或人聲素材。':'分析只包含這次來源可聽到的內容；可逐句校正，也可匯出你的樂譜。'}</span></div></div>
   ${state.source?.kind==='youtube'?`<aside class="studio-side-rail">${sourceCard()}</aside>`:''}</div></section>`;
 }
 function signed(n){return (n>0?'+':'')+Number(n).toFixed(1);}
 function renderLyrics(){
   const a=state.analysis;
-  const synced=(a?.phrases||[]).map((p,pi)=>`<div class="phrase-row ${pi===state.selectedPhrase?'selected':''}" id="phrase-${pi}" data-phrase-row="${pi}"><button class="row-time" data-phrase-seek="${pi}" aria-label="前往 ${clock(p.start)}"><span>${clock(p.start)}<br><span class="section-mini">${esc(p.section)}</span>${p.tokens.some(t=>!Number.isFinite(t.start))?'<br><span class="section-mini">樂句同步</span>':''}</span></button><div class="phrase-tokens">${p.tokens.map((t,ti)=>{
-    const label=t.annotationStatus==='pending'?(state.refining?'分析中':'待補上'):TECHNIQUES[t.technique].label,orn=t.ornaments.includes('run')?'↝':t.ornaments.includes('slide')?'⌁':t.ornaments.includes('breath')?'˅':t.ornaments.includes('transition')?'↗':t.ornaments.includes('vibrato')?'∿':'';
-    const dim=state.filter!=='all'&&(state.filter==='run'?!t.ornaments.includes('run'):state.filter!==t.technique);
-    return `<button class="token t-${t.technique} ${pi===state.selectedPhrase&&ti===state.selectedToken?'selected':''} ${dim?'dim':''} ${t.ornaments.includes('run')?'has-run':''}" data-token="${pi}:${ti}" data-technique="${t.technique}" aria-label="${esc(t.text)}，${label}建議，${t.notes.map(noteName).join('、')||'音高待確認'}${orn?'，'+t.ornaments.map(o=>ORNAMENTS[o]).join('、'):''}"><span class="roman">${esc(t.romanization)}</span><span class="han">${esc(t.text)}</span><span class="note">${t.notes.length>1?noteName(t.notes[0])+' ↝':noteName(t.notes[0])}</span><span class="tech-mini">${label}${t.annotationStatus==='pending'?'':t.confidence==='low'?' ?':''}</span>${orn?`<span class="ornament">${orn}</span>`:''}</button>`;
-  }).join('')}</div></div>`).join('');
+  const synced=(a?.phrases||[]).map((p,pi)=>`<div class="phrase-row ${pi===state.selectedPhrase?'selected':''}" id="phrase-${pi}" data-phrase-row="${pi}"><button class="row-time" data-phrase-seek="${pi}" aria-label="前往 ${clock(p.start)}"><span>${clock(p.start)}<br><span class="section-mini">${esc(p.section)}</span>${p.tokens.some(t=>!Number.isFinite(t.start))?'<br><span class="section-mini">樂句同步</span>':''}</span></button><div class="phrase-body">${state.voiceView==='original'?`<div class="phrase-observation">${esc(phraseVoiceLabel(p))}${p.tokens.some(t=>!Number.isFinite(t.start))?'<small>整句聽感 · 逐字時間待確認</small>':''}</div>`:''}<div class="phrase-tokens">${p.tokens.map((t,ti)=>{
+    const d=displayedVoice(p,t),label=d.label,orn=t.ornaments.includes('run')?'↝':t.ornaments.includes('slide')?'⌁':t.ornaments.includes('breath')?'˅':t.ornaments.includes('transition')?'↗':t.ornaments.includes('vibrato')?'∿':'';
+    const dim=state.filter!=='all'&&(state.filter==='run'?!t.ornaments.includes('run'):state.filter!==d.voice);
+    return `<button class="token t-${d.voice} ${pi===state.selectedPhrase&&ti===state.selectedToken?'selected':''} ${dim?'dim':''} ${t.ornaments.includes('run')?'has-run':''}" data-token="${pi}:${ti}" data-technique="${d.voice}" data-direction-status="${d.status}" data-direction-scope="${d.scope}" title="${esc(d.evidence||(d.scope==='phrase'?'整句聽感；逐字聲區尚未確認。':label))}" aria-label="${esc(t.text)}，${state.voiceView==='original'?'原唱聽感':'建議練法'} ${label}，${t.notes.map(noteName).join('、')||'音高待確認'}${orn?'，'+t.ornaments.map(o=>ORNAMENTS[o]).join('、'):''}"><span class="roman">${esc(t.romanization)}</span><span class="han">${esc(t.text)}</span><span class="note">${t.notes.length>1?noteName(t.notes[0])+' ↝':noteName(t.notes[0])}</span><span class="tech-mini">${label}${d.status==='pending'?'':d.confidence==='low'&&d.voice!=='unknown'?' ?':''}</span>${orn?`<span class="ornament">${orn}</span>`:''}</button>`;
+  }).join('')}</div></div></div>`).join('');
   const untimed=(a?.unalignedLyrics||[]).length?`<section class="lyrics-unaligned" aria-label="待對齊歌詞"><div class="lyrics-unaligned-head"><strong>待對齊歌詞</strong><span>已保留原辨識文字 · 不冒充同步時間</span></div>${a.unalignedLyrics.map(line=>`<p>${esc(line)}</p>`).join('')}</section>`:'';
   return synced||untimed?`${synced}${untimed}`:'<div class="untimed-empty"><h3>尚未取得可顯示的歌詞。</h3><p>可重試分析或提供較清楚的來源。</p></div>';
 }
@@ -162,9 +189,10 @@ function qualityNotice(a){
 async function refreshStatus(signal){try{state.backend=await api.status(signal);updateHeader();}catch{} }
 async function openDemo(){
   abortController?.abort();lessonAbort?.abort();clearTimeout(lessonTimer);analysisRun++;analysisInput=null;lessons.clear();editedPhrases.clear();state.lessonPending=-1;state.refining=false;
-  const raw=await fetch('/demo.json').then(r=>r.json());await activate(raw,{kind:'demo',audioUrl:'/audio/demo.wav'});state.selectedPhrase=0;state.selectedToken=2;updateSelection(0,2,false);
+  const raw=await fetch('/demo.json').then(r=>r.json());state.voiceView='practice';await activate(raw,{kind:'demo',audioUrl:'/audio/demo.wav'});state.selectedPhrase=0;state.selectedToken=2;updateSelection(0,2,false);
 }
 async function activate(raw,source,measured=null){
+  state.voiceView=raw.vocalIntelligence?'original':'practice';
   const id=++activation;player.release();stopNotes();await recorder?.dispose();state.recording=false;state.micPending=false;
   const normalized=normalizeAnalysis(raw);state.analysis={...normalized,provenance:raw.provenance||{kind:'ai-estimate'},usage:raw.usage};
   state.source=source;state.measured=measured;state.selectedPhrase=0;state.selectedToken=0;state.time=0;state.offset=0;state.transpose=0;state.filter='all';state.rate=1;player.rate=1;state.take=null;state.feedback=null;state.coachRights=false;state.playerIssue='';state.page='studio';state.error='';
@@ -267,14 +295,21 @@ function refreshScoreFragments(){
   const scroll=$('#lyrics-scroll');if(!scroll)return;
   const anchor=$$('.phrase-row').find(n=>n.getBoundingClientRect().top>=($('.studio-chrome')?.getBoundingClientRect().height||0));
   const anchorId=anchor?.id,top=anchor?.getBoundingClientRect().top;
-  const active=document.activeElement?.dataset.token;
+  const active=document.activeElement?.dataset.token,activeAction=document.activeElement?.dataset.action;
   scroll.innerHTML=renderLyrics();rebuildLyricNodes();
   if(active)$(`[data-token="${active}"]`)?.focus({preventScroll:true});
   const after=anchorId?document.getElementById(anchorId):null;
   if(after&&Number.isFinite(top))window.scrollBy({top:after.getBoundingClientRect().top-top,behavior:'instant'});
   const a=state.analysis,c=teachingCoverage(a);
   if($('.song-meta button'))$('.song-meta button').textContent=labelKind();
-  if($('.tech-coverage'))$('.tech-coverage').textContent=`${c.identified} / ${c.total} 字有唱法${state.refining?' · 逐步補上':c.unknown?' · '+c.unknown+' 字待確認':''}`;
+  if($('.tech-coverage'))$('.tech-coverage').textContent=directionCoverage();
+  if($('#interpretation-controls'))$('#interpretation-controls').innerHTML=interpretationControls();
+  if($('.legend'))$('.legend').innerHTML=techniqueLegend();
+  if($('.notation-heading>span:first-child'))$('.notation-heading>span:first-child').textContent=state.voiceView==='original'?'原唱聽感，與建議練法分開看':'每一段，都有練習方向';
+  if($('.lyrics-panel .caption')){const timed=a.phrases.reduce((n,p)=>n+p.tokens.filter(t=>Number.isFinite(t.start)).length,0);$('.lyrics-panel .caption').textContent=`FULL SONG · ${a.phrases.length} 個同步樂句 · ${timed} 字有時間估計${a.unalignedLyrics.length?' · '+a.unalignedLyrics.length+' 行待對齊':''}`;}
+  if($('#score-key-label'))$('#score-key-label').textContent=(a.tonality?tonalityLabel(a.tonality):a.provenance?.kind==='demo-score'?a.key:'調性待重新分析')+' · '+clock(a.duration);
+  if(['view-original','view-practice'].includes(activeAction))$(`[data-action="${activeAction}"]`)?.focus({preventScroll:true});
+  if($('#key-analysis')){const open=$('#key-analysis details')?.open;$('#key-analysis').innerHTML=keyPanel();if(open&&$('#key-analysis details'))$('#key-analysis details').open=true;}
   if($('#pitch-map'))$('#pitch-map').innerHTML=pitchMap();
   const r=a.range?.low!=null?a.range:a.firstScanRange;
   const stats=$$('.range-stat strong');
@@ -460,6 +495,7 @@ function applyEdit(){
   }else{
     p.tokens=p.tokens.map((t,i)=>({...t,start:$(`[data-edit-start="${i}"]`).value===''?null:Number($(`[data-edit-start="${i}"]`).value),end:$(`[data-edit-end="${i}"]`).value===''?null:Number($(`[data-edit-end="${i}"]`).value),timingMode:$(`[data-edit-start="${i}"]`).value===''?'line':'word',timingReview:'user-edited',notes:parseNotes($(`[data-edit-notes="${i}"]`).value),technique:$(`[data-edit-technique="${i}"]`).value}));
   }
+  if(text!==lyrics(phrase())||start!==p.start||end!==p.end)p.observedVoice={status:'missing',segments:[],reason:'user-edited'};
   p.start=start;p.end=end;
   const copy=structuredClone(state.analysis);copy.phrases[state.selectedPhrase]=p;const normalized=normalizeAnalysis(copy);
   const selected=normalized.phrases.findIndex(x=>x.start===p.start&&lyrics(x)===lyrics(p));
@@ -531,6 +567,7 @@ document.addEventListener('click',async event=>{
       case 'limits':showLimits();break;
       case 'close-modal':closeModal();break;
       case 'login':showLogin();break;
+      case 'view-original':case 'view-practice':state.voiceView=action==='view-original'?'original':'practice';state.filter='all';refreshScoreFragments();break;
       case 'roman':state.showRoman=!state.showRoman;$('#lyrics-scroll').classList.toggle('no-roman',!state.showRoman);el.classList.toggle('active',state.showRoman);el.setAttribute('aria-pressed',String(state.showRoman));break;
       case 'edit':if(phrase())showEdit();else toast('目前沒有可校正的同步樂句，請核對待對齊歌詞後重試分析。');break;
       case 'save':saveCurrent();break;
@@ -600,6 +637,7 @@ window.addEventListener('beforeunload',()=>{abortController?.abort();lessonAbort
 export function diagnostics(){return {build:BUILD,page:state.page,phase:state.phase,loading:state.loading,refining:state.refining,adaptive:state.analysis?.adaptive||null,lessonPending:state.lessonPending,error:state.error,
   source:state.source?{kind:state.source.kind,id:state.source.id||null}:null,playback:player.snapshot(),lyricTime:state.time,
   timedTokens:state.analysis?.phrases.reduce((n,p)=>n+p.tokens.filter(t=>Number.isFinite(t.start)&&Number.isFinite(t.end)).length,0)||0,unalignedLines:state.analysis?.unalignedLyrics?.length||0,
+  vocalIntelligence:state.analysis?.vocalIntelligence||null,tonality:state.analysis?.tonality||null,voiceView:state.voiceView,originalCoverage:state.analysis?vocalCoverage(state.analysis):null,
   listening:state.analysis?.listening||null,dataQuality:state.analysis?.dataQuality||null};}
 Object.defineProperty(window,'voxDiagnostics',{value:diagnostics,writable:false,configurable:false});
 render();refreshStatus();

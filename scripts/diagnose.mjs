@@ -6,10 +6,15 @@ import path from 'node:path';
 import {getConfig,ROOT} from '../server/config.mjs';
 import {generate,checkModel} from '../server/gemini.mjs';
 import {validateInput} from '../server/validation.mjs';
+import {parseYouTube} from '../shared/music.mjs';
+import {vocalCoverage} from '../shared/vocal-intelligence.mjs';
 import {newProviderRuntime} from '../server/provider-client.mjs';
-const source=process.argv.find(a=>/^https?:\/\//.test(a))||'https://www.youtube.com/watch?v=J2uD1UXLTVs';
+const rawArgument=process.argv.slice(2).find(a=>!a.startsWith('--'))||'https://www.youtube.com/watch?v=J2uD1UXLTVs';
+const supplied=/^\[[^\]]+\]\((https?:[^)]+)\)$/.exec(rawArgument)?.[1]||rawArgument;
+const parsedSource=parseYouTube(supplied);if(!parsedSource){console.error('Invalid YouTube URL. No test was run.');process.exit(1);}
+const source=parsedSource.url;
 const config=getConfig(),started=Date.now();
-const report={version:'1.2.3',checkedAt:new Date().toISOString(),result:'blocked',scope:'Real provider; does not certify lyric timing accuracy',keyConfigured:!!config.apiKey,network:[],events:[],milestones:[]};
+const report={version:'1.3.0',checkedAt:new Date().toISOString(),result:'blocked',scope:'Real provider; does not certify lyric timing accuracy',keyConfigured:!!config.apiKey,network:[],events:[],milestones:[]};
 try{
  const input=validateInput({source:'youtube',url:source,language:'auto'});report.videoId=input.id;
  for(const host of ['www.youtube.com','generativelanguage.googleapis.com']){try{await lookup(host);report.network.push({host,resolved:true});}catch(e){report.network.push({host,resolved:false,code:e.code||'DNS'});}}
@@ -20,6 +25,7 @@ try{
    if(['ready','done','update'].includes(p.type)){report.milestones.push({type:p.type,elapsedMs:Date.now()-started,phrases:p.result?.phrases?.length||0,state:p.result?.adaptive?.state});}
   });
   report.result=result.adaptive?.state==='complete'?'completed':'partial';report.phraseCount=result.phrases.length;report.firstResultMs=result.adaptive?.firstResultMs;report.totalMs=Date.now()-started;
+  report.originalCoverage=vocalCoverage(result);report.vocalIntelligence=result.vocalIntelligence;report.key={status:result.tonality?.status,primary:result.tonality?.primary,agreeingWindows:result.tonality?.agreeingWindows};
   report.note='Analysis completed does not establish listening-verified line or word accuracy, or browser playback.';
  }
 }catch(e){report.result='failed';report.code=e.code||e.name||'UNKNOWN';report.status=e.status;}

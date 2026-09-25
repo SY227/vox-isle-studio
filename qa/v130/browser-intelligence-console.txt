@@ -1,0 +1,38 @@
+PASS real HTTP stream opens studio while new optional tasks remain
+PASS new score defaults to original listening mode
+PASS pending observation is not borrowed from practice
+PASS native local audio play drives actual media clock
+PASS new key and voice work preserves same iframe
+PASS original observation differs from recommendation by design
+PASS final header updates word timing count
+PASS pitch map key label updates with resolved consensus
+PASS independent original evidence visible as tooltip
+PASS phrase observation summary is rendered
+PASS all original score words still rendered
+PASS key is a multi-window result
+PASS key evidence windows can be inspected
+PASS practice view shows recommended mix, not original chest
+PASS view toggle does not restart or replace source
+PASS switch back restores independent original label
+PASS 40 rapid mode and filter interactions preserve player
+PASS original filter selects original voice, not practice label
+PASS seek remains tied to source and lyric clock
+PASS seeking colors earlier lyric tokens as played
+PASS speed controls still work
+PASS offset remains editable
+PASS romanization toggle remains independent
+PASS phrase loop remains available
+PASS previous and next do not create second player
+PASS export retains new independent evidence
+PASS only first navigation tab remains
+PASS only one custom play control
+PASS no removed companion or developer setup
+PASS 1440px has no page overflow
+PASS 1024px has no page overflow
+PASS 768px has no page overflow
+PASS 390px has no page overflow
+PASS 320px has no page overflow
+PASS omitted original result does not become complete
+PASS missing observation is visibly recoverable unfinished work
+PASS valid recommendations survive original-observation failure
+PASS no uncaught browser exceptions

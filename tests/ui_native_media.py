@@ -1,4 +1,4 @@
-"""v1.2.3 acceptance: actual local audio inside an iframe; AI/YouTube transport
+"""v1.3.0 acceptance: actual local audio inside an iframe; AI/YouTube transport
 adapters are test doubles. No fabricated advancing time and no live certification.
 Uses in-memory page fulfillment because this runner blocks browser navigation.
 """
@@ -31,7 +31,7 @@ async def main():
    page.on('pageerror',lambda e:errors.append(str(e)))
    async def route(r):
     u=urlparse(r.request.url);headers={'Access-Control-Allow-Origin':'*'}
-    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.3'})
+    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.3.0'})
     if u.path=='/qa-fixtures.json':return await r.fulfill(status=200,headers=headers,json=fixtures)
     f=ROOT/u.path[1:] if u.path.startswith('/shared/') else ROOT/'public'/u.path[1:]
     if not f.is_file():return await r.fulfill(status=404,headers=headers,body='not found')

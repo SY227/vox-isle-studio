@@ -1,0 +1,6 @@
+
+  聲狐 Singing Fox
+  http://localhost:52879
+  模型：gemini-3.8-flash
+  API Key：已設定（不顯示）
+

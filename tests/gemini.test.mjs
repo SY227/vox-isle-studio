@@ -96,7 +96,7 @@ test('truncated Interactions output is rejected rather than partially rendered',
 test('invalid JSON and empty Interactions output fail safely',async()=>{for(const raw of [{status:'completed',steps:[{type:'model_output',content:[{type:'text',text:'not-json'}]}]},{status:'completed',steps:[]}])await assert.rejects(generate(input,'analyze',config,signal(),async()=>reply(raw)));});
 test('transient Google failures are retried silently three times before succeeding',async()=>{
   let calls=0;const phases=[];
-  const r=await generate(input,'analyze',config,signal(),async(u,o)=>{calls++;if(calls<4)throw new TypeError('network down');return reply(completedFor(o));},p=>phases.push(p));
+  const r=await generate(input,'analyze',{...config,vocalIntelligence:false},signal(),async(u,o)=>{calls++;if(calls<4)throw new TypeError('network down');return reply(completedFor(o));},p=>phases.push(p));
   assert.equal(calls,5);assert.equal(r.provenance.transport,'recording-first-adaptive');assert.ok(!phases.some(p=>/retry|重試|重新連接/.test(p.message||'')));
 });
 test('transient 503 responses receive exactly three silent retries',async()=>{

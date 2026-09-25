@@ -1,0 +1,472 @@
+{
+  "version": "1.3.0",
+  "baseVersion": "1.2.3",
+  "scope": "Runtime, scripts, and test-source digests; not a music accuracy claim",
+  "files": [
+    {
+      "path": "api/index.mjs",
+      "sha256": "8fa0998a3fce1273edacddd4de9392e634edbcac1ea8b7a989d53e7aed7d969f",
+      "bytes": 526
+    },
+    {
+      "path": "public/app.mjs",
+      "sha256": "3ab835176f1d6ff675bcc20e5599dd74e9017203cf90e8a6d14c031f90acdb9c",
+      "bytes": 86540
+    },
+    {
+      "path": "public/audio/demo.wav",
+      "sha256": "5076e80b00d870a3f8604b294ee726d4fb8a38d8c2efa935e6bf375f267c5f2d",
+      "bytes": 2171970
+    },
+    {
+      "path": "public/boot-guard.mjs",
+      "sha256": "a07615993c11c4de66e4c538dabf8b57718f9749c134aeb32c3e7e3fae51f761",
+      "bytes": 723
+    },
+    {
+      "path": "public/cover.svg",
+      "sha256": "46d220f19dd8269a4c5afb402e08fe2a61e031a285561ea17f5e724a22a3dbba",
+      "bytes": 1405
+    },
+    {
+      "path": "public/demo.json",
+      "sha256": "29cc38571d30bef7e2eca70ccc02c9d0b5827c43236ce9ebdb40af7fb12118cf",
+      "bytes": 24360
+    },
+    {
+      "path": "public/icon.svg",
+      "sha256": "d371db572cd20166a31bdcb703b23b5faa5984f0e27af6d0ddc599a39bc453cf",
+      "bytes": 266
+    },
+    {
+      "path": "public/index.html",
+      "sha256": "4c9941b4d31b6af8e51b61afb830210dfbfe7decdcb5debe8c01e75fc1d0f6d7",
+      "bytes": 75288
+    },
+    {
+      "path": "public/modules/api.mjs",
+      "sha256": "742bb2eae2bdec23a9e11e05547d48de1dfdb8a77db9e31a7891c884d363ee48",
+      "bytes": 4494
+    },
+    {
+      "path": "public/modules/audio.mjs",
+      "sha256": "1919e4946d75b9c9c2fb3e063ffdfe73faef69791a70514d487deb30e06e2640",
+      "bytes": 8928
+    },
+    {
+      "path": "public/modules/avatar.mjs",
+      "sha256": "2e93d305a4c16278b5a880622726f953e51251b8989716294f133c2a0c1d58ba",
+      "bytes": 13033
+    },
+    {
+      "path": "public/modules/player.mjs",
+      "sha256": "910f0f1aa3cc45c5ebf44173efd5b859e4fe94f5896dfbc2a231726b6335c844",
+      "bytes": 19085
+    },
+    {
+      "path": "public/modules/ui.mjs",
+      "sha256": "38302d8382e6c2352a81c2f659c3617905617dba5f67e53eede50909b1a34555",
+      "bytes": 4495
+    },
+    {
+      "path": "public/pcm-capture.js",
+      "sha256": "86cf0962f470adfbea49d4d86cf4c41c4b5d00829a86fa350a1e4b81b0f6f68f",
+      "bytes": 627
+    },
+    {
+      "path": "public/styles.css",
+      "sha256": "af79a4b5836ccf3b7a4f60ef90c61a2ccece9525a30306c65cb7035cbb8b5789",
+      "bytes": 74252
+    },
+    {
+      "path": "public/theme.css",
+      "sha256": "b8c7604b317ea74fbd0a50932a803d9d7da721e2fa97719c47e787b4c84fd178",
+      "bytes": 41953
+    },
+    {
+      "path": "public/workers/pitch-worker.mjs",
+      "sha256": "4cb62432264e1feb16915263ace8e13c6d08d42da86b4f426babf2be52bb07d0",
+      "bytes": 683
+    },
+    {
+      "path": "scripts/build-vercel.mjs",
+      "sha256": "337a76dfde380c37a2b6b30e47121ee2a1e0644c97c3dd834a54a588d7c6e331",
+      "bytes": 835
+    },
+    {
+      "path": "scripts/check-api.mjs",
+      "sha256": "06e6329b2bd45bae243ce3f6dab0f3b7aaa58c02167dcfa4f7d59a4ffaa45a8b",
+      "bytes": 383
+    },
+    {
+      "path": "scripts/check.mjs",
+      "sha256": "8963e5b054dfbd0b52c0010bec02bcd02a2e7f60819a74b35d22c168bb6908d4",
+      "bytes": 644
+    },
+    {
+      "path": "scripts/diagnose.mjs",
+      "sha256": "c48f1c019f3c0d5be074cf4555c5a33d87880f20f6fb79ed442d1a073dd305b0",
+      "bytes": 3156
+    },
+    {
+      "path": "scripts/lib/live-browser.mjs",
+      "sha256": "0d74a728269d29f336e3a212d14bbb50809a826b83b74bc574693104c8a51be7",
+      "bytes": 2849
+    },
+    {
+      "path": "scripts/setup.mjs",
+      "sha256": "ee9a82c8961ed415c189b8287a11396595ff9a3644b06cace9cb13bc85ecefc5",
+      "bytes": 2290
+    },
+    {
+      "path": "scripts/start.sh",
+      "sha256": "7d3a1e355c2851517222b2b639cd2d58a70984e39250898aed08b4a2e9e7e9df",
+      "bytes": 234
+    },
+    {
+      "path": "scripts/verify-deployment.mjs",
+      "sha256": "f027bafac9c285fcbe83664bae86e3d7304765d934fb3921eb83a0c506155248",
+      "bytes": 1560
+    },
+    {
+      "path": "scripts/verify-links.mjs",
+      "sha256": "6eb90f72b4b52a2d0510eafbcfd4843f8f61f80f2f866fd31f038ddeb42593db",
+      "bytes": 1874
+    },
+    {
+      "path": "scripts/verify-live.mjs",
+      "sha256": "ba955796fc722cf4a43c5962190288b107024e4337906c85822fee8a0486d58a",
+      "bytes": 12187
+    },
+    {
+      "path": "scripts/verify-music.mjs",
+      "sha256": "6b3f4d7530a2cddb6409b9103c029018d948a0044a53b97f94d12240e4f5536d",
+      "bytes": 4972
+    },
+    {
+      "path": "server/adaptive-prompts.mjs",
+      "sha256": "d39d216fd8b19d27ba554bc15b7ababedf92ce7ab380afc784081d4db54e5fcd",
+      "bytes": 3312
+    },
+    {
+      "path": "server/adaptive.mjs",
+      "sha256": "627dfb44cc46a53fba5a93597e5acd6dbb4abf722b69b77963ab312bcc8a2fee",
+      "bytes": 18851
+    },
+    {
+      "path": "server/config.mjs",
+      "sha256": "f00b778f09b7b614b06ac1a67a9a8e47c6d7e0aa0595805b4660f505fe3676bb",
+      "bytes": 1392
+    },
+    {
+      "path": "server/gemini.mjs",
+      "sha256": "b468248c3507beade25e993848ea65bdecd524220fe95a926ada4249bbf3debc",
+      "bytes": 14640
+    },
+    {
+      "path": "server/index.mjs",
+      "sha256": "0647ddb0fb757429ae811ae58d62dff72b2eb2a673c24652ad734376f1d4d3bc",
+      "bytes": 12254
+    },
+    {
+      "path": "server/intelligence-prompts.mjs",
+      "sha256": "7c51aa6ab9b14e119d6e99583e0317ebbd47eac67818a6c04c24683d9a5dad3f",
+      "bytes": 3500
+    },
+    {
+      "path": "server/listening-prompts.mjs",
+      "sha256": "4734632a96a766aa6d3898da9fc32adb1c4010aa331e19fc759d3cf116e487a7",
+      "bytes": 4523
+    },
+    {
+      "path": "server/listening.mjs",
+      "sha256": "4975081ad50463a2ae1c36eca3eb0fdbd2294280b371bd27642b85006fd70a28",
+      "bytes": 18346
+    },
+    {
+      "path": "server/prompts.mjs",
+      "sha256": "706ebc0c9a43f84df79aac4480289c5efa0f506eee07663eb897b03663c8de7e",
+      "bytes": 8346
+    },
+    {
+      "path": "server/provider-client.mjs",
+      "sha256": "9b18fe28a61cd5a6dad5f89e9f277e014eecfea18e9676a01a8450ddc50de3e7",
+      "bytes": 9354
+    },
+    {
+      "path": "server/provider-queue.mjs",
+      "sha256": "b145b4901bfdd368764f5031bf2c8b054dafb550f6328f82da5ac906da02f27d",
+      "bytes": 953
+    },
+    {
+      "path": "server/teaching.mjs",
+      "sha256": "e6f310ce55094898c64a29497a5a414222b5d61eaa3b10453d8275595505072e",
+      "bytes": 3502
+    },
+    {
+      "path": "server/validation.mjs",
+      "sha256": "347415e9d0f7a6ca5db977a414eb818e27959a8d0aee5dba7b55644b66234d40",
+      "bytes": 3896
+    },
+    {
+      "path": "server/vocal-intelligence.mjs",
+      "sha256": "a4d8da9cbadde4aeb2b138f9b0dcc43b4f6ea5f9bfa011de2db5da95b56cafa6",
+      "bytes": 9034
+    },
+    {
+      "path": "server/word-details.mjs",
+      "sha256": "44109c7ec4c1910d516815d2882827637d71913e6dcff8a97d166d594cd7679d",
+      "bytes": 2665
+    },
+    {
+      "path": "shared/adaptive-schema.mjs",
+      "sha256": "0b0a3a6526e537f65954506aafcb6b2bd3c5175af92f13c974703494f69a1140",
+      "bytes": 1296
+    },
+    {
+      "path": "shared/annotations.mjs",
+      "sha256": "ed54e4e897bb9a11722c2c5543c70dc7aca1b53532fa76cb2f5fce791514fd5d",
+      "bytes": 8549
+    },
+    {
+      "path": "shared/credentials.mjs",
+      "sha256": "d74aaf8d5af9c5c5c230d77d140a1b88efde65714739e45e81cef8694c792864",
+      "bytes": 616
+    },
+    {
+      "path": "shared/intelligence-schema.mjs",
+      "sha256": "8070c6b276ce88db729a11dd729a2b2fad2f522a8e7dbd64b04f13c3fa1f3eed",
+      "bytes": 1086
+    },
+    {
+      "path": "shared/listening-schema.mjs",
+      "sha256": "fc3b80a7f13acbeb4e87f70e3b95be523c2f4ac85a7676968c37d050aa65db96",
+      "bytes": 1177
+    },
+    {
+      "path": "shared/lyric-clock.mjs",
+      "sha256": "f079143631b90560a7d5d4eff96c23382624dff0c9f22734dbc8fe7a2c4ec057",
+      "bytes": 675
+    },
+    {
+      "path": "shared/music.mjs",
+      "sha256": "73baa33d7f04f11f9906ff90a85c75bde98bc913ecd417d2ed8f578e97eca78a",
+      "bytes": 2544
+    },
+    {
+      "path": "shared/pitch.mjs",
+      "sha256": "d120e54d8e6b2f69038feb46c5fd5ad80f8ced32c80ca37a561a0918b1040abd",
+      "bytes": 2640
+    },
+    {
+      "path": "shared/recovery.mjs",
+      "sha256": "66e6f60b99d097af0f7ce0816db370c8fa34e3ab2ca7e16760515c449bad3573",
+      "bytes": 7474
+    },
+    {
+      "path": "shared/schema.mjs",
+      "sha256": "20665f33e62c4449784c64c25a9dba109f593ffcdf7e4556d91f3d55bb4081bf",
+      "bytes": 8939
+    },
+    {
+      "path": "shared/vocal-intelligence.mjs",
+      "sha256": "94b73339d62135aeb038249e6b641f8e0d10f08ecca765314176c11c016dbb2a",
+      "bytes": 11428
+    },
+    {
+      "path": "tests/adaptive.test.mjs",
+      "sha256": "1c60aeea4a3c802fd96c2503f4235930b82ac8e0cfe7e3a7b7e92900d19c22c6",
+      "bytes": 19857
+    },
+    {
+      "path": "tests/annotations.test.mjs",
+      "sha256": "70c87dfaae57fd346c6a02b6889daed40d8ef91027ad355b46bfbf0ad34eb75f",
+      "bytes": 12427
+    },
+    {
+      "path": "tests/client-stability.test.mjs",
+      "sha256": "83a69b6df44ee7384aea2baac1dd941060a56b136e928c56beb2c9764a0320a9",
+      "bytes": 3575
+    },
+    {
+      "path": "tests/credentials.test.mjs",
+      "sha256": "1111fe6e32319394ede64a4fc29ba16af83e9631816653857ce8a5de49af57ae",
+      "bytes": 1083
+    },
+    {
+      "path": "tests/deployment.test.mjs",
+      "sha256": "d54a00f56ba0cca736bc25381819d8372def5c9c41c9ec38360e2095b2f9934a",
+      "bytes": 5636
+    },
+    {
+      "path": "tests/fixtures/adaptive-browser-double.js",
+      "sha256": "11755ffc5c1784773cb73c3ed035cc4654ef21b30398aff5c0ff66be87a2ebc8",
+      "bytes": 2391
+    },
+    {
+      "path": "tests/fixtures/adaptive-cases.json",
+      "sha256": "5d1144683e0165b37ff08bcceafe94555bb75c037842cdef63b120cbe550e3d6",
+      "bytes": 71642
+    },
+    {
+      "path": "tests/fixtures/browser-doubles.js",
+      "sha256": "3656767c39c213914992b84b3f86ca6a70ee1cd6edb0c2b397abd37d9c0c0543",
+      "bytes": 3525
+    },
+    {
+      "path": "tests/fixtures/build-adaptive-cases.mjs",
+      "sha256": "d79a826c39ecc9354ab65b26795053d5133fdd2c5c385ff32d0908d1ee731d00",
+      "bytes": 1325
+    },
+    {
+      "path": "tests/fixtures/build-listening-cases.mjs",
+      "sha256": "f00b588bf453bd80bff9caec551b7f58d7abe2006e4cebfecddb998a583f5de7",
+      "bytes": 1193
+    },
+    {
+      "path": "tests/fixtures/build-stability-cases.mjs",
+      "sha256": "413bdcf80ffdde4fa0c81c2d2d121f3e5833d745df1b13608303b51c03b01709",
+      "bytes": 1214
+    },
+    {
+      "path": "tests/fixtures/intelligence-fixture.mjs",
+      "sha256": "d685ab422c435becbd7651733de65bf2da450c667150276c43b6afc318a6bd17",
+      "bytes": 2005
+    },
+    {
+      "path": "tests/fixtures/intelligence-server.mjs",
+      "sha256": "2b2284af3e0ef617aabf9bd94b4eeed8c2890af88b06a01ff5c4bcce925153bd",
+      "bytes": 2800
+    },
+    {
+      "path": "tests/fixtures/listening-cases.json",
+      "sha256": "e246f22b2407c616bc478b6d9ced3442577cce1017a712dc4fd62726be3a4c1d",
+      "bytes": 72366
+    },
+    {
+      "path": "tests/fixtures/listening-fixture.mjs",
+      "sha256": "8c0cc17039db8ab1a017f569a1916c98b4583b93844b9aae81dd7f68e5202c0a",
+      "bytes": 4090
+    },
+    {
+      "path": "tests/fixtures/native-media-double.js",
+      "sha256": "2c0f9bc234e774e71739309fee3cd32d60b86101499096f8497078e3e6112c92",
+      "bytes": 3455
+    },
+    {
+      "path": "tests/fixtures/recovery-cases.json",
+      "sha256": "58ea0fc0aae5e180dc60d2980201aad62dc33da111334ea7b39862853396e269",
+      "bytes": 53730
+    },
+    {
+      "path": "tests/fixtures/stability-cases.json",
+      "sha256": "d151fc59a05745f1e05023fa1ebe30d04da582b3f98b5bffd773148b4b468607",
+      "bytes": 70640
+    },
+    {
+      "path": "tests/gemini.test.mjs",
+      "sha256": "8f1f769eeb4d625a75b8e912cb145c0fc3ac57261e31eba37629880ec0d5f054",
+      "bytes": 7829
+    },
+    {
+      "path": "tests/inline-style.test.mjs",
+      "sha256": "a6c68aafc9dfff6d92ab6b07d6822c86970f09340f5ed5022c71f235d36addc3",
+      "bytes": 545
+    },
+    {
+      "path": "tests/listening.test.mjs",
+      "sha256": "03e37a000e62ddf39292c2a8b4879197734fac22f871b3831a0005768aa4bc3d",
+      "bytes": 16341
+    },
+    {
+      "path": "tests/live-browser.test.mjs",
+      "sha256": "e777b372dddb557cb09401470cdc7706158999ff8add9ffb5a06f768c6ea66c4",
+      "bytes": 2132
+    },
+    {
+      "path": "tests/music.test.mjs",
+      "sha256": "23fa276581e0ab6bb2708d6ee93fbbf7aba736870a711b787c0d65251602cb79",
+      "bytes": 2921
+    },
+    {
+      "path": "tests/player-bridge.test.mjs",
+      "sha256": "f5a1d4d539059d10ddaf15e12f0b6bbb83305766659eac74f6d9486bbbc32bee",
+      "bytes": 4570
+    },
+    {
+      "path": "tests/player.test.mjs",
+      "sha256": "4d00b8b7ec0e8f234b8b746b515c5d0223318a1f0c0f4e2c932d15aeba1029ef",
+      "bytes": 10540
+    },
+    {
+      "path": "tests/provider-client.test.mjs",
+      "sha256": "5516e56afcea9df9ecd3ae195933fefe1bbb79124bcafcf6980248024b5bf09b",
+      "bytes": 7916
+    },
+    {
+      "path": "tests/recovery.test.mjs",
+      "sha256": "bee8c25c41b11bcc3115a61d61e58333ebd7cedc68199a737ecd2fb78f1bed7c",
+      "bytes": 7375
+    },
+    {
+      "path": "tests/server.test.mjs",
+      "sha256": "a86d6a1c272e8e36803d7c4cbe768d34e473dedd40e5e9e70d50da463ca4ed01",
+      "bytes": 6137
+    },
+    {
+      "path": "tests/stability.test.mjs",
+      "sha256": "a8616bd9ac01a2dbd65b1d7e27ddf0c86493a84768fb0d7cba6d717e67a6c2f5",
+      "bytes": 6566
+    },
+    {
+      "path": "tests/styles.test.mjs",
+      "sha256": "1d93fddbf79d77f8d47defc053c1a947609144d09613c92d57e5c7f4fabba8c4",
+      "bytes": 2753
+    },
+    {
+      "path": "tests/ui_adaptive.py",
+      "sha256": "86ff25abac71eacb50e2aa2163036a17e7d3347c12be4b3cc8401e256af0bf6f",
+      "bytes": 13406
+    },
+    {
+      "path": "tests/ui_intelligence.py",
+      "sha256": "1d54878fa57187131c06c4461a21e014b3bb61c2f91bbcc81b7e0f982fd2c6be",
+      "bytes": 12259
+    },
+    {
+      "path": "tests/ui_listening.py",
+      "sha256": "bc68b8fcb9f370d81b8895e2d7255ae37a0243e83714de7c48e7289ff773e85c",
+      "bytes": 8973
+    },
+    {
+      "path": "tests/ui_native_media.py",
+      "sha256": "6dc9e5963a3c6012bdb4ad23021c57f91be68effa29a281d606951f44beee603",
+      "bytes": 14289
+    },
+    {
+      "path": "tests/ui_regression.py",
+      "sha256": "5a3d869e5ed82e70dcf6af1f610859ae8f15d3cf3c8a298df00df1f982049cd9",
+      "bytes": 15316
+    },
+    {
+      "path": "tests/ui_smoke.py",
+      "sha256": "a84d3b91ec37e0a52a39ed7d020c3651d62e1c3bc7e4f26f63a1245e7863cc52",
+      "bytes": 8255
+    },
+    {
+      "path": "tests/ui_stability.py",
+      "sha256": "dec5a3cdbe16ca3e127dc892cba838c324be231345143db86ad3c283f085de5f",
+      "bytes": 6058
+    },
+    {
+      "path": "tests/validation.test.mjs",
+      "sha256": "1bc0a32391a3c23482c154af532221019d7454efd4de8b4161ded181bb38c837",
+      "bytes": 3411
+    },
+    {
+      "path": "tests/vocal-intelligence.test.mjs",
+      "sha256": "c3917f55a2c31119392654cd9b8db9c17bb707ab19a7f05da1f96d6459c9d3b2",
+      "bytes": 23259
+    }
+  ]
+}

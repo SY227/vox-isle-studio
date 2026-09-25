@@ -167,7 +167,7 @@ test('unsafe self-declared accuracyVerified true is never trusted on import',()=
  const score=mergeListening([pass()],survey);score.listening.accuracyVerified=true;assert.equal(normalizeAnalysis(score).listening.accuracyVerified,false);
 });
 test('actual generate orchestrator falls back from rejected YouTube clipping without changing the model',async()=>{
- const calls=[];const r=await generate(input,'analyze',config,undefined,async(u,o)=>{
+ const calls=[];const r=await generate(input,'analyze',{...config,vocalIntelligence:false},undefined,async(u,o)=>{
   const body=JSON.parse(o.body);calls.push({u,body});const legacy=u.includes(':generateContent');
   if(!legacy&&body.input[0]?.processing)return new Response('{}',{status:400});
   return new Response(JSON.stringify(completedFor(o,legacy)),{status:200});

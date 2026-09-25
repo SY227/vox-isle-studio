@@ -1,4 +1,4 @@
-import {detectPitch,summarizePitch} from '/shared/pitch.mjs?v=1.2.3';
+import {detectPitch,summarizePitch} from '/shared/pitch.mjs?v=1.3.0';
 self.onmessage=({data})=>{
   try {
     const {samples,sampleRate}=data,frames=[]; const window=2048, hop=Math.round(sampleRate*.05);

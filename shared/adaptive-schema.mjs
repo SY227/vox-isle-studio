@@ -6,7 +6,8 @@ const array=items=>({type:'array',items});
 export const fastScanSchema=object({status:{type:'string',enum:['ok','unavailable']},reason:s,title:s,artist:s,
   language:{type:'string',enum:['cantonese','mandarin','mixed','unknown']},duration:n,complete:{type:'boolean'},
   phrases:array(object({text:s,section:s,start:nullable,end:nullable,confidence:n}))});
-const detailedToken=object({...teachingTokenSchema.properties,romanization:s,start:nullable,end:nullable});
+const {technique:practiceSchema,...practiceProperties}=teachingTokenSchema.properties;
+const detailedToken=object({...practiceProperties,practiceTechnique:practiceSchema,romanization:s,start:nullable,end:nullable});
 export const lightTeachingSchema=object({status:{type:'string',enum:['ok','unavailable']},reason:s,timeBase:{type:'string',enum:['source_seconds','clip_seconds']},
   phrases:array(object({id:s,tokens:array(detailedToken)}))});
 export const lessonSchema=object({focus:s,instruction:s,pronunciation:s,exercise:s,caution:s});

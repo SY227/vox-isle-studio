@@ -20,7 +20,7 @@ export function teachingCoverage(analysis) {
 }
 
 /** The upper bound is per request, not a cap on how many lyrics are taught. */
-export function buildTeachingBatches(transcript, {maxTokens = 120, maxPhrases = 8} = {}) {
+export function buildTeachingBatches(transcript, {maxTokens = 120, maxPhrases = 8, maxSeconds = Infinity} = {}) {
   if (!Number.isInteger(maxTokens) || maxTokens < 64 || !Number.isInteger(maxPhrases) || maxPhrases < 1) {
     throw new Error('Invalid teaching batch limits');
   }
@@ -33,7 +33,7 @@ export function buildTeachingBatches(transcript, {maxTokens = 120, maxPhrases = 
     phrases = []; size = 0;
   };
   (transcript.phrases || []).forEach((p, pi) => {
-    if (phrases.length && (size + p.tokens.length > maxTokens || phrases.length >= maxPhrases)) flush();
+    if (phrases.length && (size + p.tokens.length > maxTokens || phrases.length >= maxPhrases || p.end-phrases[0].start>maxSeconds)) flush();
     phrases.push({id: phraseId(pi), section: p.section, start: p.start, end: p.end,
       tokens: p.tokens.map((t, ti) => ({id: tokenId(pi, ti), text: t.text,
         romanization: t.romanization, start: t.start, end: t.end}))});
@@ -55,15 +55,15 @@ export function missingTeachingBatch(batch, annotations) {
  * This never invents a register: it only prevents a processed word from
  * disappearing from the UI after a partial provider response.
  */
-export function settleTeachingBatch(batch, result = {}) {
+export function settleTeachingBatch(batch, result = {}, {honest=false}={}) {
   const annotations = new Map(result.annotations instanceof Map ? result.annotations : []);
   const coaching = new Map(result.coaching instanceof Map ? result.coaching : []);
   for (const p of batch.phrases || []) for (const t of p.tokens || []) {
-    if (!annotations.has(t.id)) annotations.set(t.id, {notes:[], technique:'unknown', ornaments:[], confidence:'low', annotationStatus:'uncertain'});
+    if (!annotations.has(t.id)) annotations.set(t.id, {notes:[], technique:'unknown', ornaments:[], confidence:'low', annotationStatus:honest?(result.status==='ok'?'missing':'unavailable'):'uncertain'});
   }
   return {status: result.status === 'ok' ? 'ok' : 'unavailable', annotations, coaching,
     key: clean(result.key, 50), tempo: Number.isFinite(result.tempo) ? result.tempo : null,
-    summary: clean(result.summary), warnings: Array.isArray(result.warnings) ? result.warnings.slice(0,4).map(w=>clean(w,400)) : [], missing: []};
+    summary: clean(result.summary), warnings: Array.isArray(result.warnings) ? result.warnings.slice(0,4).map(w=>clean(w,400)) : [], missing: honest?[...annotations].filter(([,v])=>['missing','unavailable'].includes(v.annotationStatus)).map(([k])=>k):[]};
 }
 
 export function normalizeTeachingBatch(raw, batch) {
@@ -85,10 +85,11 @@ export function normalizeTeachingBatch(raw, batch) {
       seen.add(t.id);
       // Text is an integrity check; identical words in different choruses still
       // have different IDs. Returning the wrong occurrence cannot shift a score.
-      if (t.text !== target.text || !Object.hasOwn(TECHNIQUES, t.technique) ||
+      const practiceTechnique=t.practiceTechnique??t.technique;
+      if (t.text !== target.text || !Object.hasOwn(TECHNIQUES, practiceTechnique) ||
           !Array.isArray(t.notes) || !Array.isArray(t.ornaments)) continue;
       const notes = t.notes.slice(0, 16).map(midi).filter(n => n !== null);
-      annotations.set(t.id, {notes, technique: t.technique,
+      annotations.set(t.id, {notes, technique: practiceTechnique, practiceTechnique,
         ornaments: [...new Set(t.ornaments.filter(o => Object.hasOwn(ORNAMENTS, o)))].slice(0,5),
         confidence: ['low','medium','high'].includes(t.confidence) ? t.confidence : 'low',
         annotationStatus: 'reviewed'});
@@ -131,7 +132,7 @@ export function applyTeachingBatches(transcript, results) {
     unknownPitchTokens: phrases.flatMap(p => p.tokens).filter(t => !t.notes.length).length};
   quality.mode = coverage.unknown || ['untimedTokens','omittedNotes','unknownPitchTokens','croppedTokens','reorderedGroups']
     .some(key => quality[key] > 0) ? 'partial' : 'complete';
-  const normalized = normalizeAnalysis({...transcript, phrases, key: first?.key || transcript.key,
+  const normalized = normalizeAnalysis({...transcript, phrases, key: transcript.key,
     tempo: first?.tempo ?? transcript.tempo, summary: first?.summary || transcript.summary, warnings,
     dataQuality: quality,
     teachingCoverage: coverage});

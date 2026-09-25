@@ -1,3 +1,5 @@
+import {VocalIntelligenceSession} from './vocal-intelligence.mjs';
+import {vocalCoverage} from '../shared/vocal-intelligence.mjs';
 import {applyWordDetails} from './word-details.mjs';
 /** Fast recording-first transcript, then bounded, non-blocking enrichment.
  * No compulsory blind pass; no synthetic word timing. A later failed task cannot
@@ -129,16 +131,17 @@ export function spreadTeachingBatchOrder(count){
   return order;
 }
 
-export async function analyzeAdaptive(input,request,{signal,onProgress=()=>{},concurrency=3,maxReviews=12,clock=()=>Date.now()}={}){
+export async function analyzeAdaptive(input,request,{signal,onProgress=()=>{},concurrency=3,maxReviews=12,clock=()=>Date.now(),intelligenceEnabled=false}={}){
   const start=clock(),usage=[];let calls=0;
   const call=async(kind,extra={},s=signal)=>{abort(s);calls++;const r=await request({...input,lyrics:'',...extra},kind,s);if(r.usage)usage.push(r.usage);return r;};
   onProgress({type:'phase',phase:'analyzing',message:'正在聆聽全曲，建立第一份歌詞時間軸…',detail:{stage:'fast-scan'}});
   const first=await call('fast-scan');abort(signal);
   let transcript=normalizeFastScan(first.raw,input);
   const plan=planTimingReview(transcript,{maxReviews});
-  const batches=buildTeachingBatches(transcript,{maxTokens:120,maxPhrases:8});
+  const batches=buildTeachingBatches(transcript,{maxTokens:120,maxPhrases:8,maxSeconds:intelligenceEnabled?48:Infinity});
+  const intelligence=intelligenceEnabled?new VocalIntelligenceSession(transcript):null;
   const results=new Array(batches.length),completedBatches=new Set(),failures=[];
-  const meta={...transcript.adaptive,state:'refining',revision:0,totalTasks:plan.selected.length+batches.length,completedTasks:0,
+  const meta={...transcript.adaptive,state:'refining',revision:0,totalTasks:plan.selected.length+batches.length+(intelligence?intelligence.keyWindows.length+intelligence.voiceBatches.length:0),completedTasks:0,
     acceptedLines:plan.accepted,selectedLines:plan.selected.length,deferredLines:plan.deferred.length,reviewedLines:0,deepReviews:0,
     failedTasks:0,completedTeachingBatches:0,totalTeachingBatches:batches.length,firstResultMs:Math.max(0,clock()-start),calls:1};
   for(const item of plan.deferred)transcript.phrases[item.index].timingStatus='unverified';
@@ -149,11 +152,16 @@ export async function analyzeAdaptive(input,request,{signal,onProgress=()=>{},co
     const doneIds=new Set([...completedBatches].flatMap(i=>batches[i].phrases.map(p=>p.id)));
     a.phrases.forEach((p,pi)=>{if(!doneIds.has(`p${pi}`))p.tokens.forEach(t=>{if(t.annotationStatus!=='reviewed')t.annotationStatus='pending';});});
     a.warnings=a.warnings.filter(w=>!(/尚未取得/.test(w)&&meta.state==='refining'));
+    if(intelligence){
+      intelligence.apply(a);
+      const timed=a.phrases.flatMap(p=>p.tokens).filter(t=>Number.isFinite(t.start)&&Number.isFinite(t.end)).length;
+      a.dataQuality={...(a.dataQuality||{version:1,mode:'partial'}),timedTokens:timed,untimedTokens:a.phrases.reduce((n,p)=>n+p.tokens.filter(t=>!Number.isFinite(t.start)).length,0)+a.unalignedLyrics.reduce((n,s)=>n+Array.from(s).filter(c=>!/[\s\p{P}\p{S}]/u.test(c)).length,0)};
+    }
     if(failures.length)a.warnings=[...new Set([...a.warnings,'部分精修未完成；已取得的歌詞、播放和標記均已保留。'])].slice(0,12);
     return {...a,adaptive:{...meta,calls,failedTasks:failures.length},provenance:{...transcript.provenance,model:first.model},
       usage:{inputTokens:usage.reduce((n,u)=>n+(u.inputTokens||0),0),outputTokens:usage.reduce((n,u)=>n+(u.outputTokens||0),0)}};
   };
-  const emit=(type)=>{meta.revision++;onProgress({type,phase:type==='ready'?'playable':'refining',message:type==='ready'?'歌詞已準備，可以開始播放':'正在精修唱法與時間',result:snapshot()});};
+  const emit=(type)=>{meta.revision++;onProgress({type,phase:type==='ready'?'playable':'refining',message:type==='ready'?'歌詞已準備，可以開始播放':'正在聽辨原唱、調性與整理建議練法',result:snapshot()});};
   // This packet is written BEFORE any optional verification or teaching request.
   emit('ready');
   const tasks=[];
@@ -187,35 +195,47 @@ export async function analyzeAdaptive(input,request,{signal,onProgress=()=>{},co
         for(const [id,value]of repaired.annotations)r.annotations.set(id,value);
         applyWordDetails(transcript,repaired.wordDetails);
       }catch(e){if(signal?.aborted||fatal(e))throw e;failures.push({task:`teaching-repair-${index}`,code:e.code||'FAILED'});}}
-      results[index]=settleTeachingBatch(batch,r);
+      results[index]=settleTeachingBatch(batch,r,{honest:intelligenceEnabled});
     }catch(e){
       if(signal?.aborted||fatal(e))throw e;
       failures.push({task:`teaching-${index}`,code:e.code||'FAILED'});
       // Preserve whole-song UX: a failed independent batch becomes 待確認,
       // while later batches continue to run and can still be identified.
-      results[index]=settleTeachingBatch(batch,{status:'unavailable',warnings:['這一段唱法暫時未能確認。']});
+      results[index]=settleTeachingBatch(batch,{status:'unavailable',warnings:['這一段建議暫未取得。']},{honest:intelligenceEnabled});
+      if(intelligenceEnabled&&['NETWORK','TIMEOUT','GEMINI_429','GEMINI_500','GEMINI_502','GEMINI_503','GEMINI_504'].includes(e.code))throw e;
     }finally{completedBatches.add(index);meta.completedTeachingBatches=completedBatches.size;}
   }]));
   // Breadth-first whole-song coverage: the first worker wave deliberately
   // spans the beginning, ending and middle before local timing repairs.
   const teachingOrder=spreadTeachingBatchOrder(batches.length);
-  teachingOrder.forEach((batchIndex,pos)=>{
+  if(intelligence){
+    const voiceOrder=spreadTeachingBatchOrder(intelligence.voiceBatches.length),keyOrder=spreadTeachingBatchOrder(intelligence.keyWindows.length);
+    const lanes=[voiceOrder.map(i=>()=>intelligence.voiceTask(intelligence.voiceBatches[i],call)),
+      teachingOrder.map(i=>teachingTasks.get(i)),keyOrder.map(i=>()=>intelligence.keyTask(intelligence.keyWindows[i],call))];
+    while(lanes.some(l=>l.length)){for(const lane of lanes)if(lane.length)tasks.push(lane.shift());if(tasks.length%9===0&&timingTasks.length)tasks.push(timingTasks.shift());}
+  }else teachingOrder.forEach((batchIndex,pos)=>{
     tasks.push(teachingTasks.get(batchIndex));
     if((pos+1)%3===0&&timingTasks.length)tasks.push(timingTasks.shift());
   });
   while(timingTasks.length)tasks.push(timingTasks.shift());
-  let next=0,stop=false;
+  let next=0,stop=false,outages=0;
   const worker=async()=>{while(next<tasks.length&&!stop){abort(signal);const index=next++;try{await tasks[index]();}
-    catch(e){if(signal?.aborted)throw e;failures.push({task:index,code:e.code||'FAILED'});if(fatal(e))stop=true;}
+    catch(e){if(signal?.aborted)throw e;failures.push({task:index,code:e.code||'FAILED'});if(intelligenceEnabled&&['NETWORK','TIMEOUT','GEMINI_500','GEMINI_502','GEMINI_503','GEMINI_504'].includes(e.code))outages++;if(fatal(e)||(intelligenceEnabled&&(e.code==='GEMINI_429'||outages>=3)))stop=true;}
     if(signal?.aborted)throw signal.reason;
     meta.completedTasks++;emit('update');
   }};
   try{await Promise.all(Array.from({length:Math.min(Math.max(1,concurrency),3,tasks.length)},worker));}
   catch(e){if(signal?.aborted)throw e;failures.push({task:'refinement',code:e.code||'FAILED'});}
+  if(intelligence&&!stop&&!signal?.aborted){
+    const reviews=intelligence.reviewTasks(call,{limit:3});tasks.push(...reviews);meta.totalTasks+=reviews.length;
+    if(reviews.length){emit('update');await Promise.all(Array.from({length:Math.min(3,concurrency,reviews.length)},worker));}
+  }
+  intelligence?.finish();
   // Any batch that could not run (for example after a fatal auth/policy stop)
   // becomes explicit 待確認 rather than an empty late-song hole.
-  for(let i=0;i<batches.length;i++)if(!results[i])results[i]=settleTeachingBatch(batches[i],{status:'unavailable',warnings:['這一段唱法尚未確認。']});
+  for(let i=0;i<batches.length;i++)if(!results[i])results[i]=settleTeachingBatch(batches[i],{status:'unavailable',warnings:['這一段建議尚未取得。']},{honest:intelligenceEnabled});
   const finalCoverage=applyTeachingBatches(transcript,results).teachingCoverage;
-  meta.state=failures.length||stop||finalCoverage.missing?'partial':'complete';meta.finishedMs=Math.max(0,clock()-start);
+  const observationMissing=intelligence?vocalCoverage(intelligence.apply(normalizeAnalysis(transcript))).missing:0;
+  meta.state=failures.length||stop||finalCoverage.missing||(intelligenceEnabled&&(!transcript.adaptive.completeScan||transcript.unalignedLyrics.length||observationMissing||[...intelligence.keys.values()].some(k=>['missing','unavailable'].includes(k.status))))?'partial':'complete';meta.finishedMs=Math.max(0,clock()-start);
   meta.revision++;return snapshot();
 }

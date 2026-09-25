@@ -1,3 +1,5 @@
+import {keyWindowSchema,vocalWindowSchema} from '../shared/intelligence-schema.mjs';
+import {KEY_SYSTEM,OBSERVER_SYSTEM,keyWindowPrompt,vocalWindowPrompt} from './intelligence-prompts.mjs';
 import {providerRequest,newProviderRuntime} from './provider-client.mjs';
 import {normalizeWordDetails} from './word-details.mjs';
 import {analyzeAdaptive,normalizeFastScan} from './adaptive.mjs';
@@ -18,8 +20,11 @@ const LEGACY_API='https://generativelanguage.googleapis.com/v1beta';
 const INTERACTIONS_API='https://generativelanguage.googleapis.com/v1beta/interactions';
 
 const listeningKinds=new Set(['survey','listen','listen-review','listen-resolve']);
-const schemaFor=kind=>kind==='fast-scan'?fastScanSchema:kind==='light-teaching'?lightTeachingSchema:kind==='lesson'?lessonSchema:kind==='survey'?surveySchema:kind.startsWith('listen')?listeningSchema:kind==='coach'?coachSchema:kind==='transcript'?transcriptSchema:kind==='teaching'?teachingSchema:analysisSchema;
-const promptFor=(input,kind)=>kind==='fast-scan'?fastScanPrompt(input):kind==='light-teaching'?lightTeachingPrompt(input):kind==='lesson'?lessonPrompt(input):kind==='survey'?surveyPrompt(input):kind.startsWith('listen')?listeningPrompt(input,kind):kind==='coach'?coachPrompt(input):kind==='transcript'?transcriptPrompt(input):kind==='teaching'?teachingPrompt(input):analysisPrompt(input);
+const intelligenceKinds=new Set(['key-window','vocal-observation','vocal-review']);
+const systemFor=kind=>kind==='key-window'?KEY_SYSTEM:['vocal-observation','vocal-review'].includes(kind)?OBSERVER_SYSTEM:listeningKinds.has(kind)?LISTENING_SYSTEM:TEACHER_SYSTEM;
+const tokensFor=kind=>kind==='key-window'?1024:['vocal-observation','vocal-review'].includes(kind)?4096:null;
+const schemaFor=kind=>kind==='key-window'?keyWindowSchema:['vocal-observation','vocal-review'].includes(kind)?vocalWindowSchema:kind==='fast-scan'?fastScanSchema:kind==='light-teaching'?lightTeachingSchema:kind==='lesson'?lessonSchema:kind==='survey'?surveySchema:kind.startsWith('listen')?listeningSchema:kind==='coach'?coachSchema:kind==='transcript'?transcriptSchema:kind==='teaching'?teachingSchema:analysisSchema;
+const promptFor=(input,kind)=>kind==='key-window'?keyWindowPrompt(input):['vocal-observation','vocal-review'].includes(kind)?vocalWindowPrompt(input):kind==='fast-scan'?fastScanPrompt(input):kind==='light-teaching'?lightTeachingPrompt(input):kind==='lesson'?lessonPrompt(input):kind==='survey'?surveyPrompt(input):kind.startsWith('listen')?listeningPrompt(input,kind):kind==='coach'?coachPrompt(input):kind==='transcript'?transcriptPrompt(input):kind==='teaching'?teachingPrompt(input):analysisPrompt(input);
 
 export function modelName(config){
   if(!/^gemini-[a-z0-9.\-]+$/.test(config.model))throw new AppError('AI 服務設定格式不正確。',500,'MODEL_CONFIG');
@@ -44,7 +49,7 @@ export function requestBody(input,kind='analyze',{structured=true}={}){
     ? {fileData:{fileUri:input.url,mimeType:'video/*'}}
     : {inlineData:{mimeType:'audio/wav',data:input.listeningWindow?sliceWave(input.audioData,input.listeningWindow):input.audioData}};
   const generationConfig={
-    maxOutputTokens:kind==='fast-scan'?12288:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152,
+    maxOutputTokens:tokensFor(kind)??(kind==='fast-scan'?12288:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152),
     thinkingConfig:{thinkingLevel:'LOW'},
     responseMimeType:'application/json'
   };
@@ -52,7 +57,7 @@ export function requestBody(input,kind='analyze',{structured=true}={}){
   // accidentally sent the Interactions responseFormat shape on this fallback.
   if(structured)generationConfig.responseJsonSchema=schemaFor(kind);
   return {
-    systemInstruction:{parts:[{text:listeningKinds.has(kind)?LISTENING_SYSTEM:TEACHER_SYSTEM}]},
+    systemInstruction:{parts:[{text:systemFor(kind)}]},
     contents:[{role:'user',parts:[media,{text:promptFor(promptInput,kind)}]}],
     generationConfig
   };
@@ -76,9 +81,9 @@ export function interactionsBody(input,kind='analyze',model='gemini-3.8-flash',{
   const body={
     model,
     input:[video,{type:'text',text:promptFor(promptInput,kind)}],
-    system_instruction:listeningKinds.has(kind)?LISTENING_SYSTEM:TEACHER_SYSTEM,
+    system_instruction:systemFor(kind),
     generation_config:{
-      max_output_tokens:kind==='fast-scan'?12288:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152,
+      max_output_tokens:tokensFor(kind)??(kind==='fast-scan'?12288:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152),
       thinking_level:'low'
     },
     store:false
@@ -116,10 +121,10 @@ function parseInteraction(data){
 function normalizeProviderText(text,kind,config,usage,transport,input={},onProgress=()=>{}){
   if(!text)throw new AppError('AI 服務沒有傳回可用內容，來源可能無法讀取或受到限制。',502,'EMPTY_RESPONSE');
   try{
-    if(!['teaching','light-teaching','lesson','fast-scan'].includes(kind)&&!listeningKinds.has(kind))onProgress({phase:'normalizing',message:'已收到分析，正在整理歌詞時間與檢查音符…'});
+    if(!['teaching','light-teaching','lesson','fast-scan'].includes(kind)&&!listeningKinds.has(kind)&&!intelligenceKinds.has(kind))onProgress({phase:'normalizing',message:'已收到分析，正在整理歌詞時間與檢查音符…'});
     const clean=text.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');
     const raw=JSON.parse(clean);
-    if(listeningKinds.has(kind)||kind==='fast-scan')return {raw,usage,transport};
+    if(listeningKinds.has(kind)||intelligenceKinds.has(kind)||kind==='fast-scan')return {raw,usage,transport};
     if(kind==='lesson'){const lesson={};for(const key of Object.keys(lessonSchema.properties))lesson[key]=typeof raw[key]==='string'?raw[key].slice(0,key==='focus'?160:700):'';return {...lesson,usage};}
     if(kind==='teaching'||kind==='light-teaching')return {...normalizeTeachingBatch(raw,input.teachingBatch),...(kind==='light-teaching'?{wordDetails:normalizeWordDetails(raw,input.teachingBatch,input.listeningWindow)}:{}),usage};
     if(raw.status==='unavailable')throw new AppError('來源尚未能可靠分析：'+String(raw.reason||'未取得可用歌聲。').slice(0,300).replace(/gemini(?:-[a-z0-9.-]+)?/ig,'AI 服務'),502,'SOURCE_UNAVAILABLE');
@@ -198,7 +203,7 @@ export async function generate(input,kind,config,signal,fetcher=fetch,onProgress
   if(kind!=='analyze')return generatePass(input,kind,config,signal,fetcher,onProgress);
   const result=await analyzeAdaptive(input,
     (recording,passKind,passSignal)=>generatePass(recording,passKind,config,passSignal,fetcher),
-    {signal,onProgress,concurrency:config.adaptiveConcurrency||3,maxReviews:12});
+    {signal,onProgress,concurrency:config.adaptiveConcurrency||3,maxReviews:8,intelligenceEnabled:config.vocalIntelligence!==false});
   result.provenance.model=config.model;
   return result;
 }

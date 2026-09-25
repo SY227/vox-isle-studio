@@ -32,7 +32,7 @@ export function createApp(config=getConfig(),dependencies={}){
   const handler=async(req,res)=>{
     const requestId=randomBytes(8).toString('hex');
     res.setHeader('X-Request-Id',requestId);
-    res.setHeader('X-Vox-Build','1.2.3');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
+    res.setHeader('X-Vox-Build','1.3.0');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
     res.setHeader('Permissions-Policy','microphone=(self), camera=(), geolocation=()');
     res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.ytimg.com; media-src 'self' blob:; connect-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; worker-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");
     try {
@@ -44,7 +44,7 @@ export function createApp(config=getConfig(),dependencies={}){
         if(origin && origin!==(origins.find(o=>new URL(o).host===host)||`http://${host}`))throw new AppError('拒絕跨網站請求。',403,'ORIGIN');
         if(req.headers['sec-fetch-site']==='cross-site')throw new AppError('拒絕跨網站請求。',403,'ORIGIN');
       }
-      if(route==='/api/status'&&req.method==='GET')return json(res,200,{configured:Boolean(config.apiKey),model:config.model,authenticated:Boolean(authenticated(req)),requiresAccessCode:Boolean(config.accessCode),language:'zh-Hant',maxDuration:900,maxRequestBytes:config.maxBodyBytes||17000000,version:'1.2.3'});
+      if(route==='/api/status'&&req.method==='GET')return json(res,200,{configured:Boolean(config.apiKey),model:config.model,authenticated:Boolean(authenticated(req)),requiresAccessCode:Boolean(config.accessCode),language:'zh-Hant',maxDuration:900,maxRequestBytes:config.maxBodyBytes||17000000,version:'1.3.0'});
       if(route==='/api/session'&&req.method==='POST'){
         limited(req,'login',10,900000);const input=await body(req,2048);
         if(typeof input.code!=='string'||!timingSafeEqual(hash(input.code),hash(config.accessCode)))throw new AppError('存取碼不正確。',401,'AUTH');
@@ -58,6 +58,8 @@ export function createApp(config=getConfig(),dependencies={}){
         limited(req,route==='/api/lesson'?'lesson':'ai',route==='/api/lesson'?120:20,3600000);
         if(!config.apiKey)throw new AppError('分析服務目前未就緒，請稍後再試。',503,'NO_API_KEY');
         if(inflight>=3)throw new AppError('工作室正在處理其他請求，請稍後再試。',429,'BUSY');
+        inflight++;
+        try{
         const kind=route==='/api/coach'?'coach':route==='/api/lesson'?'lesson':'analyze';
         const raw=await body(req,config.maxBodyBytes||17000000);const input=kind==='lesson'?validateLesson(raw):validateInput(raw,kind);
         const controller=new AbortController();
@@ -67,7 +69,7 @@ export function createApp(config=getConfig(),dependencies={}){
         const emit=data=>{if(!res.destroyed)res.write(JSON.stringify({...data,requestId})+'\n');};
         emit({type:'phase',phase:'accepted',message:'已確認來源格式'});
         let lastUsable=null;
-        const heartbeat=setInterval(()=>emit({type:'heartbeat'}),15000);heartbeat.unref();inflight++;
+        const heartbeat=setInterval(()=>emit({type:'heartbeat'}),15000);heartbeat.unref();
         try{
           emit({type:'phase',phase:'analyzing',message:route==='/api/coach'?'AI 正在聆聽你的錄音':'AI 正在轉錄歌詞與建立唱法建議'});
           const requestConfig={...config,deadline:Date.now()+(config.timeout||420000),onDiagnostic:event=>{
@@ -88,8 +90,9 @@ export function createApp(config=getConfig(),dependencies={}){
             emit({type:'done',result});
           }else emit({type:'error',error:e instanceof AppError?e.message:'分析失敗，請重試。',code:e.code||'SERVER'});
         }
-        finally{clearInterval(heartbeat);inflight--;res.end();}
+        finally{clearInterval(heartbeat);res.end();}
         return;
+        }finally{inflight--;}
       }
       if(!['GET','HEAD'].includes(req.method))throw new AppError('不支援的操作。',405);
       if(route.startsWith('/api/'))throw new AppError('找不到這個 API。',404);
@@ -111,6 +114,7 @@ export function createApp(config=getConfig(),dependencies={}){
     }catch(e){
       if(res.headersSent){res.end();return;}
       const status=e instanceof AppError?e.status:500;
+      if(status===429)res.setHeader('Retry-After','5');
       json(res,status,{error:e instanceof AppError?e.message:'伺服器發生錯誤，請稍後重試。',code:e.code||'SERVER',requestId});
     }
   };

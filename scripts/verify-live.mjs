@@ -75,7 +75,7 @@ try {
   },config.timeout+25000,750);
   report.firstStudioMs=Date.now()-analysisStarted;report.firstAdaptive=result.adaptive;
   check('真實全曲首輪已展開可用樂譜','passed',`${result.timedTokens} 個逐字時間；${result.unalignedLines} 行待對齊；首輪 ${report.firstStudioMs}ms`);
-  const adaptive=result.adaptive?.version==='adaptive-recording-v1';
+  const adaptive=['adaptive-recording-v1','adaptive-recording-v2'].includes(result.adaptive?.version);
   check('使用自適應而非強制逐段核對',adaptive?'passed':'failed');if(!adaptive)failed=true;
   report.refiningWhenStudioOpened=Boolean(result.refining);
   check('工作室已在首輪後開啟','passed',result.refining?'後續精修仍在執行；播放不需等待':'後續已很快結束；沒有觀察到進行中精修');

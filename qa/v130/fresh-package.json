@@ -1,0 +1,160 @@
+{
+  "version": "1.3.0",
+  "result": "passed",
+  "passed": 30,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "Archive CRC",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Stable vox-isle-studio root",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No private environment or deployment state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No font binaries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Package version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No runtime npm dependencies",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Preserves .env",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Preserves .git/preserved",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Preserves .vercel/project.json",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Clean extraction npm check",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Clean extraction npm test",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Clean extraction npm build",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Fresh Node total",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Fresh syntax total",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Full stylesheet inline",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "New shared observation module built",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "New server module included",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No server or secrets in static dist",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest source digests",
+      "passed": true,
+      "detail": "93 runtime/test files"
+    },
+    {
+      "name": "HTTP server starts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP status version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Configuration is read but key not leaked",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Homepage serves current brand",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Homepage current build header",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Serves /app.mjs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Serves /shared/vocal-intelligence.mjs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Serves /shared/schema.mjs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Blocks private /.env",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Blocks private /server/config.mjs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Vercel duration configured",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "scope": "Clean archive extraction, reinstall preservation, tests/build, real loopback HTTP. No provider analysis. Dummy local sentinel is not a real API key.",
+  "sourceManifest": "92d4b09b49ed2632f224971875bdf9dc90f00fa6f7ee8b44e8cbc59327fc3cb0"
+}

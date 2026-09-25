@@ -1,0 +1,160 @@
+{
+  "passed": 38,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "real HTTP stream opens studio while new optional tasks remain",
+      "passed": true
+    },
+    {
+      "name": "new score defaults to original listening mode",
+      "passed": true
+    },
+    {
+      "name": "pending observation is not borrowed from practice",
+      "passed": true
+    },
+    {
+      "name": "native local audio play drives actual media clock",
+      "passed": true
+    },
+    {
+      "name": "new key and voice work preserves same iframe",
+      "passed": true
+    },
+    {
+      "name": "original observation differs from recommendation by design",
+      "passed": true
+    },
+    {
+      "name": "final header updates word timing count",
+      "passed": true
+    },
+    {
+      "name": "pitch map key label updates with resolved consensus",
+      "passed": true
+    },
+    {
+      "name": "independent original evidence visible as tooltip",
+      "passed": true
+    },
+    {
+      "name": "phrase observation summary is rendered",
+      "passed": true
+    },
+    {
+      "name": "all original score words still rendered",
+      "passed": true
+    },
+    {
+      "name": "key is a multi-window result",
+      "passed": true
+    },
+    {
+      "name": "key evidence windows can be inspected",
+      "passed": true
+    },
+    {
+      "name": "practice view shows recommended mix, not original chest",
+      "passed": true
+    },
+    {
+      "name": "view toggle does not restart or replace source",
+      "passed": true
+    },
+    {
+      "name": "switch back restores independent original label",
+      "passed": true
+    },
+    {
+      "name": "40 rapid mode and filter interactions preserve player",
+      "passed": true
+    },
+    {
+      "name": "original filter selects original voice, not practice label",
+      "passed": true
+    },
+    {
+      "name": "seek remains tied to source and lyric clock",
+      "passed": true
+    },
+    {
+      "name": "seeking colors earlier lyric tokens as played",
+      "passed": true
+    },
+    {
+      "name": "speed controls still work",
+      "passed": true
+    },
+    {
+      "name": "offset remains editable",
+      "passed": true
+    },
+    {
+      "name": "romanization toggle remains independent",
+      "passed": true
+    },
+    {
+      "name": "phrase loop remains available",
+      "passed": true
+    },
+    {
+      "name": "previous and next do not create second player",
+      "passed": true
+    },
+    {
+      "name": "export retains new independent evidence",
+      "passed": true
+    },
+    {
+      "name": "only first navigation tab remains",
+      "passed": true
+    },
+    {
+      "name": "only one custom play control",
+      "passed": true
+    },
+    {
+      "name": "no removed companion or developer setup",
+      "passed": true
+    },
+    {
+      "name": "1440px has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "1024px has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "768px has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "390px has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "320px has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "omitted original result does not become complete",
+      "passed": true
+    },
+    {
+      "name": "missing observation is visibly recoverable unfinished work",
+      "passed": true
+    },
+    {
+      "name": "valid recommendations survive original-observation failure",
+      "passed": true
+    },
+    {
+      "name": "no uncaught browser exceptions",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "mode": "Actual localhost HTTP/NDJSON bridged through a test fetch adapter because navigation is administrator-blocked. AI mocked; iframe controller backed by actual original local audio. No external YouTube or music accuracy certification."
+}

@@ -1,0 +1,28 @@
+{
+  "version": "1.3.0",
+  "baselineVersion": "1.2.3",
+  "node": {
+    "passed": 380,
+    "failed": 0,
+    "skipped": 0
+  },
+  "syntax": {
+    "modules": 74,
+    "passed": true
+  },
+  "browser": {
+    "inherited": 272,
+    "vocalIntelligence": 38,
+    "total": 310,
+    "failed": 0,
+    "liveYouTube": false,
+    "realLocalAudioClock": true
+  },
+  "build": "passed",
+  "musicAccuracy": "not measured; no listening reference in this run",
+  "liveProvider": "blocked at DNS/key preflight; zero provider requests",
+  "freshPackage": {
+    "passed": 30,
+    "failed": 0
+  }
+}

@@ -1,0 +1,5 @@
+
+> vox-isle-studio@1.3.0 build
+> node scripts/build-vercel.mjs
+
+Singing Fox build: static app + shared imports; API handled by api/index.mjs.
