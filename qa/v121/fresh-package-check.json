@@ -1,0 +1,32 @@
+{
+  "passed": 26,
+  "checks": [
+    "ZIP integrity",
+    "No .env or credentials directory packaged",
+    ".env preserved",
+    ".git/preserve-test preserved",
+    ".vercel/project.json preserved",
+    "Fresh syntax",
+    "Fresh 310 Node tests",
+    "Fresh deployment build",
+    "shared modules in deployment output",
+    "no .env in deployment output",
+    "no server source in deployment output",
+    "model unchanged",
+    "home served",
+    "production CSS embedded",
+    "startup guard loaded",
+    "build header correct",
+    "/app.mjs JavaScript import available",
+    "/boot-guard.mjs JavaScript import available",
+    "/shared/music.mjs JavaScript import available",
+    "/shared/schema.mjs JavaScript import available",
+    "/shared/annotations.mjs JavaScript import available",
+    "API status responds",
+    "local key recognized without disclosure",
+    "env not downloadable",
+    "local audio ranges work",
+    "invalid analysis rejects before provider"
+  ],
+  "scope": "Fresh ZIP, local HTTP and build only; no external provider calls"
+}

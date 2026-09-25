@@ -1,0 +1,24 @@
+{
+  "version": "1.2.1",
+  "checkedAt": "2026-09-25T17:18:52.949Z",
+  "result": "blocked",
+  "scope": "Real provider; does not certify lyric timing accuracy",
+  "keyConfigured": false,
+  "network": [
+    {
+      "host": "www.youtube.com",
+      "resolved": false,
+      "code": "EAI_AGAIN"
+    },
+    {
+      "host": "generativelanguage.googleapis.com",
+      "resolved": false,
+      "code": "EAI_AGAIN"
+    }
+  ],
+  "events": [],
+  "milestones": [],
+  "videoId": "4ULVNHHqbew",
+  "reason": "Network or local configuration unavailable; zero songs analyzed.",
+  "elapsedMs": 5016
+}

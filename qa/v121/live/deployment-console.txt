@@ -1,0 +1,46 @@
+
+> vox-isle-studio@1.2.1 verify:deployment
+> node scripts/verify-deployment.mjs https://vox-isle-studio.vercel.app
+
+{
+  "scope": "Real deployment GET smoke only; no live audio analysis",
+  "checkedAt": "2026-09-25T17:19:13.444Z",
+  "result": "not-passed",
+  "results": [
+    {
+      "route": "/",
+      "ok": false,
+      "code": "EAI_AGAIN"
+    },
+    {
+      "route": "/app.mjs",
+      "ok": false,
+      "code": "EAI_AGAIN"
+    },
+    {
+      "route": "/boot-guard.mjs",
+      "ok": false,
+      "code": "EAI_AGAIN"
+    },
+    {
+      "route": "/shared/music.mjs",
+      "ok": false,
+      "code": "EAI_AGAIN"
+    },
+    {
+      "route": "/shared/schema.mjs",
+      "ok": false,
+      "code": "EAI_AGAIN"
+    },
+    {
+      "route": "/shared/annotations.mjs",
+      "ok": false,
+      "code": "EAI_AGAIN"
+    },
+    {
+      "route": "/api/status",
+      "ok": false,
+      "code": "EAI_AGAIN"
+    }
+  ]
+}

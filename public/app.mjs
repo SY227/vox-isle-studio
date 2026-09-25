@@ -1,12 +1,12 @@
-import {Avatar} from './modules/avatar.mjs?v=1.2.0';
-import {icon,esc,toast,modal,closeModal,saveFile} from './modules/ui.mjs?v=1.2.0';
-import {Player} from './modules/player.mjs?v=1.2.0';
-import {Recorder,decodeFile,toBase64,scanPitch,playNotes,stopNotes,speak} from './modules/audio.mjs?v=1.2.0';
-import * as api from './modules/api.mjs?v=1.2.0';
-import {noteName,clock,clamp,TECHNIQUES,ORNAMENTS,parseYouTube,rangeFromPhrases} from '/shared/music.mjs?v=1.2.0';
-import {normalizeAnalysis} from '/shared/schema.mjs?v=1.2.0';
-import {lyricState,tokenLyricState} from '/shared/lyric-clock.mjs?v=1.2.0';
-import {teachingCoverage} from '/shared/annotations.mjs?v=1.2.0';
+import {Avatar} from './modules/avatar.mjs?v=1.2.1';
+import {icon,esc,toast,modal,closeModal,saveFile} from './modules/ui.mjs?v=1.2.1';
+import {Player} from './modules/player.mjs?v=1.2.1';
+import {Recorder,decodeFile,toBase64,scanPitch,playNotes,stopNotes,speak} from './modules/audio.mjs?v=1.2.1';
+import * as api from './modules/api.mjs?v=1.2.1';
+import {noteName,clock,clamp,TECHNIQUES,ORNAMENTS,parseYouTube,rangeFromPhrases} from '/shared/music.mjs?v=1.2.1';
+import {normalizeAnalysis} from '/shared/schema.mjs?v=1.2.1';
+import {lyricState,tokenLyricState} from '/shared/lyric-clock.mjs?v=1.2.1';
+import {teachingCoverage} from '/shared/annotations.mjs?v=1.2.1';
 
 const $=q=>document.querySelector(q),$$=q=>[...document.querySelectorAll(q)];
 const state={page:'home',mode:'youtube',url:'',language:'auto',lyrics:'',advanced:false,solo:false,file:null,
@@ -16,7 +16,7 @@ let avatar,abortController,loadingTimer,recorder,recordUrl,uploadUrl,activation=
 let analysisRun=0,analysisInput=null,lessonAbort=null,lessonTimer=null;
 const lessons=new Map(),editedPhrases=new Set();
 state.refining=false;state.lessonPending=-1;state.lessonError=-1;
-const BUILD='1.2.0';
+const BUILD='1.2.1';
 try{const saved=JSON.parse(localStorage.getItem('vox-isle-library-v1')||'[]');state.library=Array.isArray(saved)?saved.slice(0,8):[];}catch{}
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const player=new Player(onTick,onPlayerState,message=>{state.playerIssue=message;});
@@ -160,7 +160,7 @@ function qualityNotice(a){
   const partial=q?.mode==='partial';
   return `<details class="quality-notice ${partial?'needs-review':''}" ${!a.phrases.length?'open':''}><summary>${icon('info',15)}<span>${partial?'部分細節待確認；完整辨識文字仍會顯示在歌詞區。':'歌詞已整理；音高與時間仍為 AI 估計。'}</span><span>${q?.timedTokens??a.phrases.reduce((n,p)=>n+p.tokens.length,0)} 字有時間估計${q?.untimedTokens?' · '+q.untimedTokens+' 字待對齊':''}</span></summary><div>${(a.warnings||[]).map(w=>`<p>${esc(w)}</p>`).join('')}${untimed.length?`<p>待對齊文字已保留在完整歌詞底部，但不會參與同步亮字。</p>`:''}</div></details>`;
 }
-async function refreshStatus(){try{state.backend=await api.status();updateHeader();}catch{} }
+async function refreshStatus(signal){try{state.backend=await api.status(signal);updateHeader();}catch{} }
 async function openDemo(){
   abortController?.abort();lessonAbort?.abort();clearTimeout(lessonTimer);analysisRun++;analysisInput=null;lessons.clear();editedPhrases.clear();state.lessonPending=-1;state.refining=false;
   const raw=await fetch('/demo.json').then(r=>r.json());await activate(raw,{kind:'demo',audioUrl:'/audio/demo.wav'});state.selectedPhrase=0;state.selectedToken=2;updateSelection(0,2,false);
@@ -198,9 +198,6 @@ async function startAnalysis(){
   if(state.loading)return;
   if(state.mode==='youtube'&&!parseYouTube(state.url)){toast('請貼上有效的 YouTube 歌曲連結。',true);return;}
   if(state.mode==='upload'&&!state.file){toast('請先選擇音訊檔。',true);return;}
-  await refreshStatus();
-  if(!state.backend.configured){toast('分析服務暫時未就緒，請稍後再試。',true);return;}
-  if(state.backend.requiresAccessCode&&!state.backend.authenticated){showLogin();return;}
   abortController?.abort();lessonAbort?.abort();clearTimeout(lessonTimer);
   const run=++analysisRun;lessons.clear();editedPhrases.clear();analysisInput=null;
   state.lessonPending=-1;state.lessonError=-1;state.refining=false;
@@ -210,11 +207,16 @@ async function startAnalysis(){
   loadingTimer=setInterval(()=>{if($('#loading-elapsed'))$('#loading-elapsed').textContent='已經過 '+clock((performance.now()-started)/1000);},1000);
   let temporaryUrl,opened=false;
   try{
+    await refreshStatus(signal);
+    if(signal.aborted)throw new DOMException('Cancelled','AbortError');
+    if(!state.backend.configured)throw new Error('分析服務目前未就緒，請聯絡工作室管理員。');
+    if(state.backend.requiresAccessCode&&!state.backend.authenticated){state.page='home';state.loading=false;render();showLogin();return;}
     const request={source:state.mode,language:state.language};let source,measured=null;
     if(state.mode==='youtube'){const yt=parseYouTube(state.url);request.url=yt.url;source={kind:'youtube',...yt};}
     else{
       const decoded=await decodeFile(state.file);if(signal.aborted)throw new DOMException('Cancelled','AbortError');
       if(state.solo){phaseUpdate({phase:'preparing',message:'本機正在量測清唱音高…'});measured=(await scanPitch(decoded.samples,()=>{},signal)).summary;}
+      if(state.backend.maxRequestBytes && decoded.blob.size*4/3+10000>state.backend.maxRequestBytes)throw new Error('音訊超過這個網站的上傳大小上限，請改用 YouTube 連結或較短音訊。');
       request.audioData=await toBase64(decoded.blob);request.fileName=state.file.name;request.measured=measured;
       temporaryUrl=URL.createObjectURL(state.file);source={kind:'upload',audioUrl:temporaryUrl,fileName:state.file.name};
     }
@@ -238,7 +240,7 @@ async function startAnalysis(){
       state.refining=false;state.analysis.adaptive={...state.analysis.adaptive,state:signal.aborted?'cancelled':'partial'};refreshScoreFragments();
     }else{
       if(temporaryUrl)URL.revokeObjectURL(temporaryUrl);
-      state.page='home';state.error=signal.aborted?'':e.message;render();
+      state.page='home';state.error=signal.aborted?'':e.message+(e.requestId?'（參考編號：'+e.requestId+'）':'');render();
       if(!signal.aborted)toast(e.message,true);
     }
   }finally{if(run===analysisRun){state.loading=false;clearInterval(loadingTimer);if(abortController===controller)abortController=null;}}

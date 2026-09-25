@@ -5,11 +5,12 @@ import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {ROOT} from '../server/config.mjs';
 const sources=[
+  {id:'J2uD1UXLTVs',url:'https://www.youtube.com/watch?v=J2uD1UXLTVs'},
   {id:'YaJ_lYFgr6c',url:'https://www.youtube.com/watch?v=YaJ_lYFgr6c&list=RDeV9a5oUCbZQ&index=2'},
   {id:'4ULVNHHqbew',url:'https://www.youtube.com/watch?v=4ULVNHHqbew&list=RD4ULVNHHqbew&start_radio=1'}
 ];
 if(process.argv.includes('--help')){
- console.log('npm run verify:links\n依序測試兩條提供的 YouTube 連結。使用本機 .env，會產生真實 AI 用量。\n報告存於 test-results/live-links/；blocked 不是通過。');process.exit(0);
+ console.log('npm run verify:links\n依序測試三條提供的 YouTube 連結。使用本機 .env，會產生真實 AI 用量。\n報告存於 test-results/live-links/；blocked 不是通過。');process.exit(0);
 }
 const out=path.join(ROOT,'test-results/live-links');await mkdir(out,{recursive:true});const reports=[];
 for(const source of sources){

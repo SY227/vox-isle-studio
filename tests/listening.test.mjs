@@ -48,7 +48,7 @@ test('WAV listening windows contain actual sliced samples, not a full-file promp
 test('WAV clips outside the sample-count duration are rejected',()=>{const wav=wave(1).toString('base64');assert.throws(()=>sliceWave(wav,{clipStart:0,clipEnd:2}));});
 test('Interactions listening requests use documented duration-string clipping offsets',()=>{
  const b=interactionsBody({...input,listeningWindow:win[1]},'listen');assert.deepEqual(b.input[0].processing,{type:'static',start_offset:'20s',end_offset:'49.25s'});assert.equal(b.store,false);
- const fallback=interactionsBody({...input,listeningWindow:win[1]},'listen','gemini-3.8-flash',{windowMode:'source-target'});assert.equal(fallback.input[0].processing,'agentic');assert.match(fallback.input[1].text,/source_seconds/);
+ const fallback=interactionsBody({...input,listeningWindow:win[1]},'listen','gemini-3.8-flash',{windowMode:'source-target'});assert.equal(fallback.input[0].processing,'static');assert.match(fallback.input[1].text,/source_seconds/);
 });
 test('legacy fallback keeps the full source and targets the same absolute source range in prompt',()=>{
  const b=requestBody({...input,listeningWindow:win[1]},'listen');assert.equal(b.contents[0].parts[0].videoMetadata,undefined);assert.match(b.contents[0].parts[1].text,/20\.000 至 49\.250/);assert.match(b.contents[0].parts[1].text,/source_seconds/);

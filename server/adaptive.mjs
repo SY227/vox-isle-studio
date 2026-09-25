@@ -1,3 +1,4 @@
+import {applyWordDetails} from './word-details.mjs';
 /** Fast recording-first transcript, then bounded, non-blocking enrichment.
  * No compulsory blind pass; no synthetic word timing. A later failed task cannot
  * invalidate a delivered transcript. AI confidence is only a scheduling signal.
@@ -12,7 +13,7 @@ const finite=Number.isFinite;
 const clean=(s,max=700)=>typeof s==='string'?s.slice(0,max):'';
 const units=s=>s.match(/□|[\p{Script=Han}]|[A-Za-z]+(?:['’\-][A-Za-z]+)*|[0-9]+|[^\s\p{P}\p{S}]/gu)||[];
 const abort=signal=>{if(signal?.aborted)throw signal.reason||new DOMException('Cancelled','AbortError');};
-const fatal=e=>['GEMINI_401','GEMINI_403','GEMINI_404','NO_API_KEY','MODEL_CONFIG'].includes(e?.code);
+const fatal=e=>['GEMINI_401','GEMINI_402','GEMINI_403','GEMINI_404','SOURCE_POLICY','NO_API_KEY','MODEL_CONFIG'].includes(e?.code)||e?.quotaPermanent;
 const stamp=()=>new Date().toISOString();
 
 export function normalizeFastScan(raw,input={}){
@@ -23,6 +24,7 @@ export function normalizeFastScan(raw,input={}){
   if(raw.phrases.length>600)throw new AppError('樂句數超過支援範圍，沒有靜默截斷。',502,'SCAN_FORMAT');
   const phrases=[],unalignedLyrics=[];let count=0;
   for(const line of raw.phrases){
+    const lineOnly=!Array.isArray(line?.words)&&!Array.isArray(line?.tokens);
     const words=Array.isArray(line?.words)?line.words:Array.isArray(line?.tokens)?line.tokens:[];
     const text=clean(line?.text,1280)||words.map(w=>clean(w?.text,40)).join('');
     const expected=units(text);if(!expected.length)continue;
@@ -43,10 +45,10 @@ export function normalizeFastScan(raw,input={}){
     const score=finite(line.confidence)?Math.max(0,Math.min(1,line.confidence)):0.5;
     // Long malformed phrases are retained as text, never truncated to 64 words.
     if(tokens.length>64){unalignedLyrics.push(text);continue;}
-    const confidence=issues?Math.min(score,0.6):score;
+    const confidence=issues&&!lineOnly?Math.min(score,0.6):score;
     tokens.forEach(t=>{t.timingConfidence=confidence>=0.85?'high':confidence>=0.65?'medium':'low';});
     phrases.push({start,end,section:clean(line.section,40)||'樂句',tokens,scanConfidence:confidence,
-      timingStatus:issues?'needs-review':'first-pass',focus:'先跟著原聲熟悉這句。',instruction:'唱法標記會逐步補上。點選一句，可取得詳細教學。',
+      timingStatus:lineOnly?'line-estimate':issues?'needs-review':'first-pass',focus:'先跟著原聲熟悉這句。',instruction:'唱法標記會逐步補上。點選一句，可取得詳細教學。',
       pronunciation:'',exercise:'用舒服的聲量跟唱。',caution:'不適時停止。'});
   }
   const low=midi(raw.pitchLow),high=midi(raw.pitchHigh);
@@ -63,7 +65,7 @@ export function planTimingReview(a,{maxReviews=12,reviewFraction=0.3}={}){
   const candidates=[];
   a.phrases.forEach((p,i)=>{
     const reasons=[];let score=p.scanConfidence??0.5;
-    if(p.tokens.some(t=>!finite(t.start)))reasons.push('missing-word-boundary');
+    if(p.timingStatus!=='line-estimate'&&p.tokens.some(t=>!finite(t.start)))reasons.push('missing-word-boundary');
     if(p.tokens.some(t=>t.text==='□'))reasons.push('unclear-text');
     if(p.end-p.start>16)reasons.push('long-line');
     if(i&&p.start<a.phrases[i-1].end-0.25)reasons.push('overlapping-lines');
@@ -159,17 +161,17 @@ export async function analyzeAdaptive(input,request,{signal,onProgress=()=>{},co
     try{
       let r=await call('light-teaching',{teachingBatch:batch,listeningWindow:window});abort(signal);
       if(r.status!=='ok')throw new AppError('這段唱法仍待確認。',502,'TEACHING_UNAVAILABLE');
-      results[index]=r;
+      results[index]=r;applyWordDetails(transcript,r.wordDetails);
       const missing=missingTeachingBatch(batch,r.annotations);
       // One small repair for missing IDs only, never reanalyse an entire finished batch.
-      if(missing.tokenCount){try{const repaired=await call('light-teaching',{teachingBatch:missing,listeningWindow:window});abort(signal);for(const [id,value]of repaired.annotations)r.annotations.set(id,value);}catch(e){if(signal?.aborted||fatal(e))throw e;failures.push({task:`teaching-repair-${index}`,code:e.code||'FAILED'});}}
+      if(missing.tokenCount){try{const repaired=await call('light-teaching',{teachingBatch:missing,listeningWindow:window});abort(signal);for(const [id,value]of repaired.annotations)r.annotations.set(id,value);applyWordDetails(transcript,repaired.wordDetails);}catch(e){if(signal?.aborted||fatal(e))throw e;failures.push({task:`teaching-repair-${index}`,code:e.code||'FAILED'});}}
     }finally{completedBatches.add(index);meta.completedTeachingBatches=completedBatches.size;}
   });
   // Interleave labels and risky-line repairs; neither queue starves the other.
   while(timingTasks.length||teachingTasks.length){if(teachingTasks.length)tasks.push(teachingTasks.shift());if(timingTasks.length)tasks.push(timingTasks.shift());}
-  let next=0,stop=false;
-  const worker=async()=>{while(next<tasks.length&&!stop){abort(signal);const index=next++;try{await tasks[index]();}
-    catch(e){if(signal?.aborted)throw e;failures.push({task:index,code:e.code||'FAILED'});if(fatal(e))stop=true;}
+  let next=0,stop=false,connectionFailures=0;
+  const worker=async()=>{while(next<tasks.length&&!stop){abort(signal);const index=next++;try{await tasks[index]();connectionFailures=0;}
+    catch(e){if(signal?.aborted)throw e;failures.push({task:index,code:e.code||'FAILED'});if(['NETWORK','TIMEOUT','GEMINI_408','GEMINI_500','GEMINI_502','GEMINI_503','GEMINI_504'].includes(e.code))connectionFailures++;if(fatal(e)||e.code==='GEMINI_429'||connectionFailures>=3)stop=true;}
     if(signal?.aborted)throw signal.reason;
     meta.completedTasks++;emit('update');
   }};

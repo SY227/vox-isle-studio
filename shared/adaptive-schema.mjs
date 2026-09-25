@@ -5,10 +5,9 @@ const object=properties=>({type:'object',properties,required:Object.keys(propert
 const array=items=>({type:'array',items});
 export const fastScanSchema=object({status:{type:'string',enum:['ok','unavailable']},reason:s,title:s,artist:s,
   language:{type:'string',enum:['cantonese','mandarin','mixed','unknown']},duration:n,complete:{type:'boolean'},
-  pitchLow:nullable,pitchHigh:nullable,
-  phrases:array(object({text:s,section:s,start:nullable,end:nullable,confidence:n,
-    words:array(object({text:s,romanization:s,start:nullable,end:nullable}))}))});
-export const lightTeachingSchema=object({status:{type:'string',enum:['ok','unavailable']},reason:s,
-  phrases:array(object({id:s,tokens:array(teachingTokenSchema)}))});
+  phrases:array(object({text:s,section:s,start:nullable,end:nullable,confidence:n}))});
+const detailedToken=object({...teachingTokenSchema.properties,romanization:s,start:nullable,end:nullable});
+export const lightTeachingSchema=object({status:{type:'string',enum:['ok','unavailable']},reason:s,timeBase:{type:'string',enum:['source_seconds','clip_seconds']},
+  phrases:array(object({id:s,tokens:array(detailedToken)}))});
 export const lessonSchema=object({focus:s,instruction:s,pronunciation:s,exercise:s,caution:s});
-export const ADAPTIVE_VERSION='adaptive-recording-v1';
+export const ADAPTIVE_VERSION='adaptive-recording-v2';

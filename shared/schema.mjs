@@ -37,7 +37,7 @@ export function normalizePhrase(p,duration=MAX_SONG_SECONDS){
     return {...timing,text:string(t.text,20),romanization:string(t.romanization,90),start:s,end:e,notes:list(t.notes,16).map(n=>number(n,24,108)),technique:t.technique,ornaments,annotationStatus:['reviewed','missing','unavailable','pending'].includes(t.annotationStatus)?t.annotationStatus:'legacy',confidence:['low','medium','high'].includes(t.confidence)?t.confidence:'low'};
   });
   if(!tokens.length)throw new Error('樂句沒有可用歌詞。');
-  return {...(Number.isFinite(p.scanConfidence)?{scanConfidence:number(p.scanConfidence,0,1)}:{}),...(['first-pass','needs-review','reviewed','unverified','user-edited'].includes(p.timingStatus)?{timingStatus:p.timingStatus}:{}),start,end,section:string(p.section,40),tokens,focus:string(p.focus,160),instruction:string(p.instruction),pronunciation:string(p.pronunciation),exercise:string(p.exercise),caution:string(p.caution)};
+  return {...(Number.isFinite(p.scanConfidence)?{scanConfidence:number(p.scanConfidence,0,1)}:{}),...(['first-pass','line-estimate','needs-review','reviewed','unverified','user-edited'].includes(p.timingStatus)?{timingStatus:p.timingStatus}:{}),start,end,section:string(p.section,40),tokens,focus:string(p.focus,160),instruction:string(p.instruction),pronunciation:string(p.pronunciation),exercise:string(p.exercise),caution:string(p.caution)};
 }
 export function normalizeAnalysis(raw){
   if(!raw||typeof raw!=='object')throw new Error('沒有收到可用分析。');
@@ -69,7 +69,7 @@ function listeningSummary(raw){
 
 function scanRange(r){return {low:number(r.low,24,108),high:number(r.high,r.low,108),typicalLow:null,typicalHigh:null};}
 function adaptiveSummary(raw){
- if(raw.version!=='adaptive-recording-v1')throw new Error('精修資料版本不正確。');
+ if(!['adaptive-recording-v1','adaptive-recording-v2'].includes(raw.version))throw new Error('精修資料版本不正確。');
  const out={version:raw.version,state:['refining','complete','partial','cancelled'].includes(raw.state)?raw.state:'partial',completeScan:raw.completeScan===true,accuracyVerified:false};
  for(const k of ['revision','totalTasks','completedTasks','acceptedLines','selectedLines','deferredLines','reviewedLines','deepReviews','failedTasks','completedTeachingBatches','totalTeachingBatches','firstResultMs','finishedMs','calls'])out[k]=Number.isFinite(raw[k])?number(raw[k],0,100000000):0;
  return out;

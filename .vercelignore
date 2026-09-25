@@ -1,0 +1,13 @@
+.git
+.env
+.env.*
+.vercel
+node_modules
+docs
+qa
+tests
+test-results
+test-results-*
+__pycache__
+*.log
+*.backup

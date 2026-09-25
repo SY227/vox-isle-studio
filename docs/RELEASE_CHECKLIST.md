@@ -1,3 +1,5 @@
+> Historical design/checklist retained from the v1.2.0 baseline. Current deployment, retry budgets and line-first pipeline are documented in `README.md` and `QA_STABILITY_V1.2.1.md`. Historical checklist items are not a new live certification.
+
 # v1.2.0 acceptance checklist
 
 Completed automated checks are in QA_REPORT.md. Before public rollout, separately verify:

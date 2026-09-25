@@ -23,7 +23,7 @@ test('index embeds the complete production stylesheet so layout does not depend 
 
 test('app entry and player module URLs are versioned, not only CSS',async()=>{
  const html=await readFile(path.join(ROOT,'public/index.html'),'utf8'),app=await readFile(path.join(ROOT,'public/app.mjs'),'utf8');
- assert.match(html,/app\.mjs\?v=1\.2\.0/);assert.match(app,/player\.mjs\?v=1\.2\.0/);
+ assert.match(html,/app\.mjs\?v=1\.2\.1/);assert.match(app,/player\.mjs\?v=1\.2\.1/);
 });
 test('rights gate removed; passive processing notice and stage progress retained',async()=>{
  const app=await readFile(path.join(ROOT,'public/app.mjs'),'utf8');assert.ok(!app.includes('rights-input'));assert.match(app,/source-disclosure/);assert.match(app,/role="progressbar"/);assert.match(app,/非音訊處理百分比/);

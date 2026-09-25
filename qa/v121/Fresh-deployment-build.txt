@@ -1,0 +1,5 @@
+
+> vox-isle-studio@1.2.1 build
+> node scripts/build-vercel.mjs
+
+VOX ISLE build: static app + shared imports; API handled by api/index.mjs.

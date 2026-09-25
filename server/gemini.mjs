@@ -1,4 +1,6 @@
-import {analyzeAdaptive} from './adaptive.mjs';
+import {providerRequest,newProviderRuntime} from './provider-client.mjs';
+import {normalizeWordDetails} from './word-details.mjs';
+import {analyzeAdaptive,normalizeFastScan} from './adaptive.mjs';
 import {fastScanSchema,lightTeachingSchema,lessonSchema} from '../shared/adaptive-schema.mjs';
 import {fastScanPrompt,lightTeachingPrompt,lessonPrompt} from './adaptive-prompts.mjs';
 import {analyzeByListening,sliceWave} from './listening.mjs';
@@ -28,7 +30,7 @@ export function modelName(config){
 function promptInputForTransport(input,windowMode='clip'){
   // Local WAV windows are physically sliced. YouTube normally uses provider-side
   // static clipping. If that preview path rejects a particular video, fall back to
-  // agentic navigation over the canonical full source and require absolute times.
+  // static inspection of the canonical full source and require absolute times.
   return input.source==='youtube'&&input.listeningWindow&&windowMode==='source-target'
     ? {...input,youtubeWindowMode:'source-target'}
     : input;
@@ -42,7 +44,7 @@ export function requestBody(input,kind='analyze',{structured=true}={}){
     ? {fileData:{fileUri:input.url,mimeType:'video/*'}}
     : {inlineData:{mimeType:'audio/wav',data:input.listeningWindow?sliceWave(input.audioData,input.listeningWindow):input.audioData}};
   const generationConfig={
-    maxOutputTokens:kind==='fast-scan'?49152:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152,
+    maxOutputTokens:kind==='fast-scan'?12288:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152,
     thinkingConfig:{thinkingLevel:'LOW'},
     responseMimeType:'application/json'
   };
@@ -68,7 +70,7 @@ export function interactionsBody(input,kind='analyze',model='gemini-3.8-flash',{
       video.processing={type:'static',start_offset:`${input.listeningWindow.clipStart}s`,end_offset:`${input.listeningWindow.clipEnd}s`};
     }else{
       // Official fallback when URL clipping is rejected for an otherwise-readable video.
-      video.processing='agentic';
+      video.processing='static';
     }
   }
   const body={
@@ -76,7 +78,7 @@ export function interactionsBody(input,kind='analyze',model='gemini-3.8-flash',{
     input:[video,{type:'text',text:promptFor(promptInput,kind)}],
     system_instruction:listeningKinds.has(kind)?LISTENING_SYSTEM:TEACHER_SYSTEM,
     generation_config:{
-      max_output_tokens:kind==='fast-scan'?49152:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152,
+      max_output_tokens:kind==='fast-scan'?12288:kind==='light-teaching'?12288:kind==='lesson'?2048:kind==='survey'?2048:kind.startsWith('listen')?16384:kind==='coach'?4096:kind==='transcript'?32768:kind==='teaching'?16384:49152,
       thinking_level:'low'
     },
     store:false
@@ -85,58 +87,10 @@ export function interactionsBody(input,kind='analyze',model='gemini-3.8-flash',{
   return body;
 }
 
-function providerMessage(status,isYouTube=false){
-  const messages={
-    400:isYouTube
-      ? 'Google 的 YouTube 來源介面目前拒絕讀取這支影片。聲嶼已完成自動相容嘗試；即使影片公開，YouTube URL 功能仍屬 preview，個別影片仍可能不可用。可稍後重試或改用同一版本音訊檔。'
-      : 'AI 服務無法處理這個來源或要求。請確認音訊格式及內容。',
-    401:'分析服務目前無法驗證連線，請稍後再試。',
-    403:isYouTube
-      ? 'Google 拒絕讀取這個 YouTube 來源。這可能是來源政策、年齡／地區／帳號限制，或 preview 功能對個別影片的限制；公開狀態本身不保證一定可讀。'
-      : '分析服務目前無法存取此來源，請稍後再試。',
-    404:'MODEL_NOT_FOUND',
-    429:'分析服務目前用量較高，請稍後再試。',
-    500:'AI 服務暫時無法完成分析。',
-    503:'AI 服務忙碌，請稍後重試。'
-  };
-  return messages[status]||`Google 回傳錯誤 (${status})。`;
-}
-
-const RETRYABLE_PROVIDER_STATUS=new Set([408,425,429,500,502,503,504]);
-const retryDelay=(config,index)=>Array.isArray(config.retryDelays)&&Number.isFinite(config.retryDelays[index])?Math.max(0,config.retryDelays[index]):[350,900,1800][index];
-function providerAbort(signal){return signal?.reason?.name==='TimeoutError'?new AppError('AI 服務回應逾時，請稍後重試或改用較短音訊。',504,'TIMEOUT'):new AppError('分析已取消。',499,'CANCELLED');}
-async function pauseRetry(ms,signal){
-  if(!ms){if(signal?.aborted)throw providerAbort(signal);return;}
-  await new Promise((resolve,reject)=>{let done=false;const finish=(error)=>{if(done)return;done=true;clearTimeout(timer);signal?.removeEventListener('abort',abort);error?reject(error):resolve();};const abort=()=>finish(providerAbort(signal));const timer=setTimeout(()=>finish(),ms);if(signal){if(signal.aborted)return abort();signal.addEventListener('abort',abort,{once:true});}});
-}
-async function postJson(url,body,config,signal,fetcher){
-  let lastResponse,lastError;
-  for(let attempt=0;attempt<4;attempt++){
-    if(signal?.aborted)throw providerAbort(signal);
-    try{
-      const attemptTimeout=Math.min(Number(config.timeout)||180000,75000);
-      const signals=[signal,AbortSignal.timeout(attemptTimeout)].filter(Boolean);
-      const response=await fetcher(url,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':config.apiKey},body:JSON.stringify(body),signal:AbortSignal.any(signals)});
-      lastResponse=response;
-      if(response.ok||!RETRYABLE_PROVIDER_STATUS.has(response.status)||attempt===3)return response;
-      try{await response.body?.cancel?.();}catch{}
-    }catch(e){
-      if(signal?.aborted)throw providerAbort(signal);
-      const timeout=e?.name==='TimeoutError'||e?.name==='AbortError';
-      lastError=new AppError(timeout?'AI 服務回應逾時，請稍後重試或改用較短音訊。':'無法連接 Google。請檢查網路連線。',timeout?504:502,timeout?'TIMEOUT':'NETWORK');
-      if(attempt===3)throw lastError;
-    }
-    // Silent resilience: three internal retries after the first failed attempt.
-    // No retry packet is emitted to the browser, so users only see the normal analysis state.
-    await pauseRetry(retryDelay(config,attempt),signal);
-  }
-  if(lastResponse)return lastResponse;
-  throw lastError||new AppError('無法連接 Google。請檢查網路連線。',502,'NETWORK');
-}
-
 function parseLegacy(data){
   const candidate=data.candidates?.[0];
   if(candidate?.finishReason==='MAX_TOKENS')throw new AppError('分析輸出被長度上限截斷。請使用較短版本；本次不會顯示不完整結果。',502,'TRUNCATED');
+  if(candidate?.finishReason&&['SAFETY','RECITATION','PROHIBITED_CONTENT','BLOCKLIST'].includes(candidate.finishReason)||data.promptFeedback?.blockReason)throw new AppError('分析服務未能提供這個來源的分析。',422,'SOURCE_POLICY');
   const text=(candidate?.content?.parts||[]).filter(p=>p.text&&!p.thought).map(p=>p.text).join('');
   return {
     text,
@@ -167,7 +121,7 @@ function normalizeProviderText(text,kind,config,usage,transport,input={},onProgr
     const raw=JSON.parse(clean);
     if(listeningKinds.has(kind)||kind==='fast-scan')return {raw,usage,transport};
     if(kind==='lesson'){const lesson={};for(const key of Object.keys(lessonSchema.properties))lesson[key]=typeof raw[key]==='string'?raw[key].slice(0,key==='focus'?160:700):'';return {...lesson,usage};}
-    if(kind==='teaching'||kind==='light-teaching')return {...normalizeTeachingBatch(raw,input.teachingBatch),usage};
+    if(kind==='teaching'||kind==='light-teaching')return {...normalizeTeachingBatch(raw,input.teachingBatch),...(kind==='light-teaching'?{wordDetails:normalizeWordDetails(raw,input.teachingBatch,input.listeningWindow)}:{}),usage};
     if(raw.status==='unavailable')throw new AppError('來源尚未能可靠分析：'+String(raw.reason||'未取得可用歌聲。').slice(0,300).replace(/gemini(?:-[a-z0-9.-]+)?/ig,'AI 服務'),502,'SOURCE_UNAVAILABLE');
     const normalized=kind==='coach'?normalizeCoach(raw):kind==='transcript'?recoverAnalysis({
       status:'ok',reason:'',title:raw.title||'未命名歌曲',artist:raw.artist||'',
@@ -198,79 +152,47 @@ function normalizeProviderText(text,kind,config,usage,transport,input={},onProgr
 }
 
 
-const SHAPE_FALLBACK_STATUS=new Set([400,404,405,422,501]);
-async function providerDebug(response,label){
-  if(process.env.VOX_DEBUG_PROVIDER!=='1')return;
-  try{const body=await response.clone().json();console.warn(`[VOX provider] ${label} ${response.status}`,String(body?.error?.message||body?.message||'').slice(0,500));}catch{console.warn(`[VOX provider] ${label} ${response.status}`);}
-}
-function finishProviderError(response){
-  const message=providerMessage(response.status,true);
-  if(message==='MODEL_NOT_FOUND')throw new AppError('目前服務暫時無法使用。',404,'GEMINI_404');
-  throw new AppError(message,response.status===429?429:502,'GEMINI_'+response.status);
-}
-async function interactionAttempt(input,kind,model,config,signal,fetcher,onProgress,options,label){
-  const response=await postJson(INTERACTIONS_API,interactionsBody(input,kind,model,options),config,signal,fetcher);
-  if(response.ok){const parsed=parseInteraction(await response.json());return {ok:true,value:normalizeProviderText(parsed.text,kind,config,parsed.usage,label,input,onProgress)};}
-  await providerDebug(response,label);return {ok:false,response};
-}
-
-async function generateYouTubePass(input,kind,config,signal,fetcher,onProgress){
-  const model=modelName(config);
-  // 1) Official direct YouTube input with structured output. For listening windows,
-  // use static provider-side clipping with duration-string offsets.
-  let step=await interactionAttempt(input,kind,model,config,signal,fetcher,onProgress,{structured:true,windowMode:'clip'},`interactions-youtube-${kind}`);
-  if(step.ok)return step.value;
-  let response=step.response;
-  if(!SHAPE_FALLBACK_STATUS.has(response.status))finishProviderError(response);
-
-  // 2) Some public videos reject preview clipping even though the URL itself is
-  // readable. Keep the full canonical source and let agentic video navigation inspect
-  // only the requested absolute source-time window.
-  if(input.listeningWindow){
-    step=await interactionAttempt(input,kind,model,config,signal,fetcher,onProgress,{structured:true,windowMode:'source-target'},`interactions-youtube-agentic-${kind}`);
-    if(step.ok)return step.value;
-    response=step.response;
-    if(!SHAPE_FALLBACK_STATUS.has(response.status))finishProviderError(response);
-  }
-
-  // 3) Retry Interactions without schema enforcement. The prompt still requests JSON,
-  // and the normal parser/validator remains authoritative.
-  step=await interactionAttempt(input,kind,model,config,signal,fetcher,onProgress,{structured:false,windowMode:input.listeningWindow?'source-target':'clip'},`interactions-youtube-json-${kind}`);
-  if(step.ok)return step.value;
-  response=step.response;
-  if(!SHAPE_FALLBACK_STATUS.has(response.status))finishProviderError(response);
-
-  // 4) GenerateContent compatibility route using its actual structured-output field
-  // names. This is the bug that made v1.1.0's advertised fallback return HTTP 400.
-  response=await postJson(`${LEGACY_API}/models/${model}:generateContent`,requestBody(input,kind),config,signal,fetcher);
-  if(response.ok){const parsed=parseLegacy(await response.json());return normalizeProviderText(parsed.text,kind,config,parsed.usage,`generateContent-youtube-${kind}`,input,onProgress);}
-  await providerDebug(response,'generateContent-structured');
-  if(!SHAPE_FALLBACK_STATUS.has(response.status))finishProviderError(response);
-
-  // 5) Last official compatibility attempt: JSON MIME without schema.
-  response=await postJson(`${LEGACY_API}/models/${model}:generateContent`,requestBody(input,kind,{structured:false}),config,signal,fetcher);
-  if(response.ok){const parsed=parseLegacy(await response.json());return normalizeProviderText(parsed.text,kind,config,parsed.usage,`generateContent-youtube-json-${kind}`,input,onProgress);}
-  await providerDebug(response,'generateContent-json');
-  finishProviderError(response);
-}
-
-/** A single call; the coordinator attaches audio again for EVERY review. */
+/** One operation, at most four attempts total (including compatibility variants). */
 async function generatePassUnqueued(input,kind,config,signal,fetcher,onProgress=()=>{}){
-  if(input.source==='youtube')return generateYouTubePass(input,kind,config,signal,fetcher,onProgress);
-  const response=await postJson(`${LEGACY_API}/models/${modelName(config)}:generateContent`,requestBody(input,kind),config,signal,fetcher);
-  if(!response.ok){
-    const message=providerMessage(response.status,false);
-    if(message==='MODEL_NOT_FOUND')throw new AppError('分析服務暫時無法使用，請稍後再試。',404,'GEMINI_404');
-    throw new AppError(message,response.status===429?429:502,'GEMINI_'+response.status);
-  }
-  const parsed=parseLegacy(await response.json());
-  return normalizeProviderText(parsed.text,kind,config,parsed.usage,'generateContent',input,onProgress);
+  const model=modelName(config);
+  const decode=(transport,interaction)=>data=>{
+    const parsed=interaction?parseInteraction(data):parseLegacy(data);
+    return normalizeProviderText(parsed.text,kind,config,parsed.usage,transport,input,onProgress);
+  };
+  const legacy=(structured=true)=>({name:`generateContent-${structured?'structured':'json'}`,
+    url:`${LEGACY_API}/models/${model}:generateContent`,body:requestBody(input,kind,{structured}),
+    decode:decode(input.source==='youtube'?`generateContent-youtube-${kind}`:'generateContent',false)});
+  let variants;
+  if(input.source==='youtube'){
+    const inter=(structured,windowMode,name)=>({name,url:INTERACTIONS_API,
+      body:interactionsBody(input,kind,model,{structured,windowMode}),decode:decode(`interactions-youtube-${kind}`,true)});
+    variants=[inter(true,'clip','interactions-structured'),
+      inter(false,input.listeningWindow?'source-target':'clip','interactions-json'),legacy(true),legacy(false)];
+  }else variants=[legacy(true),legacy(false)];
+  return providerRequest(variants,config,signal,fetcher,{kind,routeKey:`${input.source}:${input.listeningWindow?'window':'whole'}`});
 }
 async function generatePass(input,kind,config,signal,fetcher,onProgress=()=>{}){
-  const task=()=>generatePassUnqueued(input,kind,config,signal,fetcher,onProgress);
+  const cache=config.providerRuntime?.scans;
+  const key=kind==='fast-scan'&&input.source==='youtube'?`${config.model}:${input.id||input.url}:${input.language}:compact-v2`:null;
+  const saved=key&&cache?.get(key);
+  if(saved&&saved.until>Date.now()){
+    if(signal?.aborted)throw signal.reason;
+    config.onDiagnostic?.({event:'cache-hit',kind,elapsedMs:0});
+    return {...structuredClone(saved.value),usage:undefined};
+  }
+  const task=async()=>{
+    const result=await generatePassUnqueued(input,kind,config,signal,fetcher,onProgress);
+    if(key&&cache&&result.raw?.complete===true){
+      try{normalizeFastScan(result.raw,input);cache.set(key,{until:Date.now()+10*60000,value:structuredClone(result)});
+        while(cache.size>8)cache.delete(cache.keys().next().value);
+      }catch{}
+    }
+    return result;
+  };
   return config.providerQueue?config.providerQueue.run(task,signal):task();
 }
 export async function generate(input,kind,config,signal,fetcher=fetch,onProgress=()=>{}){
+  config={...config,providerRuntime:config.providerRuntime||newProviderRuntime()};
   signal=AbortSignal.any([signal,AbortSignal.timeout(config.timeout||900000)].filter(Boolean));
   if(!config.apiKey)throw new AppError('分析服務目前未就緒，請稍後再試。',503,'NO_API_KEY');
   if(kind!=='analyze')return generatePass(input,kind,config,signal,fetcher,onProgress);

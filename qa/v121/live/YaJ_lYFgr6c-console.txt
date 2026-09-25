@@ -1,0 +1,6 @@
+
+> vox-isle-studio@1.2.1 diagnose
+> node scripts/diagnose.mjs https://www.youtube.com/watch?v=YaJ_lYFgr6c
+
+Diagnostic result: blocked
+Report: /mnt/data/vox-v121-work/vox-isle-studio/test-results/provider/YaJ_lYFgr6c.json

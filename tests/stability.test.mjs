@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {normalizeFastScan,analyzeAdaptive,planTimingReview} from '../server/adaptive.mjs';
+import {normalizeWordDetails,applyWordDetails} from '../server/word-details.mjs';
+import {buildTeachingBatches} from '../shared/annotations.mjs';
+import {normalizeAnalysis} from '../shared/schema.mjs';
+import {fastScanSchema} from '../shared/adaptive-schema.mjs';
+import {interactionsBody,requestBody,generate} from '../server/gemini.mjs';
+import {newProviderRuntime} from '../server/provider-client.mjs';
+import {demo,completedFor} from './fixtures/listening-fixture.mjs';
+const input={source:'youtube',url:'https://www.youtube.com/watch?v=J2uD1UXLTVs',id:'J2uD1UXLTVs',language:'auto'};
+const raw=()=>({status:'ok',reason:'',title:'原創測試',artist:'QA',language:'mandarin',duration:demo.duration,complete:true,phrases:demo.phrases.map(p=>({text:p.tokens.map(t=>t.text).join(''),section:p.section,start:p.start,end:p.end,confidence:.95}))});
+const scan=()=>normalizeFastScan(raw(),input);
+test('initial schema does not request word timestamps, romanization or pitch',()=>{const s=JSON.stringify(fastScanSchema);assert.doesNotMatch(s,/romanization|pitchLow|pitchHigh|words/);assert.ok(fastScanSchema.properties.phrases);});
+test('compact output preserves every original demo line in order',()=>{const a=scan();assert.equal(a.phrases.length,demo.phrases.length);assert.deepEqual(a.phrases.map(p=>p.tokens.map(t=>t.text).join('')),raw().phrases.map(p=>p.text));});
+test('line-first output does not invent a word clock',()=>{const a=scan();assert.ok(a.phrases.every(p=>p.timingStatus==='line-estimate'&&p.tokens.every(t=>t.timingMode==='line'&&t.start===null)));});
+test('intentional lack of initial word timing does not force another whole-song review',()=>{assert.equal(planTimingReview(scan()).selected.length,0);});
+test('suspicious line is still reviewed despite compact high confidence',()=>{const r=raw();r.phrases[2].start=r.phrases[1].end-1;const a=normalizeFastScan(r,input);assert.ok(planTimingReview(a).selected.some(s=>s.index===2));});
+test('first-pass output token cap reduced from 49152 to 12288 without changing model',()=>{assert.equal(interactionsBody(input,'fast-scan').generation_config.max_output_tokens,12288);assert.equal(requestBody(input,'fast-scan').generationConfig.maxOutputTokens,12288);});
+function details(a){const b=buildTeachingBatches(a)[0];const raw={timeBase:'source_seconds',phrases:b.phrases.map(p=>({id:p.id,tokens:p.tokens.map(t=>{const [pi,ti]=t.id.match(/p(\d+)t(\d+)/).slice(1).map(Number);const ref=demo.phrases[pi].tokens[ti];return {id:t.id,text:t.text,start:ref.start,end:ref.end,romanization:'test',confidence:'high'};})}))};return {raw,b,map:normalizeWordDetails(raw,b,{clipStart:0})};}
+test('background word details fill actual observed times and romanization',()=>{const a=scan(),d=details(a);applyWordDetails(a,d.map);assert.equal(a.phrases[0].tokens[0].start,demo.phrases[0].tokens[0].start);assert.equal(a.phrases[0].tokens[0].romanization,'test');normalizeAnalysis(a);});
+test('word details never overwrite an already established timestamp',()=>{const a=scan(),d=details(a);const t=a.phrases[0].tokens[0];t.start=a.phrases[0].start+.1;t.end=t.start+.1;t.timingMode='word';applyWordDetails(a,d.map);assert.equal(t.start,a.phrases[0].start+.1);});
+test('wrong repeated occurrence or mismatched text is rejected',()=>{const a=scan(),d=details(a);d.raw.phrases[0].tokens[0].text='錯';const map=normalizeWordDetails(d.raw,d.b,{});assert.equal(map.has('p0t0'),false);});
+test('clip-relative times use offset exactly once',()=>{const a=scan(),d=details(a);d.raw.timeBase='clip_seconds';const shift=1;d.raw.phrases.forEach(p=>p.tokens.forEach(t=>{t.start-=shift;t.end-=shift;}));const m=normalizeWordDetails(d.raw,d.b,{clipStart:shift});assert.equal(m.get('p0t0').start,d.map.get('p0t0').start);});
+test('invalid coordinate system produces no guessed times',()=>{const a=scan(),d=details(a);d.raw.timeBase='unknown';assert.equal(normalizeWordDetails(d.raw,d.b,{}).size,0);});
+test('duplicate IDs cannot restore an unsafe timestamp on a third duplicate',()=>{const a=scan(),d=details(a);const t=d.raw.phrases[0].tokens[0];d.raw.phrases[0].tokens.push(t,t);assert.equal(normalizeWordDetails(d.raw,d.b,{}).has(t.id),false);});
+test('out-of-order or overlapping word boundaries are not accepted',()=>{const a=scan(),d=details(a);const first=d.map.get('p0t0'),next=d.map.get('p0t1');first.end=next.end;applyWordDetails(a,d.map);assert.equal(a.phrases[0].tokens[0].start,null);normalizeAnalysis(a);});
+test('version 1 and version 2 saved adaptive scores remain importable',()=>{const a=scan();for(const version of ['adaptive-recording-v1','adaptive-recording-v2']){a.adaptive.version=version;assert.equal(normalizeAnalysis(a).adaptive.version,version);}});
+test('first-scan cache avoids repeating the largest call, never caches failures',async()=>{
+ const config={apiKey:'test',model:'gemini-3.8-flash',retryDelays:[0,0,0],providerRuntime:newProviderRuntime()};let scans=0;
+ const fetcher=async(u,o)=>{const b=JSON.parse(o.body);const schema=b.response_format?.schema||b.generationConfig?.responseJsonSchema;if(schema?.properties?.complete)scans++;return new Response(JSON.stringify(completedFor(o,u.includes(':generateContent'))));};
+ await generate(input,'analyze',config,undefined,fetcher);await generate(input,'analyze',config,undefined,fetcher);assert.equal(scans,1);
+});
+test('compact fixture has materially less output to generate (not a wall-time benchmark)',()=>{const old={...raw(),phrases:raw().phrases.map((p,i)=>({...p,words:demo.phrases[i].tokens.map(t=>({text:t.text,romanization:t.romanization,start:t.start,end:t.end}))}))};assert.ok(Buffer.byteLength(JSON.stringify(raw()))<Buffer.byteLength(JSON.stringify(old))*.4);});

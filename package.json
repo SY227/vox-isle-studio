@@ -1,11 +1,11 @@
 {
   "name": "vox-isle-studio",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "type": "module",
   "description": "聲嶼 — Traditional Chinese, Gemini 3.8 Flash vocal practice studio",
   "engines": {
-    "node": ">=22.0.0"
+    "node": "22.x"
   },
   "scripts": {
     "setup": "node scripts/setup.mjs",
@@ -15,7 +15,10 @@
     "check": "node scripts/check.mjs",
     "test": "node --test tests/*.test.mjs",
     "verify:live": "node scripts/verify-live.mjs",
-    "verify:links": "node scripts/verify-links.mjs"
+    "verify:links": "node scripts/verify-links.mjs",
+    "build": "node scripts/build-vercel.mjs",
+    "diagnose": "node scripts/diagnose.mjs",
+    "verify:deployment": "node scripts/verify-deployment.mjs"
   },
   "license": "UNLICENSED"
 }

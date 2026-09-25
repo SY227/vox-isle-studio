@@ -1,0 +1,22 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node scripts/build-vercel.mjs",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/index.mjs": {
+      "maxDuration": 300,
+      "includeFiles": "{server,shared}/**"
+    }
+  },
+  "rewrites": [
+    {"source": "/api/:path*", "destination": "/api/index?__vox_route=:path*"}
+  ],
+  "headers": [
+    {"source": "/(.*)", "headers": [
+      {"key": "X-Content-Type-Options", "value": "nosniff"},
+      {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
+      {"key": "X-Vox-Build", "value": "1.2.1"}
+    ]}
+  ]
+}
