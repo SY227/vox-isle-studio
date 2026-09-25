@@ -1,0 +1,5 @@
+
+> vox-isle-studio@1.2.2 check
+> node scripts/check.mjs
+
+66 個 JavaScript 模組：語法檢查通過

@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-09-25T19:35:00.537136+00:00",
+  "results": [
+    {
+      "host": "vox-isle-studio.vercel.app",
+      "resolved": false,
+      "error": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "host": "www.youtube.com",
+      "resolved": false,
+      "error": "[Errno -3] Temporary failure in name resolution"
+    },
+    {
+      "host": "generativelanguage.googleapis.com",
+      "resolved": false,
+      "error": "[Errno -3] Temporary failure in name resolution"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+PASS 1440: deployed static module graph boots nonblank app
+PASS 1440: compact first scan displays every line
+PASS 1440: compact ready result has no invented word boundaries
+PASS 1440: future detailed labels remain pending
+PASS 1440: requested exact video ID retained
+PASS 1440: native source playback drives line highlight before word detail
+PASS 1440: no fabricated karaoke sweep on line-only text
+PASS 1440: progressive timing does not recreate iframe
+PASS 1440: media clock advances across word-detail patch
+PASS 1440: returned word timings now drive word highlight
+PASS 1440: the one app transport pauses native source
+PASS 1440: provider failure keeps compact transcript and enrichment
+PASS 1440: layout does not overflow
+PASS 390: deployed static module graph boots nonblank app
+PASS 390: compact first scan displays every line
+PASS 390: compact ready result has no invented word boundaries
+PASS 390: future detailed labels remain pending
+PASS 390: requested exact video ID retained
+PASS 390: native source playback drives line highlight before word detail
+PASS 390: no fabricated karaoke sweep on line-only text
+PASS 390: progressive timing does not recreate iframe
+PASS 390: media clock advances across word-detail patch
+PASS 390: returned word timings now drive word highlight
+PASS 390: the one app transport pauses native source
+PASS 390: provider failure keeps compact transcript and enrichment
+PASS 390: layout does not overflow
+PASS normal operation has no uncaught JavaScript exceptions
+PASS missing static import displays recoverable startup notice
+TOTAL 28

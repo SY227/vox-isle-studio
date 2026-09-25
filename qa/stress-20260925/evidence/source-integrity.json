@@ -1,0 +1,650 @@
+{
+  "checkedAt": "2026-09-25T19:47:28.408022+00:00",
+  "sourceZip": "singing-fox-v1.2.2.zip",
+  "zipSha256": "711636778599b1a05540b5cd3b162da3178b9a46d75df3e1d028b71ee99b55f6",
+  "originalFiles": 127,
+  "unchanged": 127,
+  "gitBlobSha1": {
+    "server/index.mjs": "c3943f06d6310ac1ae83de959f1a5b959c77938c",
+    "server/word-details.mjs": "ea59d2d26fc7d12ae7ab0d61e3c4785bed7b3431",
+    "server/adaptive.mjs": "9e3e389a964f15ccf4c4e16552aca198b2d6d732",
+    "package.json": "641dd8348716ed04d1afbab1fcfa6db816a985ee"
+  },
+  "files": [
+    {
+      "file": "shared/credentials.mjs",
+      "same": true,
+      "sha256": "d74aaf8d5af9c5c5c230d77d140a1b88efde65714739e45e81cef8694c792864"
+    },
+    {
+      "file": "shared/adaptive-schema.mjs",
+      "same": true,
+      "sha256": "ae5daf6b3b8b3d9d33ccd0806edc8d3263c9451dded97ace1b0439f8d86d339a"
+    },
+    {
+      "file": "shared/lyric-clock.mjs",
+      "same": true,
+      "sha256": "f079143631b90560a7d5d4eff96c23382624dff0c9f22734dbc8fe7a2c4ec057"
+    },
+    {
+      "file": "shared/pitch.mjs",
+      "same": true,
+      "sha256": "d120e54d8e6b2f69038feb46c5fd5ad80f8ced32c80ca37a561a0918b1040abd"
+    },
+    {
+      "file": "shared/recovery.mjs",
+      "same": true,
+      "sha256": "66e6f60b99d097af0f7ce0816db370c8fa34e3ab2ca7e16760515c449bad3573"
+    },
+    {
+      "file": "shared/listening-schema.mjs",
+      "same": true,
+      "sha256": "fc3b80a7f13acbeb4e87f70e3b95be523c2f4ac85a7676968c37d050aa65db96"
+    },
+    {
+      "file": "shared/schema.mjs",
+      "same": true,
+      "sha256": "cb42275426e66b2e949fd31ebe5622b136acf5d39510efd6b8a11efe0c753fbb"
+    },
+    {
+      "file": "shared/music.mjs",
+      "same": true,
+      "sha256": "73baa33d7f04f11f9906ff90a85c75bde98bc913ecd417d2ed8f578e97eca78a"
+    },
+    {
+      "file": "shared/annotations.mjs",
+      "same": true,
+      "sha256": "3aaba8a01d445adf71a30d7f35c888ba78311eaafeead08da7378c9b3556bf20"
+    },
+    {
+      "file": "Dockerfile",
+      "same": true,
+      "sha256": "d2c29c9ea535c4c21a16bb1b95385578ec4e0bbd13131617481f87752125bdaf"
+    },
+    {
+      "file": "server/adaptive.mjs",
+      "same": true,
+      "sha256": "a6a19f5e47f74551b19439484abc2f4a240529afee34171318239546a5207bd1"
+    },
+    {
+      "file": "server/config.mjs",
+      "same": true,
+      "sha256": "f00b778f09b7b614b06ac1a67a9a8e47c6d7e0aa0595805b4660f505fe3676bb"
+    },
+    {
+      "file": "server/listening.mjs",
+      "same": true,
+      "sha256": "4975081ad50463a2ae1c36eca3eb0fdbd2294280b371bd27642b85006fd70a28"
+    },
+    {
+      "file": "server/validation.mjs",
+      "same": true,
+      "sha256": "347415e9d0f7a6ca5db977a414eb818e27959a8d0aee5dba7b55644b66234d40"
+    },
+    {
+      "file": "server/prompts.mjs",
+      "same": true,
+      "sha256": "706ebc0c9a43f84df79aac4480289c5efa0f506eee07663eb897b03663c8de7e"
+    },
+    {
+      "file": "server/gemini.mjs",
+      "same": true,
+      "sha256": "c83bfa72503667eb2c0178894d2b6b26ccbecd92486429ababfe14c3348f83a7"
+    },
+    {
+      "file": "server/listening-prompts.mjs",
+      "same": true,
+      "sha256": "4734632a96a766aa6d3898da9fc32adb1c4010aa331e19fc759d3cf116e487a7"
+    },
+    {
+      "file": "server/teaching.mjs",
+      "same": true,
+      "sha256": "e6f310ce55094898c64a29497a5a414222b5d61eaa3b10453d8275595505072e"
+    },
+    {
+      "file": "server/adaptive-prompts.mjs",
+      "same": true,
+      "sha256": "ce45b7cd736cab4a8eea6cedbc8b4441e2fa3729958b0c1dbdb6e5fbb82356c5"
+    },
+    {
+      "file": "server/word-details.mjs",
+      "same": true,
+      "sha256": "e184cf673d95baac66cf37df4a82dcff3d962f5963494951e22689a8ac20d627"
+    },
+    {
+      "file": "server/provider-queue.mjs",
+      "same": true,
+      "sha256": "b145b4901bfdd368764f5031bf2c8b054dafb550f6328f82da5ac906da02f27d"
+    },
+    {
+      "file": "server/provider-client.mjs",
+      "same": true,
+      "sha256": "9b18fe28a61cd5a6dad5f89e9f277e014eecfea18e9676a01a8450ddc50de3e7"
+    },
+    {
+      "file": "server/index.mjs",
+      "same": true,
+      "sha256": "9b4e7886e6b65f653ea60f76288fe67e6fa9450cec2ccad35004ae3fcd2ab976"
+    },
+    {
+      "file": "package.json",
+      "same": true,
+      "sha256": "eb93641647da495a33f7fcec7c3126c8bc5c3b784c88fdfd5e0cfd463a54144b"
+    },
+    {
+      "file": "scripts/diagnose.mjs",
+      "same": true,
+      "sha256": "e3706273c91fcde1a81ad24fc0484d9dfcc88e90cc41fd6d314fdc1bc8fd9d53"
+    },
+    {
+      "file": "scripts/verify-live.mjs",
+      "same": true,
+      "sha256": "a9f614740450876c58cfb791187527da464d0647c90cc9a3823ad2b0799f32fc"
+    },
+    {
+      "file": "scripts/check-api.mjs",
+      "same": true,
+      "sha256": "06e6329b2bd45bae243ce3f6dab0f3b7aaa58c02167dcfa4f7d59a4ffaa45a8b"
+    },
+    {
+      "file": "scripts/verify-links.mjs",
+      "same": true,
+      "sha256": "6eb90f72b4b52a2d0510eafbcfd4843f8f61f80f2f866fd31f038ddeb42593db"
+    },
+    {
+      "file": "scripts/start.sh",
+      "same": true,
+      "sha256": "7d3a1e355c2851517222b2b639cd2d58a70984e39250898aed08b4a2e9e7e9df"
+    },
+    {
+      "file": "scripts/check.mjs",
+      "same": true,
+      "sha256": "8963e5b054dfbd0b52c0010bec02bcd02a2e7f60819a74b35d22c168bb6908d4"
+    },
+    {
+      "file": "scripts/lib/live-browser.mjs",
+      "same": true,
+      "sha256": "0d74a728269d29f336e3a212d14bbb50809a826b83b74bc574693104c8a51be7"
+    },
+    {
+      "file": "scripts/verify-deployment.mjs",
+      "same": true,
+      "sha256": "9d7a36b3835234db590a24f7682ab452b69407fee06f2718b57f225572d44460"
+    },
+    {
+      "file": "scripts/build-vercel.mjs",
+      "same": true,
+      "sha256": "337a76dfde380c37a2b6b30e47121ee2a1e0644c97c3dd834a54a588d7c6e331"
+    },
+    {
+      "file": "scripts/setup.mjs",
+      "same": true,
+      "sha256": "ee9a82c8961ed415c189b8287a11396595ff9a3644b06cace9cb13bc85ecefc5"
+    },
+    {
+      "file": "package-lock.json",
+      "same": true,
+      "sha256": "62dadb8184be4c63bff6903fcfeab7bc814685e2576524cd8222f73687ec63ce"
+    },
+    {
+      "file": "docs/QA_STABILITY_V1.2.1.md",
+      "same": true,
+      "sha256": "63c85d75d539ef6fb14b525b4a9edae686cfdb59643a23a1a56a2a7443a6eb27"
+    },
+    {
+      "file": "docs/LAYOUT_FAILSAFE.md",
+      "same": true,
+      "sha256": "3250755f2cffaa32cdb658017cbc819296768e618e0b6ca8916e3636ac6dc25f"
+    },
+    {
+      "file": "docs/RELEASE_CHECKLIST.md",
+      "same": true,
+      "sha256": "adc9341be7fd31e8bfa361e2cbbb23b07f76aec5a5b52ab158911ed1fe96239c"
+    },
+    {
+      "file": "docs/previews/mobile-refining-local-qa.png",
+      "same": true,
+      "sha256": "4ecfaf60073a52e4bae2c62b04afe0d4547cec2044df2fdfb580491e55904ab7"
+    },
+    {
+      "file": "docs/previews/home.png",
+      "same": true,
+      "sha256": "f42682805535fa158e9328b76898306f87338878d76038603cbb909e017f0291"
+    },
+    {
+      "file": "docs/previews/v121-studio-390.png",
+      "same": true,
+      "sha256": "352106550b99a4a16339599439ea936866a709596cf174fb85ef72aa76c3c3c0"
+    },
+    {
+      "file": "docs/previews/studio-refining-local-qa.png",
+      "same": true,
+      "sha256": "59217ce2dca4b6daf50a52547e333a5c157ebd7ce5dd3a6d81857e1e39e79807"
+    },
+    {
+      "file": "docs/previews/v121-studio-1440.png",
+      "same": true,
+      "sha256": "a5c0f023723ca5c69fcc672e2ed889f319128ce8eec2723c89e6f5c24bef3a9f"
+    },
+    {
+      "file": "docs/previews/loading-first-scan.png",
+      "same": true,
+      "sha256": "a84488ca78a44e92dc57f3ba24db27191f9ae62e45a4ab7f927c5c426d8fb398"
+    },
+    {
+      "file": "docs/QA_BRANDING_V1.2.2.md",
+      "same": true,
+      "sha256": "e2d1bac892bc4b367096cac58df54d63f8d1112541b3b14a72523033d2d8080e"
+    },
+    {
+      "file": "docs/QA_REPORT.md",
+      "same": true,
+      "sha256": "63c85d75d539ef6fb14b525b4a9edae686cfdb59643a23a1a56a2a7443a6eb27"
+    },
+    {
+      "file": "docs/ARCHITECTURE.md",
+      "same": true,
+      "sha256": "697f6e2d4128ba94d0896daf3cf19660ce6ded8a5f9bcb2e05e409fd3ebf545b"
+    },
+    {
+      "file": "docs/ASSETS.md",
+      "same": true,
+      "sha256": "c965ef007762b2269100897952d305e1507da92958854d1da4267aed49b2bf03"
+    },
+    {
+      "file": ".vercelignore",
+      "same": true,
+      "sha256": "533da14ab756b0d8efecde1483ca9d25c6f61412e831008b28410b4afaf73b43"
+    },
+    {
+      "file": "README.md",
+      "same": true,
+      "sha256": "4e30017e537faa1e8654bd62687b44090f1b5d948e855f59d9f2f9edd3f17b44"
+    },
+    {
+      "file": ".env.example",
+      "same": true,
+      "sha256": "b4558a9f556956db2e6aab1f8ed6d0e8996926c49f6c1e19bbaaba4363da6498"
+    },
+    {
+      "file": "qa/v121/live/deployment-console.txt",
+      "same": true,
+      "sha256": "654f35f4293dd50e4268e5d1888db1a40ee78fce7a35db6c0f9c2c645812a3ed"
+    },
+    {
+      "file": "qa/v121/live/YaJ_lYFgr6c-console.txt",
+      "same": true,
+      "sha256": "997cf8c3452bb5c0bf25a4c04a265f52b2e5c69e1d315c909f51f5e7889e92a1"
+    },
+    {
+      "file": "qa/v121/live/J2uD1UXLTVs-console.txt",
+      "same": true,
+      "sha256": "b953f20eb47edae7f56d3ae9b92a55cfaab9169e89700fb71a01e363ab44c2cd"
+    },
+    {
+      "file": "qa/v121/live/J2uD1UXLTVs.json",
+      "same": true,
+      "sha256": "a44d5ac3d2324ea456219689cea1da14e1bbe631f5fbb5e81575aabe9ae2a440"
+    },
+    {
+      "file": "qa/v121/live/4ULVNHHqbew-console.txt",
+      "same": true,
+      "sha256": "eacc325419c316a436eea41fcbff73caa471a8fe3660b918642ba23577a94ba5"
+    },
+    {
+      "file": "qa/v121/live/4ULVNHHqbew.json",
+      "same": true,
+      "sha256": "875e47eda9d35b8491e8ca527be340b5ea9fa4a54d64731902beca7227ec4590"
+    },
+    {
+      "file": "qa/v121/live/YaJ_lYFgr6c.json",
+      "same": true,
+      "sha256": "07d7a14603058f69fb9df01f8fbe34e57d1cb2625e92d7d033991de8e84ae5c6"
+    },
+    {
+      "file": "qa/v121/live/deployment.json",
+      "same": true,
+      "sha256": "3c1d5da8957bef8adf3be7adc545097f17f0e99fdafee9c1aa255b53fbbdc7e6"
+    },
+    {
+      "file": "qa/v121/ui-native-media.json",
+      "same": true,
+      "sha256": "2fdd8b56feef1ddb195914e2d4d3236c5ae059f3a484c675541e2e728808cb0d"
+    },
+    {
+      "file": "qa/v121/ui-smoke.json",
+      "same": true,
+      "sha256": "27ee93b9d43feeb81ec17e624b5ae07b962ad654aab6334b3c60eeb05f23e801"
+    },
+    {
+      "file": "qa/v121/ui-listening.json",
+      "same": true,
+      "sha256": "72bf9464793e0fbd45e8ae4bf16fe0a9e38635a51ae1f4063657e67aa1b4fb7f"
+    },
+    {
+      "file": "qa/v121/fresh-package-check.json",
+      "same": true,
+      "sha256": "0c8185aab11649e4a0903dff22218bea767e78f2c4e45b8035f6dd7795f1911b"
+    },
+    {
+      "file": "qa/v121/ui-adaptive.json",
+      "same": true,
+      "sha256": "c7dee447ed129365049cc0a1f3bbd823a96bd58d07742632ff25e124ce665c46"
+    },
+    {
+      "file": "qa/v121/ui-regression.json",
+      "same": true,
+      "sha256": "d595e62671984a2fd3bc186eed00a73ad6582d5da48610da0ba03f57f8900070"
+    },
+    {
+      "file": "qa/v121/ui-stability.json",
+      "same": true,
+      "sha256": "6634f0aef4197f038c6dd150f4a0b9b83d95d7f24753a22f017fcf33e14658db"
+    },
+    {
+      "file": "qa/v121/syntax.txt",
+      "same": true,
+      "sha256": "6c1069ab439a15f5999839ae77aa471b1a656b1a8ba301fc1fb8de44f22c45f4"
+    },
+    {
+      "file": "qa/v121/Fresh-310-Node-tests.txt",
+      "same": true,
+      "sha256": "a7dbf9d15568ba9959c619ea4283f4bf5301d1ec2c41157a475562fb854c22d6"
+    },
+    {
+      "file": "qa/v121/node-tests.txt",
+      "same": true,
+      "sha256": "8c6adbead766e9319012d4b49cdc5580262e087c472a5cdb364fbde5908bc13b"
+    },
+    {
+      "file": "qa/v121/Fresh-deployment-build.txt",
+      "same": true,
+      "sha256": "6ef8cf59a7861b067682059b8ba3a55f1c2cd613d80ecb0f67329b18824a3c7e"
+    },
+    {
+      "file": "qa/v121/Fresh-syntax.txt",
+      "same": true,
+      "sha256": "c0401a997ce36ecf8f2366f0170c9e9c3a511dc30f53b1ef865da71c88213d34"
+    },
+    {
+      "file": "api/index.mjs",
+      "same": true,
+      "sha256": "8fa0998a3fce1273edacddd4de9392e634edbcac1ea8b7a989d53e7aed7d969f"
+    },
+    {
+      "file": ".gitignore",
+      "same": true,
+      "sha256": "a4edaa7c9299fcfe981277a3135986f8a624184c344c8e165ed37089c0d79529"
+    },
+    {
+      "file": "tests/server.test.mjs",
+      "same": true,
+      "sha256": "d053bb45ccaf3df16645dc3758594c3335f9ade06d7b235302707e1b7a9c083a"
+    },
+    {
+      "file": "tests/inline-style.test.mjs",
+      "same": true,
+      "sha256": "a6c68aafc9dfff6d92ab6b07d6822c86970f09340f5ed5022c71f235d36addc3"
+    },
+    {
+      "file": "tests/player-bridge.test.mjs",
+      "same": true,
+      "sha256": "f5a1d4d539059d10ddaf15e12f0b6bbb83305766659eac74f6d9486bbbc32bee"
+    },
+    {
+      "file": "tests/player.test.mjs",
+      "same": true,
+      "sha256": "4d00b8b7ec0e8f234b8b746b515c5d0223318a1f0c0f4e2c932d15aeba1029ef"
+    },
+    {
+      "file": "tests/live-browser.test.mjs",
+      "same": true,
+      "sha256": "e777b372dddb557cb09401470cdc7706158999ff8add9ffb5a06f768c6ea66c4"
+    },
+    {
+      "file": "tests/recovery.test.mjs",
+      "same": true,
+      "sha256": "bee8c25c41b11bcc3115a61d61e58333ebd7cedc68199a737ecd2fb78f1bed7c"
+    },
+    {
+      "file": "tests/gemini.test.mjs",
+      "same": true,
+      "sha256": "ba3890643155865d633b4ed81c53458d58029dafb7b4b783cfd184957f842b97"
+    },
+    {
+      "file": "tests/styles.test.mjs",
+      "same": true,
+      "sha256": "cb5db17de4579d4be21de0a6dd231264f2af23d8fd60fa5ab2d5a7f1c8b14254"
+    },
+    {
+      "file": "tests/music.test.mjs",
+      "same": true,
+      "sha256": "23fa276581e0ab6bb2708d6ee93fbbf7aba736870a711b787c0d65251602cb79"
+    },
+    {
+      "file": "tests/adaptive.test.mjs",
+      "same": true,
+      "sha256": "7b6c122d09e0b28c6cefb33b94750157b79e6ed60b31eefb8746792a1c9e2e0c"
+    },
+    {
+      "file": "tests/annotations.test.mjs",
+      "same": true,
+      "sha256": "70c87dfaae57fd346c6a02b6889daed40d8ef91027ad355b46bfbf0ad34eb75f"
+    },
+    {
+      "file": "tests/ui_adaptive.py",
+      "same": true,
+      "sha256": "e364ada59bd183c24375165ca22b5c53160833da33dfcb3aa614a2b4d9db0f85"
+    },
+    {
+      "file": "tests/stability.test.mjs",
+      "same": true,
+      "sha256": "472ae09f2ad8cbdf1c2b0d4ddb6cd1ca8eeb0fcccb459dcbcd081bcda3cac821"
+    },
+    {
+      "file": "tests/fixtures/recovery-cases.json",
+      "same": true,
+      "sha256": "58ea0fc0aae5e180dc60d2980201aad62dc33da111334ea7b39862853396e269"
+    },
+    {
+      "file": "tests/fixtures/adaptive-cases.json",
+      "same": true,
+      "sha256": "5d1144683e0165b37ff08bcceafe94555bb75c037842cdef63b120cbe550e3d6"
+    },
+    {
+      "file": "tests/fixtures/build-adaptive-cases.mjs",
+      "same": true,
+      "sha256": "d79a826c39ecc9354ab65b26795053d5133fdd2c5c385ff32d0908d1ee731d00"
+    },
+    {
+      "file": "tests/fixtures/adaptive-browser-double.js",
+      "same": true,
+      "sha256": "11755ffc5c1784773cb73c3ed035cc4654ef21b30398aff5c0ff66be87a2ebc8"
+    },
+    {
+      "file": "tests/fixtures/browser-doubles.js",
+      "same": true,
+      "sha256": "3656767c39c213914992b84b3f86ca6a70ee1cd6edb0c2b397abd37d9c0c0543"
+    },
+    {
+      "file": "tests/fixtures/stability-cases.json",
+      "same": true,
+      "sha256": "d151fc59a05745f1e05023fa1ebe30d04da582b3f98b5bffd773148b4b468607"
+    },
+    {
+      "file": "tests/fixtures/native-media-double.js",
+      "same": true,
+      "sha256": "2c0f9bc234e774e71739309fee3cd32d60b86101499096f8497078e3e6112c92"
+    },
+    {
+      "file": "tests/fixtures/listening-cases.json",
+      "same": true,
+      "sha256": "e246f22b2407c616bc478b6d9ced3442577cce1017a712dc4fd62726be3a4c1d"
+    },
+    {
+      "file": "tests/fixtures/listening-fixture.mjs",
+      "same": true,
+      "sha256": "8c0cc17039db8ab1a017f569a1916c98b4583b93844b9aae81dd7f68e5202c0a"
+    },
+    {
+      "file": "tests/fixtures/build-stability-cases.mjs",
+      "same": true,
+      "sha256": "413bdcf80ffdde4fa0c81c2d2d121f3e5833d745df1b13608303b51c03b01709"
+    },
+    {
+      "file": "tests/fixtures/build-listening-cases.mjs",
+      "same": true,
+      "sha256": "f00b588bf453bd80bff9caec551b7f58d7abe2006e4cebfecddb998a583f5de7"
+    },
+    {
+      "file": "tests/validation.test.mjs",
+      "same": true,
+      "sha256": "1bc0a32391a3c23482c154af532221019d7454efd4de8b4161ded181bb38c837"
+    },
+    {
+      "file": "tests/ui_native_media.py",
+      "same": true,
+      "sha256": "89ce4c997ab0556cea2ca1762460971d466d2d87512bb1aee1f18b0e62966039"
+    },
+    {
+      "file": "tests/provider-client.test.mjs",
+      "same": true,
+      "sha256": "5516e56afcea9df9ecd3ae195933fefe1bbb79124bcafcf6980248024b5bf09b"
+    },
+    {
+      "file": "tests/client-stability.test.mjs",
+      "same": true,
+      "sha256": "83a69b6df44ee7384aea2baac1dd941060a56b136e928c56beb2c9764a0320a9"
+    },
+    {
+      "file": "tests/listening.test.mjs",
+      "same": true,
+      "sha256": "0e665e0d5f9cfdacce2cb7e6b82dd4f518edee4d81891736d6bea85962bacccf"
+    },
+    {
+      "file": "tests/ui_regression.py",
+      "same": true,
+      "sha256": "a1caa58665add122a269d0e17ca8598ae1b1790a51c8292e209f09292ecabcdd"
+    },
+    {
+      "file": "tests/ui_smoke.py",
+      "same": true,
+      "sha256": "a84d3b91ec37e0a52a39ed7d020c3651d62e1c3bc7e4f26f63a1245e7863cc52"
+    },
+    {
+      "file": "tests/ui_stability.py",
+      "same": true,
+      "sha256": "1964a1dda696793711a1ff73b5fe8cab57419fe67acb482234aaf461d714613d"
+    },
+    {
+      "file": "tests/ui_listening.py",
+      "same": true,
+      "sha256": "ca0400e6b72ca708a2c67fc62515cddacb37b7382c16a80defe4fc8654595b6c"
+    },
+    {
+      "file": "tests/deployment.test.mjs",
+      "same": true,
+      "sha256": "78cc666ae2f11ed9d81bfc489e6ea6289613723078217a63a00dccb937d0f96f"
+    },
+    {
+      "file": "tests/credentials.test.mjs",
+      "same": true,
+      "sha256": "1111fe6e32319394ede64a4fc29ba16af83e9631816653857ce8a5de49af57ae"
+    },
+    {
+      "file": ".nvmrc",
+      "same": true,
+      "sha256": "f14b4987904bcb5814e4459a057ed4d20f58a633152288a761214dcd28780b56"
+    },
+    {
+      "file": "vercel.json",
+      "same": true,
+      "sha256": "dd692b5dfacccfaf52c55707d421edf7234a391b93ea703d9202a276dce492f3"
+    },
+    {
+      "file": "public/workers/pitch-worker.mjs",
+      "same": true,
+      "sha256": "f6d83e861896463e294f3389fde6f594b95cb6fc48b18c327eaf525ab6e78ff3"
+    },
+    {
+      "file": "public/boot-guard.mjs",
+      "same": true,
+      "sha256": "a07615993c11c4de66e4c538dabf8b57718f9749c134aeb32c3e7e3fae51f761"
+    },
+    {
+      "file": "public/demo.json",
+      "same": true,
+      "sha256": "29cc38571d30bef7e2eca70ccc02c9d0b5827c43236ce9ebdb40af7fb12118cf"
+    },
+    {
+      "file": "public/icon.svg",
+      "same": true,
+      "sha256": "d371db572cd20166a31bdcb703b23b5faa5984f0e27af6d0ddc599a39bc453cf"
+    },
+    {
+      "file": "public/modules/api.mjs",
+      "same": true,
+      "sha256": "742bb2eae2bdec23a9e11e05547d48de1dfdb8a77db9e31a7891c884d363ee48"
+    },
+    {
+      "file": "public/modules/avatar.mjs",
+      "same": true,
+      "sha256": "2e93d305a4c16278b5a880622726f953e51251b8989716294f133c2a0c1d58ba"
+    },
+    {
+      "file": "public/modules/audio.mjs",
+      "same": true,
+      "sha256": "989b2b0ecff90fecc353788844b47f58d4d126f175a1e983672bd8658e8b63d9"
+    },
+    {
+      "file": "public/modules/player.mjs",
+      "same": true,
+      "sha256": "910f0f1aa3cc45c5ebf44173efd5b859e4fe94f5896dfbc2a231726b6335c844"
+    },
+    {
+      "file": "public/modules/ui.mjs",
+      "same": true,
+      "sha256": "38302d8382e6c2352a81c2f659c3617905617dba5f67e53eede50909b1a34555"
+    },
+    {
+      "file": "public/theme.css",
+      "same": true,
+      "sha256": "b8c7604b317ea74fbd0a50932a803d9d7da721e2fa97719c47e787b4c84fd178"
+    },
+    {
+      "file": "public/index.html",
+      "same": true,
+      "sha256": "2d9fe9a5fc36b88e13b34241a462d1049dcdf3ad0e158f215b2b33212f1e9074"
+    },
+    {
+      "file": "public/pcm-capture.js",
+      "same": true,
+      "sha256": "86cf0962f470adfbea49d4d86cf4c41c4b5d00829a86fa350a1e4b81b0f6f68f"
+    },
+    {
+      "file": "public/app.mjs",
+      "same": true,
+      "sha256": "201b85ac6985fca2b4fd7a57cf7f1391b56f28d92c5a940cc229ac0f1883fc74"
+    },
+    {
+      "file": "public/cover.svg",
+      "same": true,
+      "sha256": "46d220f19dd8269a4c5afb402e08fe2a61e031a285561ea17f5e724a22a3dbba"
+    },
+    {
+      "file": "public/styles.css",
+      "same": true,
+      "sha256": "a4f5a355431f663c4d27013f5105c3acd9444d95bcc9dd622b09d4bb419cd5be"
+    },
+    {
+      "file": "public/audio/demo.wav",
+      "same": true,
+      "sha256": "5076e80b00d870a3f8604b294ee726d4fb8a38d8c2efa935e6bf375f267c5f2d"
+    },
+    {
+      "file": ".dockerignore",
+      "same": true,
+      "sha256": "cafb9ea7bffb3940d6b19c3bc6457c0216d06b575f24ef69f42624d2bd608c2e"
+    }
+  ]
+}

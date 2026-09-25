@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-09-25T19:43:27.634Z",
+  "base": "https://vox-isle-studio.vercel.app",
+  "videoId": "miBGaUagOz8",
+  "canonicalUrl": "https://www.youtube.com/watch?v=miBGaUagOz8",
+  "analysisSubmitted": false,
+  "playback": "not-tested",
+  "timingAccuracy": "not-measured",
+  "result": "blocked",
+  "reason": "EAI_AGAIN"
+}

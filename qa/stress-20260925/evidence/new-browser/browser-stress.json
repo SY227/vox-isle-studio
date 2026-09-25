@@ -1,0 +1,140 @@
+{
+  "scope": "Controlled provider stream + actual local WAV in explicitly labelled player. Not real song playback.",
+  "checks": [
+    {
+      "name": "eV9a5oUCbZQ: actual chosen source ID retained (simulated media)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eV9a5oUCbZQ: native local-audio playback drives provisional line highlighting",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "eV9a5oUCbZQ: actual word timing update adds current-word highlight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eV9a5oUCbZQ: 72 rapid selection/filter gestures do not recreate the iframe",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eV9a5oUCbZQ: selection never issues hidden paid lesson requests",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eV9a5oUCbZQ: final provider error retains all eight original test lines",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "eV9a5oUCbZQ: play remains usable after provider failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "J2uD1UXLTVs: actual chosen source ID retained (simulated media)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "J2uD1UXLTVs: native local-audio playback drives provisional line highlighting",
+      "passed": false,
+      "detail": null
+    },
+    {
+      "name": "J2uD1UXLTVs: actual word timing update adds current-word highlight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "J2uD1UXLTVs: 72 rapid selection/filter gestures do not recreate the iframe",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "J2uD1UXLTVs: selection never issues hidden paid lesson requests",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "J2uD1UXLTVs: final provider error retains all eight original test lines",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "J2uD1UXLTVs: play remains usable after provider failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "miBGaUagOz8: actual chosen source ID retained (simulated media)",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "miBGaUagOz8: native local-audio playback drives provisional line highlighting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "miBGaUagOz8: actual word timing update adds current-word highlight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "miBGaUagOz8: 72 rapid selection/filter gestures do not recreate the iframe",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "miBGaUagOz8: selection never issues hidden paid lesson requests",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "miBGaUagOz8: final provider error retains all eight original test lines",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "miBGaUagOz8: play remains usable after provider failure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Twelve start/cancel cycles return to usable home",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Cancellation cycles generate exactly twelve analysis streams, not duplicates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Stop refinement preserves score and cancelled state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Mobile has one top transport and no horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No uncaught JavaScript exceptions in the stress flows",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "passed": 24,
+  "failed": 2,
+  "pageErrors": [],
+  "rapidGestures": 216,
+  "cancelCycles": 12
+}

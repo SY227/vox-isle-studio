@@ -1,0 +1,34 @@
+PASS default language is Traditional Chinese
+PASS production CSS is actually applied
+PASS layout skin is embedded and needs no external stylesheet request
+PASS home has actionable YouTube field
+PASS home UI does not expose provider model branding
+PASS only the first top-level tab is displayed
+PASS practice and library tabs are hidden from user navigation
+PASS demo loads original lyrics and 8 phrases
+PASS more than 50 interactive lyric tokens
+PASS demo is not presented as a live AI result
+PASS bundled WAV playback advances the real media clock
+PASS bundled playback highlights a timed lyric token
+PASS word selection still works without companion panel
+PASS romanization visibility toggles
+PASS run filter selects
+PASS loop turns on
+PASS guide-only transpose changes to +1
+PASS playback speed retains selection
+PASS manual edit has explicit provenance
+PASS manual note edit updates lyric display
+PASS library save entry point is not displayed in the focused studio
+PASS export presents JSON and LRC actions
+PASS Escape dismisses modal
+PASS phrase practice entry point is not displayed in the focused studio
+PASS developer setup controls are completely absent from user UI
+PASS studio song cover art is removed
+PASS 390px home has no horizontal overflow
+PASS 390px studio has no horizontal overflow
+PASS 390px shows only the focused studio tab
+PASS 768px home has no horizontal overflow
+PASS 768px studio has no horizontal overflow
+PASS 768px shows only the focused studio tab
+PASS no uncaught JavaScript exceptions in tested flows
+TOTAL 33

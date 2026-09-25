@@ -1,0 +1,31 @@
+PASS no external lyric sheet field or upload step in the first-tab workflow
+PASS home clearly states that source audio generates lyrics and timing
+PASS home shows no album cover or API/model setup
+PASS request contains the intended single video, not radio-playlist source
+PASS no lyric sheet or rights assertion is sent by the user form
+PASS real window-completion events drive the visible count
+PASS analysis bar never fabricates additional work completion on a timer
+PASS normal analysis view does not reveal internal retry chatter
+PASS assembled full-pipeline result retains every original sample word
+PASS last line retains timing and teaching, not only the first window
+PASS timestamp origin is identified as source-listening estimate
+PASS UI does not falsely label AI word timestamps as verified alignment
+PASS top transport remains the only app Play control
+PASS source time illuminates the correct synthetic line after full pipeline assembly
+PASS native media Play works before any top Play click in the new result
+PASS top transport pauses the same real local audio clock
+PASS uncertain word boundaries retain full first-line text
+PASS line-only timing activates the line without fake moving word highlight
+PASS line-only words clearly disclose their synchronization mode
+PASS uncertain word timing still has full technique labels
+PASS unknown words change to played only when the known line is finished
+PASS backward seek clears played state in a line-only phrase
+PASS diagnostics separately count actual timed words and AI-review metadata
+PASS 320px line-sync disclosure and full score have no horizontal overflow
+PASS 320px no line-only words disappear
+PASS 390px line-sync disclosure and full score have no horizontal overflow
+PASS 390px no line-only words disappear
+PASS 768px line-sync disclosure and full score have no horizontal overflow
+PASS 768px no line-only words disappear
+PASS no uncaught browser errors on new listening pipeline scenarios
+TOTAL 30

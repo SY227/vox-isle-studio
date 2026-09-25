@@ -1,0 +1,74 @@
+PASS embedded production CSS survives all stylesheet requests failing
+PASS first scan has real loading workflow, not mandatory segment reviews
+PASS studio opens on ready while analysis stream is still unfinished
+PASS all first-pass lines are visible before teaching completes
+PASS future pending labels are explicit, not invented techniques
+PASS only first tab and no developer setup or cover UI
+PASS one working app transport remains at top
+PASS playable does not falsely claim confidence as accuracy
+PASS no deep lessons generated automatically on opening
+PASS exact Canon QA video selected, radio playlist removed
+PASS native media-first playback starts lyric highlight before enrichment completes
+PASS progressive update does not move, replace, or restart the player
+PASS actual media clock keeps advancing through annotation patch
+PASS completed first-half labels appear while later labels still pending
+PASS progress reports processed tasks only
+PASS playback-driven selection does not issue paid lesson requests
+PASS manual word click selects lyric without hidden paid lesson request
+PASS companion panel is absent from focused studio
+PASS same phrase navigation remains local-only
+PASS out-of-order snapshot cannot undo newer labels
+PASS manual correction has visible user-edited provenance
+PASS manual provenance survives final background snapshot
+PASS manual correction survives final background snapshot
+PASS last verse obtains annotations, never cut off by readiness
+PASS finalization leaves same playable iframe intact
+PASS partial: late failure retains all lines in the studio
+PASS partial: stopped work is not mislabeled as still analyzing
+PASS partial: failure is partial, not success or reset to home
+PASS partial: completed labels and player are retained
+PASS partial: playback still works after failure
+PASS lateError: late failure retains all lines in the studio
+PASS lateError: stopped work is not mislabeled as still analyzing
+PASS lateError: failure is partial, not success or reset to home
+PASS lateError: completed labels and player are retained
+PASS lateError: playback still works after failure
+PASS eof: late failure retains all lines in the studio
+PASS eof: stopped work is not mislabeled as still analyzing
+PASS eof: failure is partial, not success or reset to home
+PASS eof: completed labels and player are retained
+PASS eof: playback still works after failure
+PASS break: late failure retains all lines in the studio
+PASS break: stopped work is not mislabeled as still analyzing
+PASS break: failure is partial, not success or reset to home
+PASS break: completed labels and player are retained
+PASS break: playback still works after failure
+PASS Stop refinement cancels network but preserves usable studio
+PASS cancelled labels no longer say analyzing
+PASS Stop refinement does not stop or disable the player
+PASS new-song navigation cancels optional old work without waiting
+PASS second supplied QA link uses its own exact video ID
+PASS late old stream cannot replace new source or revision
+PASS 320px ready studio has no horizontal overflow
+PASS 320px single top transport remains usable
+PASS 320px all later lines stay visible
+PASS 320px progress patch does not overflow
+PASS 390px ready studio has no horizontal overflow
+PASS 390px single top transport remains usable
+PASS 390px all later lines stay visible
+PASS 390px progress patch does not overflow
+PASS 768px ready studio has no horizontal overflow
+PASS 768px single top transport remains usable
+PASS 768px all later lines stay visible
+PASS 768px progress patch does not overflow
+PASS 1024px ready studio has no horizontal overflow
+PASS 1024px single top transport remains usable
+PASS 1024px all later lines stay visible
+PASS 1024px progress patch does not overflow
+PASS 1440px ready studio has no horizontal overflow
+PASS 1440px single top transport remains usable
+PASS 1440px all later lines stay visible
+PASS 1440px progress patch does not overflow
+PASS desktop retains video beside lyrics
+PASS no uncaught app or media exceptions in all adaptive scenarios
+TOTAL 73

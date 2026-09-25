@@ -1,0 +1,63 @@
+{
+  "scope": "QA helper self-tests using local canned HTTP; no Google calls",
+  "tests": 8,
+  "passed": 8,
+  "results": [
+    {
+      "mode": "ok",
+      "passed": true,
+      "exitCode": 0,
+      "posts": 3,
+      "result": "processing-checks-passed"
+    },
+    {
+      "mode": "no-key",
+      "passed": true,
+      "exitCode": 2,
+      "posts": 0,
+      "result": "blocked"
+    },
+    {
+      "mode": "unauthenticated",
+      "passed": true,
+      "exitCode": 2,
+      "posts": 0,
+      "result": "blocked"
+    },
+    {
+      "mode": "wrong-version",
+      "passed": true,
+      "exitCode": 2,
+      "posts": 0,
+      "result": "blocked"
+    },
+    {
+      "mode": "error503",
+      "passed": true,
+      "exitCode": 2,
+      "posts": 3,
+      "result": "not-fully-passed"
+    },
+    {
+      "mode": "partial",
+      "passed": true,
+      "exitCode": 2,
+      "posts": 3,
+      "result": "not-fully-passed"
+    },
+    {
+      "mode": "missing-labels",
+      "passed": true,
+      "exitCode": 2,
+      "posts": 3,
+      "result": "not-fully-passed"
+    },
+    {
+      "mode": "markdown-url",
+      "passed": true,
+      "exitCode": 0,
+      "posts": 1,
+      "result": "processing-checks-passed"
+    }
+  ]
+}

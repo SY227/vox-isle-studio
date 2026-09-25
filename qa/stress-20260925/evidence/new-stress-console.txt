@@ -1,0 +1,55 @@
+PASSED P408 HTTP 408 retries three times then succeeds 
+PASSED P425 HTTP 425 retries three times then succeeds 
+PASSED P429 HTTP 429 retries three times then succeeds 
+PASSED P500 HTTP 500 retries three times then succeeds 
+PASSED P502 HTTP 502 retries three times then succeeds 
+PASSED P503 HTTP 503 retries three times then succeeds 
+PASSED P504 HTTP 504 retries three times then succeeds 
+PASSED T401 HTTP 401 stops without repeated charge attempts 
+PASSED T402 HTTP 402 stops without repeated charge attempts 
+PASSED T403 HTTP 403 stops without repeated charge attempts 
+PASSED P503X Persistent 503 exits after four attempts 
+PASSED QDAY Permanent daily quota stops immediately 
+PASSED QWAIT Retry-After is respected 
+PASSED QBUDGET Retry-After beyond budget stops instead of sleeping 
+PASSED BODYJSON Malformed outer HTTP JSON is retried 
+PASSED BODYRESET Reset after HTTP headers is retried 
+PASSED HEADERSTALL Hanging header request has a hard deadline 
+PASSED BODYSTALL Hanging HTTP body has a hard deadline 
+PASSED CANCEL Cancellation stops provider retry chain 
+PASSED SECRET Provider diagnostics do not expose request keys 
+PASSED MIXED Compatibility failures and transient retries share four attempts 
+PASSED SWARM 200 bounded provider jobs with deterministic injected failures recover 
+PASSED URL-eV9a5oUCbZQ Exact requested video is selected, not playlist 
+PASSED URL-J2uD1UXLTVs Exact requested video is selected, not playlist 
+PASSED URL-miBGaUagOz8 Exact requested video is selected, not playlist 
+PASSED URL-REJECT-25 Untrusted or malformed source is rejected 
+PASSED URL-REJECT-26 Untrusted or malformed source is rejected 
+PASSED URL-REJECT-27 Untrusted or malformed source is rejected 
+PASSED URL-REJECT-28 Untrusted or malformed source is rejected 
+PASSED PART8 Eighth teaching batch failure preserves earlier and later lyrics 
+PASSED READY Usable result arrives before enrichment completes 
+FAILED INC-SCAN Incomplete transcript cannot be reported as fully complete Final state says complete although completeScan is false
+FAILED INC-LABELS Omitted annotations after repair cannot be reported as complete All omitted labels still produce complete state
+FAILED WHY-PARTIAL Partial result includes safe failure codes for diagnosis The application discards per-task failure codes before returning/reporting partial
+FAILED INNER-JSON Transient malformed generated JSON is recovered within bounded retries Model-text JSON failure exits without trying the following valid response
+PASSED SCAN-NO-TEXT Empty successful response never invents song lyrics 
+FAILED WORD-CURRENT-BOUNDS Late word details respect newly refined phrase boundaries A late teaching response inserts word times outside revised phrase; normalization then throws
+PASSED CLOCK-UNKNOWN Unknown word time stays line-only, never invented 
+PASSED STATUS-KEY Status reports readiness without exposing key 
+PASSED HOST Forged Host is rejected before provider usage 
+PASSED CSRF Cross-site POST rejected before provider usage 
+PASSED PRIVACY Environment and server files not served 
+PASSED HTTP-BAD Malformed JSON body rejected before analysis 
+PASSED UPLOAD-CAP Hosted payload limit rejects oversize audio safely 
+FAILED UPLOAD-PROMISE UI advertised six-minute upload fits hosted body limit Advertised six-minute audio exceeds hosted JSON upload capacity
+FAILED ADMISSION-RACE Eight slow simultaneous POSTs respect three-job limit inflight check is before await body(); overlapping bodies bypass the limit
+PASSED HTTP-SOAK 120 sequential local HTTP jobs release resources and preserve state 
+FAILED LIMIT-RECOVERY Rate-limit responses include Retry-After guidance Application 429 has no Retry-After header
+FAILED CACHE-INFLIGHT Three simultaneous identical songs share one initial scan Cold concurrent requests duplicate the expensive first scan; only finished results are cached
+PASSED SOURCE-POLICY Blocked model output stops rather than trying to bypass policy 
+FAILED BROWSER-ENDLESS Continuing heartbeats have no overall client deadline Loader survives more than five idle-watchdog periods with heartbeat-only data; no total bound exists
+FAILED LIVE-VERIFIER-VERSION Packaged live verifier accepts the deployed adaptive version Live verification is hard-coded to v1, while every new score declares v2
+FAILED LIVE-URL-STRICT Diagnostic never silently substitutes a different song Markdown-wrapped URL falls through to hard-coded J2uD1UXLTVs instead of rejecting input
+FAILED RACE-FULL-PIPELINE Concurrent timing review and old teaching result do not crash assembly Full adaptive orchestrator throws on stale teaching after a legitimate line-only timing correction
+{"tests":54,"passed":41,"failed":13,"syntheticProviderAttempts":560}

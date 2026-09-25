@@ -1,0 +1,59 @@
+PASS song rights checkbox absent
+PASS passive processing notice visible
+PASS build identifier is exact and no model branding is visible
+PASS loading bar is visible with accessible workflow semantics
+PASS no fabricated inference completion percentage
+PASS elapsed time visibly advances during provider wait
+PASS progress never creeps to completion while waiting
+PASS exact user link canonicalized without radio playlist
+PASS no fabricated rights confirmation sent
+PASS partial recovered score opens rather than generic validation error
+PASS uncertain values disclosed in expandable quality panel
+PASS untimed lyric retained in the full transcript
+PASS invalid pitch displayed unknown instead of clamped fake note
+PASS selected lyric remains visibly marked before playback
+PASS technique annotations remain legible under playback-state styling
+PASS YouTube iframe is visible at player construction
+PASS full transcript uses normal page flow rather than an internal lyric scroller
+PASS YouTube source is docked to the right of the lyrics on desktop
+PASS native player is large enough for its controls
+PASS play is enabled after the ready event
+PASS the one working transport is at the top and enabled
+PASS bottom player has no external thumbnail that can break
+PASS simulated external player drives transport state and time
+PASS simulated external time highlights lyrics
+PASS actual player time colors already-played lyrics separately
+PASS future lyrics remain a distinct unplayed state
+PASS top transport time follows the same external media clock
+PASS pause updates the sole transport label
+PASS autoplay denial gives native-player action, not fake playing
+PASS native failure offers a clean reconnect action
+PASS native action reveals the actual iframe
+PASS 153 error is presented without developer jargon
+PASS failed synchronization disables timeline scrubbing
+PASS retry rebuilds player and restores controls
+PASS source panel remains visible beside the full transcript while practicing
+PASS media is not truncated to the AI-estimated analysis duration
+PASS home navigation pauses media and parks the player outside the studio
+PASS cancel returns home with pasted URL preserved
+PASS late cancelled response cannot overwrite the screen
+PASS provider failure is shown without fabricated demo success
+PASS all-untimed response stays readable with usable media
+PASS no invented melody map for untimed response
+PASS editing unavailable timing fails safely without an exception
+PASS secondary practice/library tabs remain hidden while their code stays packaged
+PASS attach local audio retains score without rerunning AI
+PASS attached local WAV genuinely advances browser media clock
+PASS focused studio hides library save entry point
+PASS 24 rapid lyric/notation interactions leave the page responsive
+PASS 320px loading bar and cancel remain within viewport
+PASS 320px source+score no horizontal overflow
+PASS 320px iframe retains >=200px viewport
+PASS 390px loading bar and cancel remain within viewport
+PASS 390px source+score no horizontal overflow
+PASS 390px iframe retains >=200px viewport
+PASS 768px loading bar and cancel remain within viewport
+PASS 768px source+score no horizontal overflow
+PASS 768px iframe retains >=200px viewport
+PASS no uncaught JS exceptions across all regression scenarios
+TOTAL 58

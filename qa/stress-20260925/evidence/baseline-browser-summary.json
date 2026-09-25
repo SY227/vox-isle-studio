@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "ui_smoke",
+    "exit": 0,
+    "seconds": 11.46
+  },
+  {
+    "suite": "ui_regression",
+    "exit": 0,
+    "seconds": 20.27
+  },
+  {
+    "suite": "ui_listening",
+    "exit": 0,
+    "seconds": 9.23
+  },
+  {
+    "suite": "ui_native_media",
+    "exit": 0,
+    "seconds": 15.9
+  },
+  {
+    "suite": "ui_adaptive",
+    "exit": 0,
+    "seconds": 19.98
+  },
+  {
+    "suite": "ui_stability",
+    "exit": 0,
+    "seconds": 21.79
+  }
+]

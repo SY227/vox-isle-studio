@@ -1,0 +1,6 @@
+{
+  "directLocalhostNavigation": "blocked",
+  "error": "net::ERR_BLOCKED_BY_ADMINISTRATOR",
+  "browserSuiteMode": "Route-fulfilled first-party files; explicit external-service doubles; real original local WAV time",
+  "realNodeHttpTests": "passed on localhost"
+}

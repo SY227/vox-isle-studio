@@ -1,0 +1,27 @@
+PASS eV9a5oUCbZQ: actual chosen source ID retained (simulated media)
+FAIL eV9a5oUCbZQ: native local-audio playback drives provisional line highlighting
+PASS eV9a5oUCbZQ: actual word timing update adds current-word highlight
+PASS eV9a5oUCbZQ: 72 rapid selection/filter gestures do not recreate the iframe
+PASS eV9a5oUCbZQ: selection never issues hidden paid lesson requests
+PASS eV9a5oUCbZQ: final provider error retains all eight original test lines
+PASS eV9a5oUCbZQ: play remains usable after provider failure
+PASS J2uD1UXLTVs: actual chosen source ID retained (simulated media)
+FAIL J2uD1UXLTVs: native local-audio playback drives provisional line highlighting
+PASS J2uD1UXLTVs: actual word timing update adds current-word highlight
+PASS J2uD1UXLTVs: 72 rapid selection/filter gestures do not recreate the iframe
+PASS J2uD1UXLTVs: selection never issues hidden paid lesson requests
+PASS J2uD1UXLTVs: final provider error retains all eight original test lines
+PASS J2uD1UXLTVs: play remains usable after provider failure
+PASS miBGaUagOz8: actual chosen source ID retained (simulated media)
+PASS miBGaUagOz8: native local-audio playback drives provisional line highlighting
+PASS miBGaUagOz8: actual word timing update adds current-word highlight
+PASS miBGaUagOz8: 72 rapid selection/filter gestures do not recreate the iframe
+PASS miBGaUagOz8: selection never issues hidden paid lesson requests
+PASS miBGaUagOz8: final provider error retains all eight original test lines
+PASS miBGaUagOz8: play remains usable after provider failure
+PASS Twelve start/cancel cycles return to usable home
+PASS Cancellation cycles generate exactly twelve analysis streams, not duplicates
+PASS Stop refinement preserves score and cancelled state
+PASS Mobile has one top transport and no horizontal overflow
+PASS No uncaught JavaScript exceptions in the stress flows
+TOTAL 26

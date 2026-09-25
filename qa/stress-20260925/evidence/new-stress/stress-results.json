@@ -1,0 +1,628 @@
+{
+  "checkedAt": "2026-09-25T19:43:27.597Z",
+  "version": "1.2.2",
+  "sourceChanged": false,
+  "externalCalls": 0,
+  "tests": 54,
+  "passed": 41,
+  "failed": 13,
+  "syntheticProviderAttempts": 560,
+  "results": [
+    {
+      "id": "P408",
+      "name": "HTTP 408 retries three times then succeeds",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 5.79
+    },
+    {
+      "id": "P425",
+      "name": "HTTP 425 retries three times then succeeds",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 1.06
+    },
+    {
+      "id": "P429",
+      "name": "HTTP 429 retries three times then succeeds",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 2.68
+    },
+    {
+      "id": "P500",
+      "name": "HTTP 500 retries three times then succeeds",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 0.64
+    },
+    {
+      "id": "P502",
+      "name": "HTTP 502 retries three times then succeeds",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 0.73
+    },
+    {
+      "id": "P503",
+      "name": "HTTP 503 retries three times then succeeds",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 1.27
+    },
+    {
+      "id": "P504",
+      "name": "HTTP 504 retries three times then succeeds",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 0.44
+    },
+    {
+      "id": "T401",
+      "name": "HTTP 401 stops without repeated charge attempts",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 1,
+        "code": "GEMINI_401"
+      },
+      "ms": 0.63
+    },
+    {
+      "id": "T402",
+      "name": "HTTP 402 stops without repeated charge attempts",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 1,
+        "code": "GEMINI_402"
+      },
+      "ms": 0.19
+    },
+    {
+      "id": "T403",
+      "name": "HTTP 403 stops without repeated charge attempts",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 1,
+        "code": "GEMINI_403"
+      },
+      "ms": 0.24
+    },
+    {
+      "id": "P503X",
+      "name": "Persistent 503 exits after four attempts",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 0.65
+    },
+    {
+      "id": "QDAY",
+      "name": "Permanent daily quota stops immediately",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 1
+      },
+      "ms": 0.27
+    },
+    {
+      "id": "QWAIT",
+      "name": "Retry-After is respected",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "delayMs": 51
+      },
+      "ms": 51.48
+    },
+    {
+      "id": "QBUDGET",
+      "name": "Retry-After beyond budget stops instead of sleeping",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 1,
+        "ms": 0
+      },
+      "ms": 0.57
+    },
+    {
+      "id": "BODYJSON",
+      "name": "Malformed outer HTTP JSON is retried",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 0.62
+    },
+    {
+      "id": "BODYRESET",
+      "name": "Reset after HTTP headers is retried",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 1.4
+    },
+    {
+      "id": "HEADERSTALL",
+      "name": "Hanging header request has a hard deadline",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "ms": 75
+      },
+      "ms": 75.68
+    },
+    {
+      "id": "BODYSTALL",
+      "name": "Hanging HTTP body has a hard deadline",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "ms": 75
+      },
+      "ms": 75.54
+    },
+    {
+      "id": "CANCEL",
+      "name": "Cancellation stops provider retry chain",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 1
+      },
+      "ms": 14.94
+    },
+    {
+      "id": "SECRET",
+      "name": "Provider diagnostics do not expose request keys",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "events": 2
+      },
+      "ms": 0.37
+    },
+    {
+      "id": "MIXED",
+      "name": "Compatibility failures and transient retries share four attempts",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 4
+      },
+      "ms": 0.73
+    },
+    {
+      "id": "SWARM",
+      "name": "200 bounded provider jobs with deterministic injected failures recover",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "jobs": 200,
+        "calls": 500,
+        "peakProviderCalls": 3,
+        "remainingWaiters": 0
+      },
+      "ms": 228.72
+    },
+    {
+      "id": "URL-eV9a5oUCbZQ",
+      "name": "Exact requested video is selected, not playlist",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "id": "eV9a5oUCbZQ",
+        "url": "https://www.youtube.com/watch?v=eV9a5oUCbZQ",
+        "scope": "URL parser only, no audio test"
+      },
+      "ms": 0.39
+    },
+    {
+      "id": "URL-J2uD1UXLTVs",
+      "name": "Exact requested video is selected, not playlist",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "id": "J2uD1UXLTVs",
+        "url": "https://www.youtube.com/watch?v=J2uD1UXLTVs",
+        "scope": "URL parser only, no audio test"
+      },
+      "ms": 0.11
+    },
+    {
+      "id": "URL-miBGaUagOz8",
+      "name": "Exact requested video is selected, not playlist",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "id": "miBGaUagOz8",
+        "url": "https://www.youtube.com/watch?v=miBGaUagOz8",
+        "scope": "URL parser only, no audio test"
+      },
+      "ms": 0.03
+    },
+    {
+      "id": "URL-REJECT-25",
+      "name": "Untrusted or malformed source is rejected",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "rejected": true
+      },
+      "ms": 0.06
+    },
+    {
+      "id": "URL-REJECT-26",
+      "name": "Untrusted or malformed source is rejected",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "rejected": true
+      },
+      "ms": 0.01
+    },
+    {
+      "id": "URL-REJECT-27",
+      "name": "Untrusted or malformed source is rejected",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "rejected": true
+      },
+      "ms": 0.02
+    },
+    {
+      "id": "URL-REJECT-28",
+      "name": "Untrusted or malformed source is rejected",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "rejected": true
+      },
+      "ms": 0.03
+    },
+    {
+      "id": "PART8",
+      "name": "Eighth teaching batch failure preserves earlier and later lyrics",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "phrases": 80,
+        "state": "partial",
+        "failedTasks": 1
+      },
+      "ms": 17.68
+    },
+    {
+      "id": "READY",
+      "name": "Usable result arrives before enrichment completes",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "optionalCallsBeforeReady": 0
+      },
+      "ms": 9.45
+    },
+    {
+      "id": "INC-SCAN",
+      "name": "Incomplete transcript cannot be reported as fully complete",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "state": "complete",
+        "completeScan": false,
+        "phrases": 3
+      },
+      "error": "Final state says complete although completeScan is false",
+      "ms": 0.6
+    },
+    {
+      "id": "INC-LABELS",
+      "name": "Omitted annotations after repair cannot be reported as complete",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "state": "complete",
+        "coverage": {
+          "total": 12,
+          "identified": 0,
+          "unknown": 12,
+          "reviewed": 0,
+          "missing": 12
+        },
+        "calls": 3
+      },
+      "error": "All omitted labels still produce complete state",
+      "ms": 0.38
+    },
+    {
+      "id": "WHY-PARTIAL",
+      "name": "Partial result includes safe failure codes for diagnosis",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "state": "partial",
+        "failedTasks": 3,
+        "hasFailureCodes": false
+      },
+      "error": "The application discards per-task failure codes before returning/reporting partial",
+      "ms": 1.03
+    },
+    {
+      "id": "INNER-JSON",
+      "name": "Transient malformed generated JSON is recovered within bounded retries",
+      "severity": "P2",
+      "result": "failed",
+      "detail": {
+        "attempts": 1,
+        "code": "INVALID_ANALYSIS"
+      },
+      "error": "Model-text JSON failure exits without trying the following valid response",
+      "ms": 1.62
+    },
+    {
+      "id": "SCAN-NO-TEXT",
+      "name": "Empty successful response never invents song lyrics",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "rejected": true
+      },
+      "ms": 0.08
+    },
+    {
+      "id": "WORD-CURRENT-BOUNDS",
+      "name": "Late word details respect newly refined phrase boundaries",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "phraseStart": 2,
+        "wordStart": 1,
+        "error": "時間或音高超出合理範圍。"
+      },
+      "error": "A late teaching response inserts word times outside revised phrase; normalization then throws",
+      "ms": 0.59
+    },
+    {
+      "id": "CLOCK-UNKNOWN",
+      "name": "Unknown word time stays line-only, never invented",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "phrases": 12
+      },
+      "ms": 0.21
+    },
+    {
+      "id": "STATUS-KEY",
+      "name": "Status reports readiness without exposing key",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "secretExposed": false
+      },
+      "ms": 24.99
+    },
+    {
+      "id": "HOST",
+      "name": "Forged Host is rejected before provider usage",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "providerCalls": 0
+      },
+      "ms": 6.41
+    },
+    {
+      "id": "CSRF",
+      "name": "Cross-site POST rejected before provider usage",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "providerCalls": 0
+      },
+      "ms": 4.98
+    },
+    {
+      "id": "PRIVACY",
+      "name": "Environment and server files not served",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "codes": [
+          403,
+          404,
+          403
+        ]
+      },
+      "ms": 5.31
+    },
+    {
+      "id": "HTTP-BAD",
+      "name": "Malformed JSON body rejected before analysis",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "providerCalls": 0
+      },
+      "ms": 4.82
+    },
+    {
+      "id": "UPLOAD-CAP",
+      "name": "Hosted payload limit rejects oversize audio safely",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "seconds": 120,
+        "jsonBytes": 5120137,
+        "limit": 4000000,
+        "providerCalls": 0
+      },
+      "ms": 70.52
+    },
+    {
+      "id": "UPLOAD-PROMISE",
+      "name": "UI advertised six-minute upload fits hosted body limit",
+      "severity": "P2",
+      "result": "failed",
+      "detail": {
+        "advertisedSeconds": 360,
+        "approxHostedSeconds": 93,
+        "hostedBodyBytes": 4000000
+      },
+      "error": "Advertised six-minute audio exceeds hosted JSON upload capacity",
+      "ms": 0.39
+    },
+    {
+      "id": "ADMISSION-RACE",
+      "name": "Eight slow simultaneous POSTs respect three-job limit",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "requests": 8,
+        "peakActiveJobs": 8,
+        "invoked": 8,
+        "statuses": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200
+        ]
+      },
+      "error": "inflight check is before await body(); overlapping bodies bypass the limit",
+      "ms": 87.57
+    },
+    {
+      "id": "HTTP-SOAK",
+      "name": "120 sequential local HTTP jobs release resources and preserve state",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "jobs": 120,
+        "ms": 146
+      },
+      "ms": 146.36
+    },
+    {
+      "id": "LIMIT-RECOVERY",
+      "name": "Rate-limit responses include Retry-After guidance",
+      "severity": "P2",
+      "result": "failed",
+      "detail": {
+        "status": 429,
+        "retryAfter": null
+      },
+      "error": "Application 429 has no Retry-After header",
+      "ms": 22.53
+    },
+    {
+      "id": "CACHE-INFLIGHT",
+      "name": "Three simultaneous identical songs share one initial scan",
+      "severity": "P2",
+      "result": "failed",
+      "detail": {
+        "coldRequests": 3,
+        "firstScanProviderCalls": 3,
+        "callsAfterWarmHit": 3
+      },
+      "error": "Cold concurrent requests duplicate the expensive first scan; only finished results are cached",
+      "ms": 26.07
+    },
+    {
+      "id": "SOURCE-POLICY",
+      "name": "Blocked model output stops rather than trying to bypass policy",
+      "severity": "none",
+      "result": "passed",
+      "detail": {
+        "attempts": 1,
+        "code": "SOURCE_POLICY"
+      },
+      "ms": 3.5
+    },
+    {
+      "id": "BROWSER-ENDLESS",
+      "name": "Continuing heartbeats have no overall client deadline",
+      "severity": "P2",
+      "result": "failed",
+      "detail": {
+        "observedMs": 161,
+        "idleLimitMs": 30,
+        "completedWithoutManualCancel": false
+      },
+      "error": "Loader survives more than five idle-watchdog periods with heartbeat-only data; no total bound exists",
+      "ms": 161.28
+    },
+    {
+      "id": "LIVE-VERIFIER-VERSION",
+      "name": "Packaged live verifier accepts the deployed adaptive version",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "verifierExpected": "adaptive-recording-v1",
+        "pipelineEmits": "adaptive-recording-v2"
+      },
+      "error": "Live verification is hard-coded to v1, while every new score declares v2",
+      "ms": 0.16
+    },
+    {
+      "id": "LIVE-URL-STRICT",
+      "name": "Diagnostic never silently substitutes a different song",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "intended": "eV9a5oUCbZQ",
+        "selected": "J2uD1UXLTVs",
+        "scope": "Direct evaluation of diagnostic argument selection; no network call"
+      },
+      "error": "Markdown-wrapped URL falls through to hard-coded J2uD1UXLTVs instead of rejecting input",
+      "ms": 0.3
+    },
+    {
+      "id": "RACE-FULL-PIPELINE",
+      "name": "Concurrent timing review and old teaching result do not crash assembly",
+      "severity": "P1",
+      "result": "failed",
+      "detail": {
+        "readyWasDelivered": true,
+        "reviewCalls": 2,
+        "error": "時間或音高超出合理範圍。"
+      },
+      "error": "Full adaptive orchestrator throws on stale teaching after a legitimate line-only timing correction",
+      "ms": 16.2
+    }
+  ]
+}
