@@ -5,7 +5,7 @@ import {applyWordDetails} from './word-details.mjs';
  */
 import {normalizeAnalysis,normalizePhrase} from '../shared/schema.mjs';
 import {seconds,midi} from '../shared/recovery.mjs';
-import {buildTeachingBatches,missingTeachingBatch,applyTeachingBatches} from '../shared/annotations.mjs';
+import {buildTeachingBatches,missingTeachingBatch,applyTeachingBatches,settleTeachingBatch} from '../shared/annotations.mjs';
 import {ADAPTIVE_VERSION} from '../shared/adaptive-schema.mjs';
 import {normalizeListening,orderedMatches,wordKey} from './listening.mjs';
 import {AppError} from './validation.mjs';
@@ -113,6 +113,22 @@ function matchingCandidates(a,b){
     a.tokens.every((t,i)=>t.text===b.tokens[i].text&&(!finite(t.start)&&!finite(b.tokens[i].start)||finite(t.start)&&finite(b.tokens[i].start)&&Math.abs(t.start-b.tokens[i].start)<=0.45&&Math.abs(t.end-b.tokens[i].end)<=0.45));
 }
 
+export function spreadTeachingBatchOrder(count){
+  if(!Number.isInteger(count)||count<=0)return [];
+  const order=[],remaining=new Set(Array.from({length:count},(_,i)=>i));
+  const take=i=>{if(remaining.delete(i))order.push(i);};
+  take(0);take(count-1);take(Math.floor((count-1)/2));
+  while(remaining.size){
+    let best=null,bestDistance=-1;
+    for(const i of remaining){
+      const distance=Math.min(...order.map(j=>Math.abs(i-j)));
+      if(distance>bestDistance||(distance===bestDistance&&(best===null||i<best))){best=i;bestDistance=distance;}
+    }
+    take(best);
+  }
+  return order;
+}
+
 export async function analyzeAdaptive(input,request,{signal,onProgress=()=>{},concurrency=3,maxReviews=12,clock=()=>Date.now()}={}){
   const start=clock(),usage=[];let calls=0;
   const call=async(kind,extra={},s=signal)=>{abort(s);calls++;const r=await request({...input,lyrics:'',...extra},kind,s);if(r.usage)usage.push(r.usage);return r;};
@@ -156,27 +172,50 @@ export async function analyzeAdaptive(input,request,{signal,onProgress=()=>{},co
       else transcript.phrases[index].timingStatus='unverified';
     }catch(e){if(signal?.aborted||fatal(e))throw e;transcript.phrases[index].timingStatus='unverified';throw e;}
   });
-  const teachingTasks=batches.map((batch,index)=>async()=>{
+  const teachingTasks=new Map(batches.map((batch,index)=>[index,async()=>{
     const window={id:`teaching-${index}`,coreStart:batch.start,coreEnd:batch.end,clipStart:Math.max(0,batch.start-2),clipEnd:Math.min(transcript.duration,batch.end+2)};
+    let r;
     try{
-      let r=await call('light-teaching',{teachingBatch:batch,listeningWindow:window});abort(signal);
+      r=await call('light-teaching',{teachingBatch:batch,listeningWindow:window});abort(signal);
       if(r.status!=='ok')throw new AppError('這段唱法仍待確認。',502,'TEACHING_UNAVAILABLE');
-      results[index]=r;applyWordDetails(transcript,r.wordDetails);
+      applyWordDetails(transcript,r.wordDetails);
       const missing=missingTeachingBatch(batch,r.annotations);
-      // One small repair for missing IDs only, never reanalyse an entire finished batch.
-      if(missing.tokenCount){try{const repaired=await call('light-teaching',{teachingBatch:missing,listeningWindow:window});abort(signal);for(const [id,value]of repaired.annotations)r.annotations.set(id,value);applyWordDetails(transcript,repaired.wordDetails);}catch(e){if(signal?.aborted||fatal(e))throw e;failures.push({task:`teaching-repair-${index}`,code:e.code||'FAILED'});}}
+      // One small repair for omitted IDs only. If the provider still cannot
+      // classify them, settle them as explicit uncertainty instead of blanks.
+      if(missing.tokenCount){try{
+        const repaired=await call('light-teaching',{teachingBatch:missing,listeningWindow:window});abort(signal);
+        for(const [id,value]of repaired.annotations)r.annotations.set(id,value);
+        applyWordDetails(transcript,repaired.wordDetails);
+      }catch(e){if(signal?.aborted||fatal(e))throw e;failures.push({task:`teaching-repair-${index}`,code:e.code||'FAILED'});}}
+      results[index]=settleTeachingBatch(batch,r);
+    }catch(e){
+      if(signal?.aborted||fatal(e))throw e;
+      failures.push({task:`teaching-${index}`,code:e.code||'FAILED'});
+      // Preserve whole-song UX: a failed independent batch becomes 待確認,
+      // while later batches continue to run and can still be identified.
+      results[index]=settleTeachingBatch(batch,{status:'unavailable',warnings:['這一段唱法暫時未能確認。']});
     }finally{completedBatches.add(index);meta.completedTeachingBatches=completedBatches.size;}
+  }]));
+  // Breadth-first whole-song coverage: the first worker wave deliberately
+  // spans the beginning, ending and middle before local timing repairs.
+  const teachingOrder=spreadTeachingBatchOrder(batches.length);
+  teachingOrder.forEach((batchIndex,pos)=>{
+    tasks.push(teachingTasks.get(batchIndex));
+    if((pos+1)%3===0&&timingTasks.length)tasks.push(timingTasks.shift());
   });
-  // Interleave labels and risky-line repairs; neither queue starves the other.
-  while(timingTasks.length||teachingTasks.length){if(teachingTasks.length)tasks.push(teachingTasks.shift());if(timingTasks.length)tasks.push(timingTasks.shift());}
-  let next=0,stop=false,connectionFailures=0;
-  const worker=async()=>{while(next<tasks.length&&!stop){abort(signal);const index=next++;try{await tasks[index]();connectionFailures=0;}
-    catch(e){if(signal?.aborted)throw e;failures.push({task:index,code:e.code||'FAILED'});if(['NETWORK','TIMEOUT','GEMINI_408','GEMINI_500','GEMINI_502','GEMINI_503','GEMINI_504'].includes(e.code))connectionFailures++;if(fatal(e)||e.code==='GEMINI_429'||connectionFailures>=3)stop=true;}
+  while(timingTasks.length)tasks.push(timingTasks.shift());
+  let next=0,stop=false;
+  const worker=async()=>{while(next<tasks.length&&!stop){abort(signal);const index=next++;try{await tasks[index]();}
+    catch(e){if(signal?.aborted)throw e;failures.push({task:index,code:e.code||'FAILED'});if(fatal(e))stop=true;}
     if(signal?.aborted)throw signal.reason;
     meta.completedTasks++;emit('update');
   }};
   try{await Promise.all(Array.from({length:Math.min(Math.max(1,concurrency),3,tasks.length)},worker));}
   catch(e){if(signal?.aborted)throw e;failures.push({task:'refinement',code:e.code||'FAILED'});}
-  meta.state=failures.length||stop?'partial':'complete';meta.finishedMs=Math.max(0,clock()-start);
+  // Any batch that could not run (for example after a fatal auth/policy stop)
+  // becomes explicit 待確認 rather than an empty late-song hole.
+  for(let i=0;i<batches.length;i++)if(!results[i])results[i]=settleTeachingBatch(batches[i],{status:'unavailable',warnings:['這一段唱法尚未確認。']});
+  const finalCoverage=applyTeachingBatches(transcript,results).teachingCoverage;
+  meta.state=failures.length||stop||finalCoverage.missing?'partial':'complete';meta.finishedMs=Math.max(0,clock()-start);
   meta.revision++;return snapshot();
 }

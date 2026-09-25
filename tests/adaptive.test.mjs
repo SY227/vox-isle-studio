@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {normalizeFastScan,planTimingReview,analyzeAdaptive,phraseWindow} from '../server/adaptive.mjs';
+import {normalizeFastScan,planTimingReview,analyzeAdaptive,phraseWindow,spreadTeachingBatchOrder} from '../server/adaptive.mjs';
 import {normalizeAnalysis} from '../shared/schema.mjs';
 import {normalizeTeachingBatch,teachingCoverage} from '../shared/annotations.mjs';
 import {generate,requestBody,interactionsBody} from '../server/gemini.mjs';
@@ -66,6 +66,24 @@ test('conflicting re-listens do not average timestamps or overwrite transcript w
 test('deep review is budgeted; all-low-confidence recording cannot trigger unbounded calls',async()=>{
  const r=scan(50);r.phrases.forEach(p=>p.confidence=.4);const seen=[];const a=await analyzeAdaptive(input,responder(r,seen));
  assert.equal(a.adaptive.deepReviews,3);assert.equal(seen.filter(x=>x.kind==='listen-review').length,15);assert.equal(a.adaptive.deferredLines,38);
+});
+
+test('whole-song teaching order starts with beginning, ending and middle',()=>{
+ const order=spreadTeachingBatchOrder(10);assert.deepEqual(order.slice(0,3),[0,9,4]);assert.deepEqual([...order].sort((a,b)=>a-b),Array.from({length:10},(_,i)=>i));
+});
+test('early teaching failure does not starve the ending and becomes explicit uncertainty',async()=>{
+ const r=scan(80),seen=[];const a=await analyzeAdaptive(input,responder(r,seen,{failBatch:0}));const c=teachingCoverage(a);
+ assert.equal(a.adaptive.state,'partial');assert.equal(a.phrases[0].tokens[0].technique,'unknown');assert.equal(a.phrases[0].tokens[0].annotationStatus,'uncertain');
+ assert.equal(a.phrases[79].tokens[0].technique,'chest');assert.equal(a.phrases[79].tokens[0].annotationStatus,'reviewed');assert.equal(c.missing,0);
+ const order=seen.filter(x=>x.kind==='light-teaching'&&!x.recording.teachingBatch.repair).map(x=>x.recording.teachingBatch.index);assert.deepEqual(order.slice(0,3),[0,9,4]);
+});
+test('provider omissions settle to 待確認 instead of leaving blank teaching entries',async()=>{
+ const r=scan(4);const a=await analyzeAdaptive(input,async(recording,kind)=>{
+   if(kind==='fast-scan')return {raw:r};
+   if(kind==='light-teaching')return normalizeTeachingBatch({status:'ok',phrases:recording.teachingBatch.phrases.map(p=>({id:p.id,tokens:[]}))},recording.teachingBatch);
+   throw new Error('unexpected '+kind);
+ });
+ const c=teachingCoverage(a);assert.equal(c.missing,0);assert.equal(c.identified,0);assert.equal(c.unknown,c.total);assert.ok(a.phrases.every(p=>p.tokens.every(t=>t.annotationStatus==='uncertain')));
 });
 test('actual eighth teaching-batch failure preserves full lyrics and all later successful labels',async()=>{
  const r=scan(80),events=[];const a=await analyzeAdaptive(input,responder(r,[],{failBatch:7}),{onProgress:e=>events.push(e)});

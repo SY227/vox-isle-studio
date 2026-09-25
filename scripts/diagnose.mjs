@@ -9,7 +9,7 @@ import {validateInput} from '../server/validation.mjs';
 import {newProviderRuntime} from '../server/provider-client.mjs';
 const source=process.argv.find(a=>/^https?:\/\//.test(a))||'https://www.youtube.com/watch?v=J2uD1UXLTVs';
 const config=getConfig(),started=Date.now();
-const report={version:'1.2.2',checkedAt:new Date().toISOString(),result:'blocked',scope:'Real provider; does not certify lyric timing accuracy',keyConfigured:!!config.apiKey,network:[],events:[],milestones:[]};
+const report={version:'1.2.3',checkedAt:new Date().toISOString(),result:'blocked',scope:'Real provider; does not certify lyric timing accuracy',keyConfigured:!!config.apiKey,network:[],events:[],milestones:[]};
 try{
  const input=validateInput({source:'youtube',url:source,language:'auto'});report.videoId=input.id;
  for(const host of ['www.youtube.com','generativelanguage.googleapis.com']){try{await lookup(host);report.network.push({host,resolved:true});}catch(e){report.network.push({host,resolved:false,code:e.code||'DNS'});}}

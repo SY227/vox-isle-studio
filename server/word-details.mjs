@@ -27,6 +27,11 @@ export function applyWordDetails(transcript,details){
     p.tokens.forEach((t,ti)=>{
       const d=proposals[ti];if(!d)return;if(d.romanization&&!t.romanization)t.romanization=d.romanization;
       if(Number.isFinite(t.start)||!Number.isFinite(d.start))return;
+      // Teaching batches are frozen before selective timing review. A late
+      // teaching response may therefore carry a now-stale word boundary. Keep
+      // its technique annotation, but never let that stale timing escape the
+      // phrase's current reviewed envelope.
+      if(d.start<p.start-0.05||d.end>p.end+0.05)return;
       const previous=p.tokens[ti-1],next=p.tokens[ti+1],pd=proposals[ti-1],nd=proposals[ti+1];
       const prevEnd=Number.isFinite(previous?.end)?previous.end:pd?.end;
       const nextStart=Number.isFinite(next?.start)?next.start:nd?.start;

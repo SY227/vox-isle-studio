@@ -16,7 +16,7 @@
     {"source": "/(.*)", "headers": [
       {"key": "X-Content-Type-Options", "value": "nosniff"},
       {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
-      {"key": "X-Vox-Build", "value": "1.2.2"}
+      {"key": "X-Vox-Build", "value": "1.2.3"}
     ]}
   ]
 }

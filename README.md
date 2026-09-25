@@ -1,11 +1,14 @@
-# 聲狐 Singing Fox v1.2.2
+# 聲狐 Singing Fox v1.2.3
 
 Traditional Chinese music practice studio. One top transport, full lyrics, a side-by-side original YouTube player, an animated companion, and progressive teaching. The backend remains Gemini 3.8 Flash (`gemini-3.8-flash`). No provider keys or developer setup controls are exposed in the app.
 
 ## This release
 
-This is a stability/latency and deployment update based on v1.2.0, not a visual redesign.
+This is a whole-song singing-style coverage update based on v1.2.2, not a visual redesign or first-load pipeline change.
 
+- Singing-style enrichment is now scheduled across the **beginning, ending, and middle** first, so later verses and final choruses are not starved by early batches. Non-fatal batch failures do not stop later independent batches.
+- Omitted or unavailable singing-style entries become explicit **待確認** instead of disappearing. This does not invent a true/mix/head/falsetto classification.
+- Late word timing from an older teaching response is rejected if it falls outside the phrase's current reviewed timing envelope; valid singing-style labels are retained.
 - The first AI response requests the complete lyrics with **line boundaries only**. Individual word boundaries, romanization, pitch and singing suggestions are added later. No evenly spaced word timings are manufactured. Shortening the response is a latency optimization, **not a measured live speed guarantee**.
 - Provider retries cover response headers, the entire response body, and decoding. There are at most **four HTTP attempts per logical operation**, including compatibility fallback attempts, and a finite total time budget. Temporary failures are silent; credentials, permissions and permanent quota failures stop rather than being retried blindly.
 - Retry-After/backoff is honored. A per-process cooldown limits repeat requests while rate-limited. No public/global rate-limit or durable queue is claimed.
@@ -72,7 +75,7 @@ npm run build
 python tests/ui_stability.py
 ```
 
-Browser QA requires Python Playwright and Chromium; normal app use does not. `docs/QA_STABILITY_V1.2.1.md` records the executed suites, faults, deployment-shaped checks and limitations. The inherited test doubles are explicitly labeled. Actual local WAV playback is tested; live YouTube/Gemini could not run in the delivery environment because DNS failed and no usable local API key was configured.
+Browser QA requires Python Playwright and Chromium; normal app use does not. `docs/QA_COVERAGE_V1.2.3.md` records the whole-song coverage acceptance evidence; `docs/QA_STABILITY_V1.2.1.md` retains the underlying stability/deployment evidence. The inherited test doubles are explicitly labeled. Actual local WAV playback is tested; live YouTube/Gemini could not run in the delivery environment because DNS failed and no usable local API key was configured.
 
 ## Accuracy and limits
 

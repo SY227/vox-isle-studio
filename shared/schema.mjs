@@ -34,7 +34,7 @@ export function normalizePhrase(p,duration=MAX_SONG_SECONDS){
     if(['word','line'].includes(t.timingMode))timing.timingMode=t.timingMode;
     if(['ai-agreement','ai-relistened','boundary-disputed','user-edited','first-pass','adaptive-reviewed'].includes(t.timingReview))timing.timingReview=t.timingReview;
     if(['low','medium','high'].includes(t.timingConfidence))timing.timingConfidence=t.timingConfidence;
-    return {...timing,text:string(t.text,20),romanization:string(t.romanization,90),start:s,end:e,notes:list(t.notes,16).map(n=>number(n,24,108)),technique:t.technique,ornaments,annotationStatus:['reviewed','missing','unavailable','pending'].includes(t.annotationStatus)?t.annotationStatus:'legacy',confidence:['low','medium','high'].includes(t.confidence)?t.confidence:'low'};
+    return {...timing,text:string(t.text,20),romanization:string(t.romanization,90),start:s,end:e,notes:list(t.notes,16).map(n=>number(n,24,108)),technique:t.technique,ornaments,annotationStatus:['reviewed','uncertain','missing','unavailable','pending'].includes(t.annotationStatus)?t.annotationStatus:'legacy',confidence:['low','medium','high'].includes(t.confidence)?t.confidence:'low'};
   });
   if(!tokens.length)throw new Error('樂句沒有可用歌詞。');
   return {...(Number.isFinite(p.scanConfidence)?{scanConfidence:number(p.scanConfidence,0,1)}:{}),...(['first-pass','line-estimate','needs-review','reviewed','unverified','user-edited'].includes(p.timingStatus)?{timingStatus:p.timingStatus}:{}),start,end,section:string(p.section,40),tokens,focus:string(p.focus,160),instruction:string(p.instruction),pronunciation:string(p.pronunciation),exercise:string(p.exercise),caution:string(p.caution)};

@@ -32,7 +32,7 @@ export function createApp(config=getConfig(),dependencies={}){
   const handler=async(req,res)=>{
     const requestId=randomBytes(8).toString('hex');
     res.setHeader('X-Request-Id',requestId);
-    res.setHeader('X-Vox-Build','1.2.2');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
+    res.setHeader('X-Vox-Build','1.2.3');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');res.setHeader('X-Frame-Options','DENY');
     res.setHeader('Permissions-Policy','microphone=(self), camera=(), geolocation=()');
     res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://i.ytimg.com; media-src 'self' blob:; connect-src 'self' https://www.youtube.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; worker-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'");
     try {
@@ -44,7 +44,7 @@ export function createApp(config=getConfig(),dependencies={}){
         if(origin && origin!==(origins.find(o=>new URL(o).host===host)||`http://${host}`))throw new AppError('拒絕跨網站請求。',403,'ORIGIN');
         if(req.headers['sec-fetch-site']==='cross-site')throw new AppError('拒絕跨網站請求。',403,'ORIGIN');
       }
-      if(route==='/api/status'&&req.method==='GET')return json(res,200,{configured:Boolean(config.apiKey),model:config.model,authenticated:Boolean(authenticated(req)),requiresAccessCode:Boolean(config.accessCode),language:'zh-Hant',maxDuration:900,maxRequestBytes:config.maxBodyBytes||17000000,version:'1.2.2'});
+      if(route==='/api/status'&&req.method==='GET')return json(res,200,{configured:Boolean(config.apiKey),model:config.model,authenticated:Boolean(authenticated(req)),requiresAccessCode:Boolean(config.accessCode),language:'zh-Hant',maxDuration:900,maxRequestBytes:config.maxBodyBytes||17000000,version:'1.2.3'});
       if(route==='/api/session'&&req.method==='POST'){
         limited(req,'login',10,900000);const input=await body(req,2048);
         if(typeof input.code!=='string'||!timingSafeEqual(hash(input.code),hash(config.accessCode)))throw new AppError('存取碼不正確。',401,'AUTH');

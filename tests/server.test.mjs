@@ -23,8 +23,8 @@ test('private access code protects AI routes and yields HttpOnly session',async 
 test('JSON and method checks fail safely',async t=>{const u=await start(t);let r=await fetch(u+'/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:'{broken'});assert.equal(r.status,400);r=await fetch(u+'/api/analyze',{method:'POST',body:'text'});assert.equal(r.status,415);r=await fetch(u+'/',{method:'DELETE'});assert.equal(r.status,405);});
 
 test('server response identifies correct build and bypasses stale module cache',async t=>{
- const u=await start(t);for(const path of ['/','/app.mjs?v=1.2.2','/modules/player.mjs?v=1.2.2']){
- const r=await fetch(u+path);assert.equal(r.headers.get('x-vox-build'),'1.2.2');assert.equal(r.headers.get('cache-control'),'no-store');assert.equal(r.status,200);}
+ const u=await start(t);for(const path of ['/','/app.mjs?v=1.2.3','/modules/player.mjs?v=1.2.3']){
+ const r=await fetch(u+path);assert.equal(r.headers.get('x-vox-build'),'1.2.3');assert.equal(r.headers.get('cache-control'),'no-store');assert.equal(r.status,200);}
 });
 test('exact supplied radio URL becomes the single intended video',async t=>{
  let input;const u=await start(t,{},async x=>{input=x;return demo;});

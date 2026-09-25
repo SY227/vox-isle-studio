@@ -18,7 +18,7 @@ async def main():
    page.on('pageerror',lambda e:errors.append(str(e)))
    async def route(r):
     u=urlparse(r.request.url);headers={'Access-Control-Allow-Origin':'*'}
-    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.2'})
+    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.3'})
     if u.path=='/qa-adaptive.json':return await r.fulfill(status=200,headers=headers,body=(ROOT/'tests/fixtures/stability-cases.json').read_bytes(),content_type='application/json')
     f=ROOT/'dist'/u.path[1:]
     if not f.is_file() or (broken and u.path=='/shared/music.mjs'):return await r.fulfill(status=404,headers=headers,body='Deliberate missing import')

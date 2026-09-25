@@ -1,12 +1,12 @@
-import {Avatar} from './modules/avatar.mjs?v=1.2.2';
-import {icon,esc,toast,modal,closeModal,saveFile} from './modules/ui.mjs?v=1.2.2';
-import {Player} from './modules/player.mjs?v=1.2.2';
-import {Recorder,decodeFile,toBase64,scanPitch,playNotes,stopNotes,speak} from './modules/audio.mjs?v=1.2.2';
-import * as api from './modules/api.mjs?v=1.2.2';
-import {noteName,clock,clamp,TECHNIQUES,ORNAMENTS,parseYouTube,rangeFromPhrases} from '/shared/music.mjs?v=1.2.2';
-import {normalizeAnalysis} from '/shared/schema.mjs?v=1.2.2';
-import {lyricState,tokenLyricState} from '/shared/lyric-clock.mjs?v=1.2.2';
-import {teachingCoverage} from '/shared/annotations.mjs?v=1.2.2';
+import {Avatar} from './modules/avatar.mjs?v=1.2.3';
+import {icon,esc,toast,modal,closeModal,saveFile} from './modules/ui.mjs?v=1.2.3';
+import {Player} from './modules/player.mjs?v=1.2.3';
+import {Recorder,decodeFile,toBase64,scanPitch,playNotes,stopNotes,speak} from './modules/audio.mjs?v=1.2.3';
+import * as api from './modules/api.mjs?v=1.2.3';
+import {noteName,clock,clamp,TECHNIQUES,ORNAMENTS,parseYouTube,rangeFromPhrases} from '/shared/music.mjs?v=1.2.3';
+import {normalizeAnalysis} from '/shared/schema.mjs?v=1.2.3';
+import {lyricState,tokenLyricState} from '/shared/lyric-clock.mjs?v=1.2.3';
+import {teachingCoverage} from '/shared/annotations.mjs?v=1.2.3';
 
 const $=q=>document.querySelector(q),$$=q=>[...document.querySelectorAll(q)];
 const state={page:'home',mode:'youtube',url:'',language:'auto',lyrics:'',advanced:false,solo:false,file:null,
@@ -16,7 +16,7 @@ let avatar,abortController,loadingTimer,recorder,recordUrl,uploadUrl,activation=
 let analysisRun=0,analysisInput=null,lessonAbort=null,lessonTimer=null;
 const lessons=new Map(),editedPhrases=new Set();
 state.refining=false;state.lessonPending=-1;state.lessonError=-1;
-const BUILD='1.2.2';
+const BUILD='1.2.3';
 try{const saved=JSON.parse(localStorage.getItem('vox-isle-library-v1')||'[]');state.library=Array.isArray(saved)?saved.slice(0,8):[];}catch{}
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const player=new Player(onTick,onPlayerState,message=>{state.playerIssue=message;});
@@ -70,7 +70,7 @@ function renderHome(){
   <div class="source-input">${state.mode==='youtube'?`<div class="url-wrap">${icon('link',18)}<input class="url-input" id="song-url" type="url" value="${esc(state.url)}" placeholder="貼上 YouTube 歌曲連結…" aria-label="YouTube 歌曲連結" autocomplete="off"></div>`:`<label class="drop-zone" for="song-file">${icon('upload',23)}<span><strong id="file-title">${esc(state.file?.name||'選擇你的音訊檔')}</strong><small>MP3 / WAV / M4A 等 · 最多 6 分鐘、50 MB</small></span><input id="song-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.flac,.ogg" class="hidden"></label>`}<button class="primary warm" type="submit">打開這首歌 ${icon('upRight',17)}</button></div>
   <div class="form-foot"><select id="song-language" aria-label="歌曲語言"><option value="auto" ${state.language==='auto'?'selected':''}>自動辨識 · 粵語／國語</option><option value="cantonese" ${state.language==='cantonese'?'selected':''}>粵語歌曲</option><option value="mandarin" ${state.language==='mandarin'?'selected':''}>國語歌曲</option></select><span class="hint">${state.mode==='youtube'?'公開單曲 · 最多 15 分鐘':'本機轉換 · 按下分析才上傳'}</span></div>
   ${state.mode==='upload'?`<label class="consent"><input type="checkbox" id="solo-input" ${state.solo?'checked':''}><span>這是清唱或已分離主唱；額外執行本機音高量測。</span></label>`:''}
-  <p class="source-disclosure">直接聆聽原聲，自動產生歌詞、時間與唱法。不需要準備歌詞。來源內容將傳送至 AI 進行分析。</p>
+  <p class="source-disclosure">直接聆聽原聲，自動產生歌詞、時間與唱法。不需要準備歌詞。按下按鈕後，來源會送往 Google 分析。</p>
     </form>${state.error?`<div class="error-banner" role="alert">${esc(state.error)}</div>`:''}
   <button class="demo-link" data-action="demo"><span>還沒有準備好歌曲？<strong>先體驗《微光練習曲》</strong></span>${icon('arrow',17)}</button></div>
   <div class="hero-art" aria-label="動畫聲音練習展示"><div class="orbit"></div><div class="orbit two"></div><div class="orbit three"></div><span class="hero-note">A LITTLE GUIDANCE.</span><div id="avatar" class="avatar-canvas hero-avatar"></div><div class="floating-tag tag-a"><span class="tag-icon">${icon('wave',18)}</span><span>讓聲音自然連起來<small>FIND YOUR FLOW</small></span></div><div class="floating-tag tag-b"><span class="tag-icon">${icon('music',18)}</span><span>真聲・混聲・假聲<small>ONE LINE AT A TIME</small></span></div><div class="floating-tag tag-c"><span class="tag-icon">${icon('spark',18)}</span><span>轉音，慢慢就會了<small>SMALL STEPS. YOUR VOICE.</small></span></div></div></div>

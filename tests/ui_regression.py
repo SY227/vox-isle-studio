@@ -19,7 +19,7 @@ async def main():
    async def route(r):
     u=urlparse(r.request.url);headers={'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'Content-Type','Access-Control-Allow-Methods':'POST,GET,OPTIONS'}
     if r.request.method=='OPTIONS':return await r.fulfill(status=204,headers=headers)
-    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.2'})
+    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.3'})
     if u.path=='/qa-fixtures.json':return await r.fulfill(status=200,headers=headers,content_type='application/json',body=(ROOT/'tests/fixtures/recovery-cases.json').read_bytes())
     f=ROOT/u.path[1:] if u.path.startswith('/shared/') else ROOT/'public'/u.path[1:]
     if not f.is_file():return await r.fulfill(status=404,headers=headers,body='not found')
@@ -43,7 +43,7 @@ async def main():
   page=await setup()
   await ok('song rights checkbox absent',await page.locator('#rights-input').count()==0)
   await ok('passive processing notice visible',await page.locator('.source-disclosure').is_visible())
-  await ok('build identifier is exact and no model branding is visible',(await page.evaluate('window.voxDiagnostics().build'))=='1.2.2' and 'Gemini' not in await page.locator('body').inner_text())
+  await ok('build identifier is exact and no model branding is visible',(await page.evaluate('window.voxDiagnostics().build'))=='1.2.3' and 'Gemini' not in await page.locator('body').inner_text())
   await begin(page,'partial')
   await ok('loading bar is visible with accessible workflow semantics',await page.locator('#analysis-progress').get_attribute('aria-valuemax')=='4')
   await ok('no fabricated inference completion percentage',await page.locator('#analysis-progress').get_attribute('aria-valuenow')=='1')

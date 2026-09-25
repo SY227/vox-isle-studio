@@ -11,7 +11,7 @@ for(const route of ['/','/app.mjs','/boot-guard.mjs','/shared/music.mjs','/share
   let ok=r.ok;
   if(route.endsWith('.mjs'))ok&&=/javascript/.test(r.headers.get('content-type')||'')&&!/^\s*</.test(text);
   if(route==='/')ok&&=text.includes('vox-production-style');
-  if(route==='/api/status'){const data=JSON.parse(text);ok&&=data.version==='1.2.2'&&data.configured===true;results.push({route,status:r.status,ok,configured:data.configured,version:data.version});}
+  if(route==='/api/status'){const data=JSON.parse(text);ok&&=data.version==='1.2.3'&&data.configured===true;results.push({route,status:r.status,ok,configured:data.configured,version:data.version});}
   else results.push({route,status:r.status,ok});
  }catch(e){results.push({route,ok:false,code:e.cause?.code||e.code||e.name});}
 }

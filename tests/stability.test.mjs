@@ -33,3 +33,12 @@ test('first-scan cache avoids repeating the largest call, never caches failures'
  await generate(input,'analyze',config,undefined,fetcher);await generate(input,'analyze',config,undefined,fetcher);assert.equal(scans,1);
 });
 test('compact fixture has materially less output to generate (not a wall-time benchmark)',()=>{const old={...raw(),phrases:raw().phrases.map((p,i)=>({...p,words:demo.phrases[i].tokens.map(t=>({text:t.text,romanization:t.romanization,start:t.start,end:t.end}))}))};assert.ok(Buffer.byteLength(JSON.stringify(raw()))<Buffer.byteLength(JSON.stringify(old))*.4);});
+
+
+test('late teaching word timing outside a reviewed phrase is rejected without removing labels',async()=>{
+ const {applyWordDetails}=await import('../server/word-details.mjs');
+ const transcript={phrases:[{start:10,end:12,tokens:[{text:'光',start:null,end:null,romanization:'',technique:'mix',notes:[64],ornaments:[],annotationStatus:'reviewed'}]}]};
+ const details=new Map([['p0t0',{romanization:'gwong1',start:9.4,end:10.1,confidence:'high'}]]);
+ applyWordDetails(transcript,details);
+ assert.equal(transcript.phrases[0].tokens[0].start,null);assert.equal(transcript.phrases[0].tokens[0].technique,'mix');assert.equal(transcript.phrases[0].tokens[0].romanization,'gwong1');
+});

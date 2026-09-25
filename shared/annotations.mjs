@@ -14,7 +14,7 @@ export const tokenId = (pi, ti) => `p${pi}t${ti}`;
 export function teachingCoverage(analysis) {
   const tokens = (analysis?.phrases || []).flatMap(p => p.tokens || []);
   const identified = tokens.filter(t => t.technique && t.technique !== 'unknown' && Object.hasOwn(TECHNIQUES, t.technique)).length;
-  const reviewed = tokens.filter(t => t.annotationStatus === 'reviewed').length;
+  const reviewed = tokens.filter(t => ['reviewed','uncertain'].includes(t.annotationStatus)).length;
   const missing = tokens.filter(t => ['missing', 'unavailable'].includes(t.annotationStatus)).length;
   return {total: tokens.length, identified, unknown: tokens.length - identified, reviewed, missing};
 }
@@ -48,6 +48,22 @@ export function missingTeachingBatch(batch, annotations) {
   const phrases = batch.phrases.map(p => ({...p, tokens: p.tokens.filter(t => !annotations.has(t.id))}))
     .filter(p => p.tokens.length);
   return {...batch, phrases, tokenCount: phrases.reduce((n, p) => n + p.tokens.length, 0), repair: true};
+}
+
+
+/** Convert omitted or unavailable teaching entries into an explicit uncertainty.
+ * This never invents a register: it only prevents a processed word from
+ * disappearing from the UI after a partial provider response.
+ */
+export function settleTeachingBatch(batch, result = {}) {
+  const annotations = new Map(result.annotations instanceof Map ? result.annotations : []);
+  const coaching = new Map(result.coaching instanceof Map ? result.coaching : []);
+  for (const p of batch.phrases || []) for (const t of p.tokens || []) {
+    if (!annotations.has(t.id)) annotations.set(t.id, {notes:[], technique:'unknown', ornaments:[], confidence:'low', annotationStatus:'uncertain'});
+  }
+  return {status: result.status === 'ok' ? 'ok' : 'unavailable', annotations, coaching,
+    key: clean(result.key, 50), tempo: Number.isFinite(result.tempo) ? result.tempo : null,
+    summary: clean(result.summary), warnings: Array.isArray(result.warnings) ? result.warnings.slice(0,4).map(w=>clean(w,400)) : [], missing: []};
 }
 
 export function normalizeTeachingBatch(raw, batch) {

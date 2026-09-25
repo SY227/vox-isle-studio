@@ -20,7 +20,7 @@ async def main():
    page.on('pageerror',lambda e:errors.append(str(e)))
    async def route(r):
     u=urlparse(r.request.url);headers={'Access-Control-Allow-Origin':'*'}
-    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.2'})
+    if u.path=='/api/status':return await r.fulfill(status=200,headers=headers,json={'configured':True,'authenticated':True,'version':'1.2.3'})
     if u.path=='/qa-adaptive.json':return await r.fulfill(status=200,headers=headers,json=json.loads((ROOT/'tests/fixtures/adaptive-cases.json').read_text()))
     f=ROOT/u.path[1:] if u.path.startswith('/shared/') else ROOT/'public'/u.path[1:]
     if u.path.endswith('.css'):return await r.fulfill(status=404,headers=headers,body='Deliberate CSS failure')
