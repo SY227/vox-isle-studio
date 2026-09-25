@@ -1,0 +1,16 @@
+
+> vox-isle-studio@1.1.2 verify:live
+> node scripts/verify-live.mjs https://www.youtube.com/watch?v=YaJ_lYFgr6c&list=RDeV9a5oUCbZQ&index=2
+
+
+聲嶼 · 真實歌曲驗收
+來源：https://www.youtube.com/watch?v=YaJ_lYFgr6c
+本次會呼叫 AI 服務，請保持測試視窗可見；不需再次輸入金鑰。
+
+! DNS www.youtube.com — EAI_AGAIN
+! DNS generativelanguage.googleapis.com — EAI_AGAIN
+! 本機 API 設定 — 請先執行 npm run setup
+! 整體驗收 — 前置條件未通過；未發出歌曲分析請求，也未把阻擋當成測試成功。
+
+驗收報告：/mnt/data/vox-v110-work/vox-isle-studio/test-results/live-check.json
+結果：blocked

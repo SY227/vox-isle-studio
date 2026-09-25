@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {noteName,hzToMidi,midiToHz,parseYouTube,rangeFromPhrases} from '../shared/music.mjs';
+import {detectPitch,summarizePitch} from '../shared/pitch.mjs';
+const sine=(hz,rate=16000,n=2048)=>Float32Array.from({length:n},(_,i)=>.4*Math.sin(2*Math.PI*hz*i/rate));
+test('scientific notation: A4=440 Hz; C4=MIDI60',()=>{assert.equal(noteName(69),'A4');assert.equal(noteName(60),'C4');assert.equal(midiToHz(69),440);assert.equal(hzToMidi(440),69);});
+for(const hz of [82.4069,130.8128,220,440,659.255,880,1046.502])test(`YIN synthetic ${hz} Hz is within 12 cents`,()=>{const p=detectPitch(sine(hz),16000);assert.ok(p);assert.ok(Math.abs(1200*Math.log2(p.hz/hz))<12,JSON.stringify(p));assert.ok(p.confidence>=.86);});
+test('silence and sub-gate signals yield no pitch',()=>{assert.equal(detectPitch(new Float32Array(2048),16000),null);assert.equal(detectPitch(sine(440).map(x=>x*.001),16000),null);});
+test('invalid sample rate or buffer yields no pitch',()=>{assert.equal(detectPitch([],16000),null);assert.equal(detectPitch(sine(440),0),null);assert.equal(detectPitch(sine(440),NaN),null);});
+test('seeded white noise is rejected',()=>{let x=1;const noise=Float32Array.from({length:2048},()=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return (x/2**32-.5)*.8;});assert.equal(detectPitch(noise,16000),null);});
+test('retained extrema remove isolated octave glitch, not sustained notes',()=>{const frames=[...Array.from({length:6},(_,i)=>({midi:60,time:i*.05,confidence:.99})),{midi:84,time:.3,confidence:.99},...Array.from({length:6},(_,i)=>({midi:67,time:.35+i*.05,confidence:.99}))];const s=summarizePitch(frames);assert.equal(s.low,60);assert.equal(s.high,67);assert.equal(s.events.length,2);});
+test('empty/noisy recording has unknown range',()=>{const s=summarizePitch([null,null]);assert.equal(s.low,null);assert.equal(s.high,null);assert.equal(s.events.length,0);});
+test('YouTube URLs normalize without allowing arbitrary fetch hosts',()=>{for(const url of ['https://youtu.be/dQw4w9WgXcQ?t=3','https://www.youtube.com/watch?v=dQw4w9WgXcQ','https://music.youtube.com/watch?v=dQw4w9WgXcQ','https://www.youtube.com/shorts/dQw4w9WgXcQ']){assert.equal(parseYouTube(url)?.id,'dQw4w9WgXcQ');assert.equal(parseYouTube(url)?.url,'https://www.youtube.com/watch?v=dQw4w9WgXcQ');}});
+test('URL validation rejects SSRF/lookalike/javascript/credentials',()=>{for(const url of ['http://169.254.169.254','javascript:alert(1)','https://youtube.com.attacker.test/watch?v=dQw4w9WgXcQ','https://youtube.com@evil.test/watch?v=dQw4w9WgXcQ','https://user@www.youtube.com/watch?v=dQw4w9WgXcQ','https://www.youtube.com:8443/watch?v=dQw4w9WgXcQ','https://youtu.be/too-short'])assert.equal(parseYouTube(url),null,url);});
+test('unknown notes do not invent extrema',()=>{const r=rangeFromPhrases([{tokens:[{notes:[]}]}]);assert.equal(r.low,null);assert.equal(r.high,null);});

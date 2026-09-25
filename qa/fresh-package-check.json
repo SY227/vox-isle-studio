@@ -1,0 +1,30 @@
+{
+  "build": "1.2.0",
+  "checks": [
+    "single predictable root folder",
+    "no .env or credential backups in ZIP",
+    "no npm modules, git data or Python caches",
+    "README and developer live-link checker included",
+    "overlaid extraction preserves .env byte-for-byte",
+    "existing private .env mode retained",
+    "release version 1.2.0 consistent",
+    "no installation dependencies required",
+    "actual fresh server starts from outside project directory",
+    "actual build header matches",
+    "HTML cache disabled",
+    "full production skin embedded",
+    "no external stylesheet request required",
+    "browser cache tag current",
+    "root-local .env read without exposing key",
+    "backend requested model preserved",
+    "NDJSON progressive client shipped and served as JavaScript",
+    "all runtime browser/shared modules served",
+    "private environment file denied over HTTP",
+    "local audio supports seekable byte ranges",
+    "fresh package Node tests",
+    "fresh package JavaScript checks"
+  ],
+  "passed": 22,
+  "archive": "vox-isle-studio-v1.2.0.zip",
+  "environment": "synthetic local test key; no provider calls; extraction tested from outside project cwd"
+}

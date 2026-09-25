@@ -1,0 +1,32 @@
+{
+  "build": "1.2.0",
+  "startedAt": "2026-09-25T15:54:27.958Z",
+  "source": "https://www.youtube.com/watch?v=4ULVNHHqbew",
+  "scope": "Real network and real Chrome; no simulated AI or YouTube. Passing media clock is not a human audit of musical accuracy.",
+  "checks": [
+    {
+      "name": "DNS www.youtube.com",
+      "status": "blocked",
+      "detail": "EAI_AGAIN"
+    },
+    {
+      "name": "DNS generativelanguage.googleapis.com",
+      "status": "blocked",
+      "detail": "EAI_AGAIN"
+    },
+    {
+      "name": "本機 API 設定",
+      "status": "blocked",
+      "detail": "請先執行 npm run setup"
+    },
+    {
+      "name": "整體驗收",
+      "status": "blocked",
+      "detail": "前置條件未通過；未發出歌曲分析請求，也未把阻擋當成測試成功。"
+    }
+  ],
+  "timingAccuracy": "not-measured; no independently listened reference timeline",
+  "result": "blocked",
+  "failure": "前置條件未通過；未發出歌曲分析請求，也未把阻擋當成測試成功。",
+  "finishedAt": "2026-09-25T15:54:32.972Z"
+}

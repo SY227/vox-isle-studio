@@ -1,0 +1,1256 @@
+
+> vox-isle-studio@1.1.2 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: every occurrence across all 40 phrases is scheduled once, including repeated choruses
+ok 1 - every occurrence across all 40 phrases is scheduled once, including repeated choruses
+  ---
+  duration_ms: 2.375896
+  type: 'test'
+  ...
+# Subtest: batch limits are bounds per call, not a first-page song truncation
+ok 2 - batch limits are bounds per call, not a first-page song truncation
+  ---
+  duration_ms: 0.948946
+  type: 'test'
+  ...
+# Subtest: invalid batch limits are rejected
+ok 3 - invalid batch limits are rejected
+  ---
+  duration_ms: 0.215442
+  type: 'test'
+  ...
+# Subtest: fixed token IDs tolerate different output order without shifting lyrics or timestamps
+ok 4 - fixed token IDs tolerate different output order without shifting lyrics or timestamps
+  ---
+  duration_ms: 1.56773
+  type: 'test'
+  ...
+# Subtest: same character in a later chorus receives its own technique, never a nearby match
+ok 5 - same character in a later chorus receives its own technique, never a nearby match
+  ---
+  duration_ms: 0.372516
+  type: 'test'
+  ...
+# Subtest: an unknown ID cannot add lyrics or attach phantom annotations
+ok 6 - an unknown ID cannot add lyrics or attach phantom annotations
+  ---
+  duration_ms: 0.279237
+  type: 'test'
+  ...
+# Subtest: matching ID with mismatching text is rejected, not silently reassigned
+ok 7 - matching ID with mismatching text is rejected, not silently reassigned
+  ---
+  duration_ms: 0.229623
+  type: 'test'
+  ...
+# Subtest: matching token ID in the wrong phrase is rejected
+ok 8 - matching token ID in the wrong phrase is rejected
+  ---
+  duration_ms: 0.171055
+  type: 'test'
+  ...
+# Subtest: duplicate IDs do not silently take the last conflicting value
+ok 9 - duplicate IDs do not silently take the last conflicting value
+  ---
+  duration_ms: 0.32815
+  type: 'test'
+  ...
+# Subtest: repair requests keep original IDs rather than renumbering omitted words
+ok 10 - repair requests keep original IDs rather than renumbering omitted words
+  ---
+  duration_ms: 0.496521
+  type: 'test'
+  ...
+# Subtest: invalid MIDI is omitted, not converted from hertz or clamped
+ok 11 - invalid MIDI is omitted, not converted from hertz or clamped
+  ---
+  duration_ms: 0.292277
+  type: 'test'
+  ...
+# Subtest: unknown technique remains an explicit reviewed uncertainty
+ok 12 - unknown technique remains an explicit reviewed uncertainty
+  ---
+  duration_ms: 0.30833
+  type: 'test'
+  ...
+# Subtest: unavailable teaching never fabricates true/fake voice to fill coverage
+ok 13 - unavailable teaching never fabricates true/fake voice to fill coverage
+  ---
+  duration_ms: 0.189263
+  type: 'test'
+  ...
+# Subtest: broken batch schema fails safely
+ok 14 - broken batch schema fails safely
+  ---
+  duration_ms: 0.19387
+  type: 'test'
+  ...
+# Subtest: legacy imports preserve valid labels and gain accurate coverage without inventing missing ones
+ok 15 - legacy imports preserve valid labels and gain accurate coverage without inventing missing ones
+  ---
+  duration_ms: 0.383492
+  type: 'test'
+  ...
+# Subtest: coverage survives strict normalization, export and re-import
+ok 16 - coverage survives strict normalization, export and re-import
+  ---
+  duration_ms: 0.337614
+  type: 'test'
+  ...
+# Subtest: all batches are annotated at bounded concurrency, with final-chorus coverage
+ok 17 - all batches are annotated at bounded concurrency, with final-chorus coverage
+  ---
+  duration_ms: 15.813873
+  type: 'test'
+  ...
+# Subtest: an omitted word gets one targeted repair, not a second full-song guess
+ok 18 - an omitted word gets one targeted repair, not a second full-song guess
+  ---
+  duration_ms: 0.717401
+  type: 'test'
+  ...
+# Subtest: a valid unknown result does not produce repeated forced-classification attempts
+ok 19 - a valid unknown result does not produce repeated forced-classification attempts
+  ---
+  duration_ms: 0.274119
+  type: 'test'
+  ...
+# Subtest: repeated missing IDs do not create an infinite repair loop
+ok 20 - repeated missing IDs do not create an infinite repair loop
+  ---
+  duration_ms: 0.836464
+  type: 'test'
+  ...
+# Subtest: one failed section retains its lyrics and does not erase later annotation batches
+ok 21 - one failed section retains its lyrics and does not erase later annotation batches
+  ---
+  duration_ms: 1.301623
+  type: 'test'
+  ...
+# Subtest: cancel before annotation prevents all additional provider calls
+ok 22 - cancel before annotation prevents all additional provider calls
+  ---
+  duration_ms: 0.531554
+  type: 'test'
+  ...
+# Subtest: cancellation during repair is not swallowed as a partial success
+ok 23 - cancellation during repair is not swallowed as a partial success
+  ---
+  duration_ms: 0.225527
+  type: 'test'
+  ...
+# Subtest: provider authentication failures are not relabeled as successful teaching
+ok 24 - provider authentication failures are not relabeled as successful teaching
+  ---
+  duration_ms: 0.321119
+  type: 'test'
+  ...
+# Subtest: annotation output cannot change frozen timings even if extra fields are supplied
+ok 25 - annotation output cannot change frozen timings even if extra fields are supplied
+  ---
+  duration_ms: 0.157285
+  type: 'test'
+  ...
+# Subtest: teaching API schemas include stable IDs and exclude independently generated timestamps
+ok 26 - teaching API schemas include stable IDs and exclude independently generated timestamps
+  ---
+  duration_ms: 0.466697
+  type: 'test'
+  ...
+# Subtest: lyric clock before uses the source position
+ok 27 - lyric clock before uses the source position
+  ---
+  duration_ms: 0.122853
+  type: 'test'
+  ...
+# Subtest: lyric clock at onset uses the source position
+ok 28 - lyric clock at onset uses the source position
+  ---
+  duration_ms: 0.112568
+  type: 'test'
+  ...
+# Subtest: lyric clock inside uses the source position
+ok 29 - lyric clock inside uses the source position
+  ---
+  duration_ms: 0.046209
+  type: 'test'
+  ...
+# Subtest: lyric clock at end uses the source position
+ok 30 - lyric clock at end uses the source position
+  ---
+  duration_ms: 0.032128
+  type: 'test'
+  ...
+# Subtest: lyric clock later uses the source position
+ok 31 - lyric clock later uses the source position
+  ---
+  duration_ms: 0.028412
+  type: 'test'
+  ...
+# Subtest: lyric clock back seek uses the source position
+ok 32 - lyric clock back seek uses the source position
+  ---
+  duration_ms: 0.025649
+  type: 'test'
+  ...
+# Subtest: lyric clock positive offset uses the source position
+ok 33 - lyric clock positive offset uses the source position
+  ---
+  duration_ms: 0.063946
+  type: 'test'
+  ...
+# Subtest: lyric clock negative offset uses the source position
+ok 34 - lyric clock negative offset uses the source position
+  ---
+  duration_ms: 0.036204
+  type: 'test'
+  ...
+# Subtest: successful full-song annotation replaces the transcript-only unknown-pitch counter
+ok 35 - successful full-song annotation replaces the transcript-only unknown-pitch counter
+  ---
+  duration_ms: 0.165326
+  type: 'test'
+  ...
+# Subtest: real timing uncertainty remains partial even after all techniques are annotated
+ok 36 - real timing uncertainty remains partial even after all techniques are annotated
+  ---
+  duration_ms: 0.14729
+  type: 'test'
+  ...
+# Subtest: a fatal auth error stops sibling workers scheduling further paid batches
+ok 37 - a fatal auth error stops sibling workers scheduling further paid batches
+  ---
+  duration_ms: 44.612203
+  type: 'test'
+  ...
+# Subtest: accepts current AQ auth key shape including dot
+ok 38 - accepts current AQ auth key shape including dot
+  ---
+  duration_ms: 1.026051
+  type: 'test'
+  ...
+# Subtest: accepts legacy AIza key shape
+ok 39 - accepts legacy AIza key shape
+  ---
+  duration_ms: 0.137215
+  type: 'test'
+  ...
+# Subtest: normalizes pasted env assignment and quotes
+ok 40 - normalizes pasted env assignment and quotes
+  ---
+  duration_ms: 0.120089
+  type: 'test'
+  ...
+# Subtest: rejects whitespace/control characters and short values
+ok 41 - rejects whitespace/control characters and short values
+  ---
+  duration_ms: 0.995987
+  type: 'test'
+  ...
+# Subtest: writes a quoted dotenv assignment
+ok 42 - writes a quoted dotenv assignment
+  ---
+  duration_ms: 0.189713
+  type: 'test'
+  ...
+# Subtest: legacy YouTube fallback uses fileData with video MIME and no brittle forced endOffset
+ok 43 - legacy YouTube fallback uses fileData with video MIME and no brittle forced endOffset
+  ---
+  duration_ms: 1.907897
+  type: 'test'
+  ...
+# Subtest: preferred YouTube transport uses official Interactions direct video URI and structured JSON
+ok 44 - preferred YouTube transport uses official Interactions direct video URI and structured JSON
+  ---
+  duration_ms: 0.721647
+  type: 'test'
+  ...
+# Subtest: upload/recording uses WAV inlineData rather than external arbitrary URL
+ok 45 - upload/recording uses WAV inlineData rather than external arbitrary URL
+  ---
+  duration_ms: 0.163764
+  type: 'test'
+  ...
+# Subtest: YouTube analysis uses Interactions API first and returns validated result
+ok 46 - YouTube analysis uses Interactions API first and returns validated result
+  ---
+  duration_ms: 35.022034
+  type: 'test'
+  ...
+# Subtest: YouTube automatically retries documented legacy fileData path when Interactions request shape fails
+ok 47 - YouTube automatically retries documented legacy fileData path when Interactions request shape fails
+  ---
+  duration_ms: 11.355739
+  type: 'test'
+  ...
+# Subtest: YouTube auth/policy denial is not hammered with a second provider call
+ok 48 - YouTube auth/policy denial is not hammered with a second provider call
+  ---
+  duration_ms: 0.620857
+  type: 'test'
+  ...
+# Subtest: non-YouTube request uses exact model and server-side header
+ok 49 - non-YouTube request uses exact model and server-side header
+  ---
+  duration_ms: 130.999
+  type: 'test'
+  ...
+# Subtest: missing key is a clear failure, never demo fallback
+ok 50 - missing key is a clear failure, never demo fallback
+  ---
+  duration_ms: 0.428379
+  type: 'test'
+  ...
+# Subtest: 404 does not silently switch models
+ok 51 - 404 does not silently switch models
+  ---
+  duration_ms: 0.670601
+  type: 'test'
+  ...
+# Subtest: 429 quota exposes no provider response secrets
+ok 52 - 429 quota exposes no provider response secrets
+  ---
+  duration_ms: 1.417115
+  type: 'test'
+  ...
+# Subtest: truncated Interactions output is rejected rather than partially rendered
+ok 53 - truncated Interactions output is rejected rather than partially rendered
+  ---
+  duration_ms: 0.516761
+  type: 'test'
+  ...
+# Subtest: invalid JSON and empty Interactions output fail safely
+ok 54 - invalid JSON and empty Interactions output fail safely
+  ---
+  duration_ms: 0.77063
+  type: 'test'
+  ...
+# Subtest: transient Google failures are retried silently three times before succeeding
+ok 55 - transient Google failures are retried silently three times before succeeding
+  ---
+  duration_ms: 5.462173
+  type: 'test'
+  ...
+# Subtest: transient 503 responses receive exactly three silent retries
+ok 56 - transient 503 responses receive exactly three silent retries
+  ---
+  duration_ms: 0.479295
+  type: 'test'
+  ...
+# Subtest: user cancellation stops provider retry immediately
+ok 57 - user cancellation stops provider retry immediately
+  ---
+  duration_ms: 0.441239
+  type: 'test'
+  ...
+# Subtest: model names cannot inject request paths
+ok 58 - model names cannot inject request paths
+  ---
+  duration_ms: 0.126038
+  type: 'test'
+  ...
+# Subtest: model permission check distinguishes metadata from generation
+ok 59 - model permission check distinguishes metadata from generation
+  ---
+  duration_ms: 0.294089
+  type: 'test'
+  ...
+# Subtest: listening windows cover every second, including a final short core
+ok 60 - listening windows cover every second, including a final short core
+  ---
+  duration_ms: 1.582642
+  type: 'test'
+  ...
+# Subtest: recording scan covers later verses beyond old six-minute limit
+ok 61 - recording scan covers later verses beyond old six-minute limit
+  ---
+  duration_ms: 0.434729
+  type: 'test'
+  ...
+# Subtest: out-of-bound durations fail explicitly; no silent crop
+ok 62 - out-of-bound durations fail explicitly; no silent crop
+  ---
+  duration_ms: 0.260259
+  type: 'test'
+  ...
+# Subtest: invalid window-size configuration is rejected
+ok 63 - invalid window-size configuration is rejected
+  ---
+  duration_ms: 0.12697
+  type: 'test'
+  ...
+# Subtest: upload sample-count duration overrides survey estimate
+ok 64 - upload sample-count duration overrides survey estimate
+  ---
+  duration_ms: 0.156404
+  type: 'test'
+  ...
+# Subtest: YouTube survey length is required rather than guessed as 360
+ok 65 - YouTube survey length is required rather than guessed as 360
+  ---
+  duration_ms: 0.748327
+  type: 'test'
+  ...
+# Subtest: source unavailable is not interpreted as an instrumental section
+ok 66 - source unavailable is not interpreted as an instrumental section
+  ---
+  duration_ms: 0.52246
+  type: 'test'
+  ...
+# Subtest: WAV listening windows contain actual sliced samples, not a full-file prompt
+ok 67 - WAV listening windows contain actual sliced samples, not a full-file prompt
+  ---
+  duration_ms: 14.696706
+  type: 'test'
+  ...
+# Subtest: WAV clips outside the sample-count duration are rejected
+ok 68 - WAV clips outside the sample-count duration are rejected
+  ---
+  duration_ms: 0.646515
+  type: 'test'
+  ...
+# Subtest: Interactions listening requests carry documented numeric clipping offsets
+ok 69 - Interactions listening requests carry documented numeric clipping offsets
+  ---
+  duration_ms: 0.569801
+  type: 'test'
+  ...
+# Subtest: legacy fallback retains exactly the same requested source range
+ok 70 - legacy fallback retains exactly the same requested source range
+  ---
+  duration_ms: 0.248671
+  type: 'test'
+  ...
+# Subtest: clip offset is applied once and only once
+ok 71 - clip offset is applied once and only once
+  ---
+  duration_ms: 3.119166
+  type: 'test'
+  ...
+# Subtest: missing coordinate declaration or stale window ID cannot shift a score
+ok 72 - missing coordinate declaration or stale window ID cannot shift a score
+  ---
+  duration_ms: 0.284915
+  type: 'test'
+  ...
+# Subtest: out-of-window and string word times become unknown, not guessed seconds
+ok 73 - out-of-window and string word times become unknown, not guessed seconds
+  ---
+  duration_ms: 0.970188
+  type: 'test'
+  ...
+# Subtest: missing word entries preserve complete recognized line without interpolation
+ok 74 - missing word entries preserve complete recognized line without interpolation
+  ---
+  duration_ms: 0.219127
+  type: 'test'
+  ...
+# Subtest: multi-character spans never acquire duplicated fake per-character times
+ok 75 - multi-character spans never acquire duplicated fake per-character times
+  ---
+  duration_ms: 0.124155
+  type: 'test'
+  ...
+# Subtest: unclear audible placeholders are retained rather than silently deleted
+ok 76 - unclear audible placeholders are retained rather than silently deleted
+  ---
+  duration_ms: 0.12732
+  type: 'test'
+  ...
+# Subtest: contradictory no-vocals plus lyrics is a format failure
+ok 77 - contradictory no-vocals plus lyrics is a format failure
+  ---
+  duration_ms: 0.108842
+  type: 'test'
+  ...
+# Subtest: unknown timing uses line bounds but never fills gold word positions
+ok 78 - unknown timing uses line bounds but never fills gold word positions
+  ---
+  duration_ms: 1.847698
+  type: 'test'
+  ...
+# Subtest: word confidence is separate from teaching confidence
+ok 79 - word confidence is separate from teaching confidence
+  ---
+  duration_ms: 0.803739
+  type: 'test'
+  ...
+# Subtest: wholly untimed text remains readable outside the synchronized score
+ok 80 - wholly untimed text remains readable outside the synchronized score
+  ---
+  duration_ms: 0.22081
+  type: 'test'
+  ...
+# Subtest: monotone merge keeps three rapid repeated words as three occurrences
+ok 81 - monotone merge keeps three rapid repeated words as three occurrences
+  ---
+  duration_ms: 0.148672
+  type: 'test'
+  ...
+# Subtest: overlap joins split lines without losing or doubling boundary words
+ok 82 - overlap joins split lines without losing or doubling boundary words
+  ---
+  duration_ms: 0.34839
+  type: 'test'
+  ...
+# Subtest: same words in a later chorus are never globally deduplicated
+ok 83 - same words in a later chorus are never globally deduplicated
+  ---
+  duration_ms: 0.237244
+  type: 'test'
+  ...
+# Subtest: different overlap estimates are marked uncertain instead of averaged
+ok 84 - different overlap estimates are marked uncertain instead of averaged
+  ---
+  duration_ms: 0.219989
+  type: 'test'
+  ...
+# Subtest: all original synthetic demo words survive windowing and assembly
+ok 85 - all original synthetic demo words survive windowing and assembly
+  ---
+  duration_ms: 1.044199
+  type: 'test'
+  ...
+# Subtest: lyric/timing disagreement triggers detection, not an agreement label
+ok 86 - lyric/timing disagreement triggers detection, not an agreement label
+  ---
+  duration_ms: 1.38681
+  type: 'test'
+  ...
+# Subtest: matching AI outputs are explicitly not an acoustic accuracy certificate
+ok 87 - matching AI outputs are explicitly not an acoustic accuracy certificate
+  ---
+  duration_ms: 0.249032
+  type: 'test'
+  ...
+# Subtest: second pass is blind: carries media and no first-pass draft or user lyric sheet
+ok 88 - second pass is blind: carries media and no first-pass draft or user lyric sheet
+  ---
+  duration_ms: 7.636949
+  type: 'test'
+  ...
+# Subtest: a conflicting first draft causes a third media re-listen, not an average
+ok 89 - a conflicting first draft causes a third media re-listen, not an average
+  ---
+  duration_ms: 4.406607
+  type: 'test'
+  ...
+# Subtest: completion events reflect actual completed listening windows
+ok 90 - completion events reflect actual completed listening windows
+  ---
+  duration_ms: 2.658718
+  type: 'test'
+  ...
+# Subtest: bounded listening concurrency never exceeds two provider requests
+ok 91 - bounded listening concurrency never exceeds two provider requests
+  ---
+  duration_ms: 23.714106
+  type: 'test'
+  ...
+# Subtest: cancellation stops scheduling new listening or teaching work
+ok 92 - cancellation stops scheduling new listening or teaching work
+  ---
+  duration_ms: 1.074754
+  type: 'test'
+  ...
+# Subtest: a fatal middle-window failure does not silently return first-verse-only success
+ok 93 - a fatal middle-window failure does not silently return first-verse-only success
+  ---
+  duration_ms: 0.774135
+  type: 'test'
+  ...
+# Subtest: all no-vocal windows return a clear no-vocals result, not fabricated lyrics
+ok 94 - all no-vocal windows return a clear no-vocals result, not fabricated lyrics
+  ---
+  duration_ms: 0.362161
+  type: 'test'
+  ...
+# Subtest: pipeline provenance names recording-only input without leaking provided text
+ok 95 - pipeline provenance names recording-only input without leaking provided text
+  ---
+  duration_ms: 3.526023
+  type: 'test'
+  ...
+# Subtest: word timing and uncertainty survive annotations, final schema, and JSON reload
+ok 96 - word timing and uncertainty survive annotations, final schema, and JSON reload
+  ---
+  duration_ms: 1.878253
+  type: 'test'
+  ...
+# Subtest: unsafe self-declared accuracyVerified true is never trusted on import
+ok 97 - unsafe self-declared accuracyVerified true is never trusted on import
+  ---
+  duration_ms: 0.887515
+  type: 'test'
+  ...
+# Subtest: actual generate orchestrator keeps clipping on legacy retries and never changes the model
+ok 98 - actual generate orchestrator keeps clipping on legacy retries and never changes the model
+  ---
+  duration_ms: 29.290869
+  type: 'test'
+  ...
+# Subtest: new exact user QA URL selects video ID, not the radio playlist
+ok 99 - new exact user QA URL selects video ID, not the radio playlist
+  ---
+  duration_ms: 0.611643
+  type: 'test'
+  ...
+# Subtest: live-check CDP correlates responses without raw credential storage
+ok 100 - live-check CDP correlates responses without raw credential storage
+  ---
+  duration_ms: 24.599807
+  type: 'test'
+  ...
+# Subtest: live-check CDP rejects protocol failures and browser exceptions
+ok 101 - live-check CDP rejects protocol failures and browser exceptions
+  ---
+  duration_ms: 0.877991
+  type: 'test'
+  ...
+# Subtest: live-check click uses two trusted browser input commands, not DOM click
+ok 102 - live-check click uses two trusted browser input commands, not DOM click
+  ---
+  duration_ms: 4.781256
+  type: 'test'
+  ...
+# Subtest: live-check rejects disabled input and pending commands on close
+ok 103 - live-check rejects disabled input and pending commands on close
+  ---
+  duration_ms: 0.709168
+  type: 'test'
+  ...
+# Subtest: live-check wait observes real predicate and times out without claiming pass
+ok 104 - live-check wait observes real predicate and times out without claiming pass
+  ---
+  duration_ms: 9.045601
+  type: 'test'
+  ...
+# Subtest: scientific notation: A4=440 Hz; C4=MIDI60
+ok 105 - scientific notation: A4=440 Hz; C4=MIDI60
+  ---
+  duration_ms: 1.024649
+  type: 'test'
+  ...
+# Subtest: YIN synthetic 82.4069 Hz is within 12 cents
+ok 106 - YIN synthetic 82.4069 Hz is within 12 cents
+  ---
+  duration_ms: 6.338551
+  type: 'test'
+  ...
+# Subtest: YIN synthetic 130.8128 Hz is within 12 cents
+ok 107 - YIN synthetic 130.8128 Hz is within 12 cents
+  ---
+  duration_ms: 0.717861
+  type: 'test'
+  ...
+# Subtest: YIN synthetic 220 Hz is within 12 cents
+ok 108 - YIN synthetic 220 Hz is within 12 cents
+  ---
+  duration_ms: 0.744942
+  type: 'test'
+  ...
+# Subtest: YIN synthetic 440 Hz is within 12 cents
+ok 109 - YIN synthetic 440 Hz is within 12 cents
+  ---
+  duration_ms: 1.176601
+  type: 'test'
+  ...
+# Subtest: YIN synthetic 659.255 Hz is within 12 cents
+ok 110 - YIN synthetic 659.255 Hz is within 12 cents
+  ---
+  duration_ms: 1.368693
+  type: 'test'
+  ...
+# Subtest: YIN synthetic 880 Hz is within 12 cents
+ok 111 - YIN synthetic 880 Hz is within 12 cents
+  ---
+  duration_ms: 1.048935
+  type: 'test'
+  ...
+# Subtest: YIN synthetic 1046.502 Hz is within 12 cents
+ok 112 - YIN synthetic 1046.502 Hz is within 12 cents
+  ---
+  duration_ms: 0.932031
+  type: 'test'
+  ...
+# Subtest: silence and sub-gate signals yield no pitch
+ok 113 - silence and sub-gate signals yield no pitch
+  ---
+  duration_ms: 0.76404
+  type: 'test'
+  ...
+# Subtest: invalid sample rate or buffer yields no pitch
+ok 114 - invalid sample rate or buffer yields no pitch
+  ---
+  duration_ms: 0.585153
+  type: 'test'
+  ...
+# Subtest: seeded white noise is rejected
+ok 115 - seeded white noise is rejected
+  ---
+  duration_ms: 0.745933
+  type: 'test'
+  ...
+# Subtest: retained extrema remove isolated octave glitch, not sustained notes
+ok 116 - retained extrema remove isolated octave glitch, not sustained notes
+  ---
+  duration_ms: 0.329572
+  type: 'test'
+  ...
+# Subtest: empty/noisy recording has unknown range
+ok 117 - empty/noisy recording has unknown range
+  ---
+  duration_ms: 0.126268
+  type: 'test'
+  ...
+# Subtest: YouTube URLs normalize without allowing arbitrary fetch hosts
+ok 118 - YouTube URLs normalize without allowing arbitrary fetch hosts
+  ---
+  duration_ms: 0.506365
+  type: 'test'
+  ...
+# Subtest: URL validation rejects SSRF/lookalike/javascript/credentials
+ok 119 - URL validation rejects SSRF/lookalike/javascript/credentials
+  ---
+  duration_ms: 0.251535
+  type: 'test'
+  ...
+# Subtest: unknown notes do not invent extrema
+ok 120 - unknown notes do not invent extrema
+  ---
+  duration_ms: 0.208121
+  type: 'test'
+  ...
+# Subtest: late real iframe message adopts the fallback after the loading deadline
+ok 121 - late real iframe message adopts the fallback after the loading deadline
+  ---
+  duration_ms: 8.089846
+  type: 'test'
+  ...
+# Subtest: fallback native pause/seek update immediately without calling app play()
+ok 122 - fallback native pause/seek update immediately without calling app play()
+  ---
+  duration_ms: 5.611936
+  type: 'test'
+  ...
+# Subtest: fallback does not invent time while awaiting more iframe information
+ok 123 - fallback does not invent time while awaiting more iframe information
+  ---
+  duration_ms: 107.471611
+  type: 'test'
+  ...
+# Subtest: bridge ignores messages from a different window even at YouTube origin
+ok 124 - bridge ignores messages from a different window even at YouTube origin
+  ---
+  duration_ms: 6.779359
+  type: 'test'
+  ...
+# Subtest: bridge ignores invalid or lookalike message origins
+ok 125 - bridge ignores invalid or lookalike message origins
+  ---
+  duration_ms: 6.201236
+  type: 'test'
+  ...
+# Subtest: outgoing bridge commands have a specific YouTube origin rather than wildcard
+ok 126 - outgoing bridge commands have a specific YouTube origin rather than wildcard
+  ---
+  duration_ms: 5.458417
+  type: 'test'
+  ...
+# Subtest: unacknowledged fallback seek does not pretend the source has already moved
+ok 127 - unacknowledged fallback seek does not pretend the source has already moved
+  ---
+  duration_ms: 6.352202
+  type: 'test'
+  ...
+# Subtest: fallback release removes message listeners and ignores late media activity
+ok 128 - fallback release removes message listeners and ignores late media activity
+  ---
+  duration_ms: 5.038691
+  type: 'test'
+  ...
+# Subtest: fallback playback error remains fatal until reconnect, not erased by infoDelivery
+ok 129 - fallback playback error remains fatal until reconnect, not erased by infoDelivery
+  ---
+  duration_ms: 6.032273
+  type: 'test'
+  ...
+# Subtest: official IFrame API is the primary synchronized YouTube controller
+ok 130 - official IFrame API is the primary synchronized YouTube controller
+  ---
+  duration_ms: 8.846955
+  type: 'test'
+  ...
+# Subtest: play and clock only report playing after actual player state event
+ok 131 - play and clock only report playing after actual player state event
+  ---
+  duration_ms: 2.34479
+  type: 'test'
+  ...
+# Subtest: autoplay block becomes actionable native-player state, not fake playback
+ok 132 - autoplay block becomes actionable native-player state, not fake playback
+  ---
+  duration_ms: 1.161383
+  type: 'test'
+  ...
+# Subtest: no play callback triggers watchdog instead of an endless false pause button
+ok 133 - no play callback triggers watchdog instead of an endless false pause button
+  ---
+  duration_ms: 31.142312
+  type: 'test'
+  ...
+# Subtest: script failure preserves native iframe and clears loading state
+ok 134 - script failure preserves native iframe and clears loading state
+  ---
+  duration_ms: 1.368032
+  type: 'test'
+  ...
+# Subtest: onReady timeout is recoverable and a later genuine onReady connects
+ok 135 - onReady timeout is recoverable and a later genuine onReady connects
+  ---
+  duration_ms: 35.929368
+  type: 'test'
+  ...
+# Subtest: rapid source replacement resolves old load, and ignores old ready/state callbacks
+ok 136 - rapid source replacement resolves old load, and ignores old ready/state callbacks
+  ---
+  duration_ms: 2.670696
+  type: 'test'
+  ...
+# Subtest: 153 is identified correctly and later unrelated states cannot erase fatal error
+ok 137 - 153 is identified correctly and later unrelated states cannot erase fatal error
+  ---
+  duration_ms: 2.239874
+  type: 'test'
+  ...
+# Subtest: all documented common embed errors have actionable messages
+ok 138 - all documented common embed errors have actionable messages
+  ---
+  duration_ms: 0.348109
+  type: 'test'
+  ...
+# Subtest: saved audio-less score has a missing-source action, not a pretend ready player
+ok 139 - saved audio-less score has a missing-source action, not a pretend ready player
+  ---
+  duration_ms: 0.627957
+  type: 'test'
+  ...
+# Subtest: seek while connecting is queued and applied on explicit play
+ok 140 - seek while connecting is queued and applied on explicit play
+  ---
+  duration_ms: 1.663443
+  type: 'test'
+  ...
+# Subtest: seek clamps to media duration, ignores NaN, and speed errors are readable
+ok 141 - seek clamps to media duration, ignores NaN, and speed errors are readable
+  ---
+  duration_ms: 2.216257
+  type: 'test'
+  ...
+# Subtest: loop follows media clock and releases cleanly on new source
+ok 142 - loop follows media clock and releases cleanly on new source
+  ---
+  duration_ms: 0.905221
+  type: 'test'
+  ...
+# Subtest: cached audio metadata fires safely because handlers exist before src/load
+ok 143 - cached audio metadata fires safely because handlers exist before src/load
+  ---
+  duration_ms: 1.047424
+  type: 'test'
+  ...
+# Subtest: asynchronous buffering cannot erase the playback timeout safeguard
+ok 144 - asynchronous buffering cannot erase the playback timeout safeguard
+  ---
+  duration_ms: 96.832892
+  type: 'test'
+  ...
+# Subtest: native YouTube Play starts the clock before the app play button was ever used
+ok 145 - native YouTube Play starts the clock before the app play button was ever used
+  ---
+  duration_ms: 1.778926
+  type: 'test'
+  ...
+# Subtest: native pause and native seek recolor from the true paused position
+ok 146 - native pause and native seek recolor from the true paused position
+  ---
+  duration_ms: 1.620859
+  type: 'test'
+  ...
+# Subtest: state polling recovers a missed native Play event without an app click
+ok 147 - state polling recovers a missed native Play event without an app click
+  ---
+  duration_ms: 1.648842
+  type: 'test'
+  ...
+# Subtest: polling recovers a missed native Pause without an artificial continuing clock
+ok 148 - polling recovers a missed native Pause without an artificial continuing clock
+  ---
+  duration_ms: 1.701389
+  type: 'test'
+  ...
+# Subtest: a native play state arriving before onReady is adopted and not reset
+ok 149 - a native play state arriving before onReady is adopted and not reset
+  ---
+  duration_ms: 1.569793
+  type: 'test'
+  ...
+# Subtest: native rate change is included in transport state
+ok 150 - native rate change is included in transport state
+  ---
+  duration_ms: 7.543229
+  type: 'test'
+  ...
+# Subtest: buffering freezes on the real clock, with no synthetic interpolation
+ok 151 - buffering freezes on the real clock, with no synthetic interpolation
+  ---
+  duration_ms: 103.063562
+  type: 'test'
+  ...
+# Subtest: native ended state leaves the last real lyric position, and next play restarts
+ok 152 - native ended state leaves the last real lyric position, and next play restarts
+  ---
+  duration_ms: 3.538542
+  type: 'test'
+  ...
+# Subtest: a detached late official onReady cannot replace a new native source
+ok 153 - a detached late official onReady cannot replace a new native source
+  ---
+  duration_ms: 35.857931
+  type: 'test'
+  ...
+# Subtest: valid source is preserved exactly; no invented notes or timing changes
+ok 154 - valid source is preserved exactly; no invented notes or timing changes
+  ---
+  duration_ms: 3.277482
+  type: 'test'
+  ...
+# Subtest: one invalid note no longer destroys the entire song
+ok 155 - one invalid note no longer destroys the entire song
+  ---
+  duration_ms: 0.828687
+  type: 'test'
+  ...
+# Subtest: unknown pitch preserves a timed lyric, with no fake default pitch
+ok 156 - unknown pitch preserves a timed lyric, with no fake default pitch
+  ---
+  duration_ms: 0.407518
+  type: 'test'
+  ...
+# Subtest: numeric strings, MM:SS, and named notes normalize deterministically
+ok 157 - numeric strings, MM:SS, and named notes normalize deterministically
+  ---
+  duration_ms: 0.674928
+  type: 'test'
+  ...
+# Subtest: timestamp parser rejects booleans, unknown, NaN and ambiguous minute decimals
+ok 158 - timestamp parser rejects booleans, unknown, NaN and ambiguous minute decimals
+  ---
+  duration_ms: 0.209333
+  type: 'test'
+  ...
+# Subtest: MIDI parser never guesses frequency units
+ok 159 - MIDI parser never guesses frequency units
+  ---
+  duration_ms: 0.110896
+  type: 'test'
+  ...
+# Subtest: legacy recovery retains its six-minute cap; new schema separately accepts fifteen minutes
+ok 160 - legacy recovery retains its six-minute cap; new schema separately accepts fifteen minutes
+  ---
+  duration_ms: 1.03186
+  type: 'test'
+  ...
+# Subtest: actual upload duration caps analysis without rewriting retained syllable times
+ok 161 - actual upload duration caps analysis without rewriting retained syllable times
+  ---
+  duration_ms: 0.456392
+  type: 'test'
+  ...
+# Subtest: bad phrase envelope is repaired from existing token timestamps, not invented alignment
+ok 162 - bad phrase envelope is repaired from existing token timestamps, not invented alignment
+  ---
+  duration_ms: 0.698833
+  type: 'test'
+  ...
+# Subtest: wrong or zero-length word timestamps preserve the words as untimed lyrics
+ok 163 - wrong or zero-length word timestamps preserve the words as untimed lyrics
+  ---
+  duration_ms: 0.574117
+  type: 'test'
+  ...
+# Subtest: all words missing times yield a read-only transcript, not fabricated success timing
+ok 164 - all words missing times yield a read-only transcript, not fabricated success timing
+  ---
+  duration_ms: 0.352837
+  type: 'test'
+  ...
+# Subtest: small negative rounding repaired, substantial negative time retained untimed
+ok 165 - small negative rounding repaired, substantial negative time retained untimed
+  ---
+  duration_ms: 0.371144
+  type: 'test'
+  ...
+# Subtest: unsorted time order is disclosed and sorted, without moving any valid timestamp
+ok 166 - unsorted time order is disclosed and sorted, without moving any valid timestamp
+  ---
+  duration_ms: 0.457032
+  type: 'test'
+  ...
+# Subtest: unknown technique is marked unknown, never diagnosed as a mechanism
+ok 167 - unknown technique is marked unknown, never diagnosed as a mechanism
+  ---
+  duration_ms: 0.463822
+  type: 'test'
+  ...
+# Subtest: unknown tempo does not reject valid lyrics
+ok 168 - unknown tempo does not reject valid lyrics
+  ---
+  duration_ms: 0.380417
+  type: 'test'
+  ...
+# Subtest: excess payload metadata is never returned to the browser
+ok 169 - excess payload metadata is never returned to the browser
+  ---
+  duration_ms: 0.684552
+  type: 'test'
+  ...
+# Subtest: no invented demo fallback for unavailable or empty input
+ok 170 - no invented demo fallback for unavailable or empty input
+  ---
+  duration_ms: 0.319106
+  type: 'test'
+  ...
+# Subtest: recovery is idempotent under final strict schema validation
+ok 171 - recovery is idempotent under final strict schema validation
+  ---
+  duration_ms: 0.982696
+  type: 'test'
+  ...
+# Subtest: legacy transcript output_text parses; normalization phase emitted before result
+ok 172 - legacy transcript output_text parses; normalization phase emitted before result
+  ---
+  duration_ms: 17.664856
+  type: 'test'
+  ...
+# Subtest: provider refusal is not mislabeled as a numerical validation error
+ok 173 - provider refusal is not mislabeled as a numerical validation error
+  ---
+  duration_ms: 1.131128
+  type: 'test'
+  ...
+# Subtest: fuzz: finite malformed numbers do not yield unsafe note/timing output
+ok 174 - fuzz: finite malformed numbers do not yield unsafe note/timing output
+  ---
+  duration_ms: 41.980279
+  type: 'test'
+  ...
+# Subtest: status discloses readiness but no API key
+ok 175 - status discloses readiness but no API key
+  ---
+  duration_ms: 32.961588
+  type: 'test'
+  ...
+# Subtest: HTML has protective response headers and no exposed config
+ok 176 - HTML has protective response headers and no exposed config
+  ---
+  duration_ms: 7.046528
+  type: 'test'
+  ...
+# Subtest: private server files and .env are not served
+ok 177 - private server files and .env are not served
+  ---
+  duration_ms: 5.976961
+  type: 'test'
+  ...
+# Subtest: audio range requests support seeking
+ok 178 - audio range requests support seeking
+  ---
+  duration_ms: 4.802307
+  type: 'test'
+  ...
+# Subtest: invalid audio byte range returns 416
+ok 179 - invalid audio byte range returns 416
+  ---
+  duration_ms: 2.457238
+  type: 'test'
+  ...
+# Subtest: cross-site POST is refused before provider call
+ok 180 - cross-site POST is refused before provider call
+  ---
+  duration_ms: 5.120464
+  type: 'test'
+  ...
+# Subtest: validated request streams actual phases then result
+ok 181 - validated request streams actual phases then result
+  ---
+  duration_ms: 4.494769
+  type: 'test'
+  ...
+# Subtest: model failure becomes error packet, never successful demo
+ok 182 - model failure becomes error packet, never successful demo
+  ---
+  duration_ms: 4.380598
+  type: 'test'
+  ...
+# Subtest: missing local key gives explicit 503
+ok 183 - missing local key gives explicit 503
+  ---
+  duration_ms: 3.591841
+  type: 'test'
+  ...
+# Subtest: song analysis accepts no rights flag and makes no verification claim
+ok 184 - song analysis accepts no rights flag and makes no verification claim
+  ---
+  duration_ms: 2.746589
+  type: 'test'
+  ...
+# Subtest: private access code protects AI routes and yields HttpOnly session
+ok 185 - private access code protects AI routes and yields HttpOnly session
+  ---
+  duration_ms: 6.508405
+  type: 'test'
+  ...
+# Subtest: JSON and method checks fail safely
+ok 186 - JSON and method checks fail safely
+  ---
+  duration_ms: 3.755485
+  type: 'test'
+  ...
+# Subtest: server response identifies correct build and bypasses stale module cache
+ok 187 - server response identifies correct build and bypasses stale module cache
+  ---
+  duration_ms: 5.283737
+  type: 'test'
+  ...
+# Subtest: exact supplied radio URL becomes the single intended video
+ok 188 - exact supplied radio URL becomes the single intended video
+  ---
+  duration_ms: 3.396159
+  type: 'test'
+  ...
+# Subtest: provider-receipt progress is forwarded before the completed analysis
+ok 189 - provider-receipt progress is forwarded before the completed analysis
+  ---
+  duration_ms: 4.260409
+  type: 'test'
+  ...
+# Subtest: production stylesheet is self-contained and substantial
+ok 190 - production stylesheet is self-contained and substantial
+  ---
+  duration_ms: 4.859273
+  type: 'test'
+  ...
+# Subtest: index loads cache-busted direct production stylesheet
+ok 191 - index loads cache-busted direct production stylesheet
+  ---
+  duration_ms: 0.868536
+  type: 'test'
+  ...
+# Subtest: app entry and player module URLs are versioned, not only CSS
+ok 192 - app entry and player module URLs are versioned, not only CSS
+  ---
+  duration_ms: 1.790462
+  type: 'test'
+  ...
+# Subtest: rights gate removed; passive processing notice and stage progress retained
+ok 193 - rights gate removed; passive processing notice and stage progress retained
+  ---
+  duration_ms: 0.912122
+  type: 'test'
+  ...
+# Subtest: release metadata and all executable browser asset URLs have the same version
+ok 194 - release metadata and all executable browser asset URLs have the same version
+  ---
+  duration_ms: 2.638128
+  type: 'test'
+  ...
+# Subtest: demo schema is complete, sorted, and computes score range
+ok 195 - demo schema is complete, sorted, and computes score range
+  ---
+  duration_ms: 1.346159
+  type: 'test'
+  ...
+# Subtest: explicit unavailable media is not converted into a fabricated result
+ok 196 - explicit unavailable media is not converted into a fabricated result
+  ---
+  duration_ms: 0.393287
+  type: 'test'
+  ...
+# Subtest: invalid MIDI/negative time/unknown technique are rejected
+ok 197 - invalid MIDI/negative time/unknown technique are rejected
+  ---
+  duration_ms: 1.10499
+  type: 'test'
+  ...
+# Subtest: analysis with more than fifteen minutes is rejected
+ok 198 - analysis with more than fifteen minutes is rejected
+  ---
+  duration_ms: 0.208632
+  type: 'test'
+  ...
+# Subtest: untrusted extra fields are dropped
+ok 199 - untrusted extra fields are dropped
+  ---
+  duration_ms: 0.302582
+  type: 'test'
+  ...
+# Subtest: valid normalized PCM WAV has correct duration
+ok 200 - valid normalized PCM WAV has correct duration
+  ---
+  duration_ms: 0.404724
+  type: 'test'
+  ...
+# Subtest: malformed, truncated, foreign audio types are rejected
+ok 201 - malformed, truncated, foreign audio types are rejected
+  ---
+  duration_ms: 0.474439
+  type: 'test'
+  ...
+# Subtest: too short / too long WAV is rejected
+ok 202 - too short / too long WAV is rejected
+  ---
+  duration_ms: 2.587462
+  type: 'test'
+  ...
+# Subtest: song request no longer requires a rights checkbox
+ok 203 - song request no longer requires a rights checkbox
+  ---
+  duration_ms: 0.582569
+  type: 'test'
+  ...
+# Subtest: YouTube validation returns only canonical permitted source
+ok 204 - YouTube validation returns only canonical permitted source
+  ---
+  duration_ms: 0.338255
+  type: 'test'
+  ...
+# Subtest: upload validation accepts only normalized WAV
+ok 205 - upload validation accepts only normalized WAV
+  ---
+  duration_ms: 0.28129
+  type: 'test'
+  ...
+# Subtest: coach validates reference phrase, consent and transpose
+ok 206 - coach validates reference phrase, consent and transpose
+  ---
+  duration_ms: 0.332316
+  type: 'test'
+  ...
+# Subtest: coach rejects incomplete model output
+ok 207 - coach rejects incomplete model output
+  ---
+  duration_ms: 0.118717
+  type: 'test'
+  ...
+1..207
+# tests 207
+# suites 0
+# pass 207
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 669.744628

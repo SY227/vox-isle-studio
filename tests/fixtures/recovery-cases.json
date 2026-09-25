@@ -1,0 +1,1871 @@
+{
+  "normal": {
+    "status": "ok",
+    "reason": "",
+    "title": "原創 QA 練習曲（模擬分析）",
+    "artist": "聲嶼測試資料",
+    "language": "mandarin",
+    "duration": 49.25,
+    "key": "C 大調",
+    "tempo": 83,
+    "summary": "不用一次唱好整首歌。先讓「光」的轉音，變得清楚而輕鬆。",
+    "warnings": [
+      "這是原創教學示範；音訊為合成樂器旋律，沒有真人歌聲。",
+      "示範音符與時間來自程式產生的樂譜；唱法標記僅為教學選項。"
+    ],
+    "phrases": [
+      {
+        "start": 2,
+        "end": 7.15,
+        "section": "主歌",
+        "tokens": [
+          {
+            "text": "把",
+            "romanization": "ba3",
+            "start": 2,
+            "end": 2.691,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "微",
+            "romanization": "wei1",
+            "start": 2.736,
+            "end": 3.426,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "光",
+            "romanization": "guang1",
+            "start": 3.471,
+            "end": 4.162,
+            "notes": [
+              67,
+              69,
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [
+              "run"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "放",
+            "romanization": "fang4",
+            "start": 4.207,
+            "end": 4.898,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "在",
+            "romanization": "zai4",
+            "start": 4.943,
+            "end": 5.634,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "手",
+            "romanization": "shou3",
+            "start": 5.679,
+            "end": 6.369,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "心",
+            "romanization": "xin1",
+            "start": 6.414,
+            "end": 7.105,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "讓「光」的三個音連起來",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 7.8,
+        "end": 12.95,
+        "section": "主歌",
+        "tokens": [
+          {
+            "text": "讓",
+            "romanization": "rang4",
+            "start": 7.8,
+            "end": 8.491,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "呼",
+            "romanization": "hu1",
+            "start": 8.536,
+            "end": 9.226,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "吸",
+            "romanization": "xi1",
+            "start": 9.271,
+            "end": 9.962,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "陪",
+            "romanization": "pei2",
+            "start": 10.007,
+            "end": 10.698,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "我",
+            "romanization": "wo3",
+            "start": 10.743,
+            "end": 11.434,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "前",
+            "romanization": "qian2",
+            "start": 11.479,
+            "end": 12.169,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "行",
+            "romanization": "xing2",
+            "start": 12.214,
+            "end": 12.905,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [
+              "breath"
+            ],
+            "confidence": "high"
+          }
+        ],
+        "focus": "先留出舒服的換氣空間",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 13.6,
+        "end": 18.75,
+        "section": "主歌",
+        "tokens": [
+          {
+            "text": "越",
+            "romanization": "yue4",
+            "start": 13.6,
+            "end": 14.291,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "過",
+            "romanization": "guo4",
+            "start": 14.336,
+            "end": 15.026,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "夜",
+            "romanization": "ye4",
+            "start": 15.071,
+            "end": 15.762,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "裡",
+            "romanization": "li3",
+            "start": 15.807,
+            "end": 16.498,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "的",
+            "romanization": "de5",
+            "start": 16.543,
+            "end": 17.234,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "回",
+            "romanization": "hui2",
+            "start": 17.279,
+            "end": 17.969,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 18.014,
+            "end": 18.705,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "保持一句的方向感",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 19.4,
+        "end": 24.55,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.4,
+            "end": 19.927,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.972,
+            "end": 20.499,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "找",
+            "romanization": "zhao3",
+            "start": 20.544,
+            "end": 21.072,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "到",
+            "romanization": "dao4",
+            "start": 21.117,
+            "end": 21.644,
+            "notes": [
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "自",
+            "romanization": "zi4",
+            "start": 21.689,
+            "end": 22.216,
+            "notes": [
+              71
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "己",
+            "romanization": "ji3",
+            "start": 22.261,
+            "end": 22.788,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "的",
+            "romanization": "de5",
+            "start": 22.833,
+            "end": 23.361,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 23.406,
+            "end": 23.933,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "音",
+            "romanization": "yin1",
+            "start": 23.978,
+            "end": 24.505,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [
+              "breath"
+            ],
+            "confidence": "high"
+          }
+        ],
+        "focus": "讓高低音自然銜接",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 25.2,
+        "end": 30.35,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "天",
+            "romanization": "tian1",
+            "start": 25.2,
+            "end": 25.799,
+            "notes": [
+              60
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "空",
+            "romanization": "kong1",
+            "start": 25.844,
+            "end": 26.442,
+            "notes": [
+              64
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "不",
+            "romanization": "bu2",
+            "start": 26.488,
+            "end": 27.086,
+            "notes": [
+              67
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "會",
+            "romanization": "hui4",
+            "start": 27.131,
+            "end": 27.73,
+            "notes": [
+              69
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "催",
+            "romanization": "cui1",
+            "start": 27.775,
+            "end": 28.374,
+            "notes": [
+              67
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "我",
+            "romanization": "wo3",
+            "start": 28.419,
+            "end": 29.017,
+            "notes": [
+              64
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "升",
+            "romanization": "sheng1",
+            "start": 29.062,
+            "end": 29.661,
+            "notes": [
+              62
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "高",
+            "romanization": "gao1",
+            "start": 29.706,
+            "end": 30.305,
+            "notes": [
+              60
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "不用急著把音唱高",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 31,
+        "end": 36.15,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "每",
+            "romanization": "mei3",
+            "start": 31,
+            "end": 31.527,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "一",
+            "romanization": "yi2",
+            "start": 31.572,
+            "end": 32.099,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "步",
+            "romanization": "bu4",
+            "start": 32.144,
+            "end": 32.672,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "都",
+            "romanization": "dou1",
+            "start": 32.717,
+            "end": 33.244,
+            "notes": [
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "可",
+            "romanization": "ke3",
+            "start": 33.289,
+            "end": 33.816,
+            "notes": [
+              74,
+              76,
+              74,
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [
+              "run"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "以",
+            "romanization": "yi3",
+            "start": 33.861,
+            "end": 34.388,
+            "notes": [
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 34.433,
+            "end": 34.961,
+            "notes": [
+              71
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 35.006,
+            "end": 35.533,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "唱",
+            "romanization": "chang4",
+            "start": 35.578,
+            "end": 36.105,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "先拆開，再連起來",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 36.8,
+        "end": 41.95,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "當",
+            "romanization": "dang1",
+            "start": 36.8,
+            "end": 37.399,
+            "notes": [
+              67
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "風",
+            "romanization": "feng1",
+            "start": 37.444,
+            "end": 38.042,
+            "notes": [
+              69
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "再",
+            "romanization": "zai4",
+            "start": 38.087,
+            "end": 38.686,
+            "notes": [
+              72
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "次",
+            "romanization": "ci4",
+            "start": 38.731,
+            "end": 39.33,
+            "notes": [
+              74,
+              72
+            ],
+            "technique": "falsetto",
+            "ornaments": [
+              "slide"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 39.375,
+            "end": 39.974,
+            "notes": [
+              72
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 40.019,
+            "end": 40.617,
+            "notes": [
+              69
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "經",
+            "romanization": "jing1",
+            "start": 40.662,
+            "end": 41.261,
+            "notes": [
+              67
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "過",
+            "romanization": "guo4",
+            "start": 41.306,
+            "end": 41.905,
+            "notes": [
+              65
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "探索輕柔的音色",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 42.6,
+        "end": 47.75,
+        "section": "尾聲",
+        "tokens": [
+          {
+            "text": "我",
+            "romanization": "wo3",
+            "start": 42.6,
+            "end": 43.127,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "用",
+            "romanization": "yong4",
+            "start": 43.172,
+            "end": 43.699,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "自",
+            "romanization": "zi4",
+            "start": 43.744,
+            "end": 44.272,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "己",
+            "romanization": "ji3",
+            "start": 44.317,
+            "end": 44.844,
+            "notes": [
+              69
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "的",
+            "romanization": "de5",
+            "start": 44.889,
+            "end": 45.416,
+            "notes": [
+              72
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 45.461,
+            "end": 45.988,
+            "notes": [
+              71
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "音",
+            "romanization": "yin1",
+            "start": 46.033,
+            "end": 46.561,
+            "notes": [
+              69
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "發",
+            "romanization": "fa1",
+            "start": 46.606,
+            "end": 47.133,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "光",
+            "romanization": "guang1",
+            "start": 47.178,
+            "end": 47.705,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [
+              "breath"
+            ],
+            "confidence": "high"
+          }
+        ],
+        "focus": "把最後一句唱給自己",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      }
+    ],
+    "unalignedLyrics": [],
+    "dataQuality": {
+      "version": 1,
+      "mode": "complete",
+      "normalizedFields": 0,
+      "omittedNotes": 0,
+      "unknownPitchTokens": 0,
+      "untimedTokens": 0,
+      "timedTokens": 64,
+      "croppedTokens": 0,
+      "reorderedGroups": 0
+    },
+    "range": {
+      "low": 60,
+      "high": 76,
+      "typicalLow": 64,
+      "typicalHigh": 72
+    }
+  },
+  "partial": {
+    "status": "ok",
+    "reason": "",
+    "title": "原創 QA 練習曲（模擬分析）",
+    "artist": "聲嶼測試資料",
+    "language": "mandarin",
+    "duration": 360,
+    "key": "C 大調",
+    "tempo": 83,
+    "summary": "不用一次唱好整首歌。先讓「光」的轉音，變得清楚而輕鬆。",
+    "warnings": [
+      "這是原創教學示範；音訊為合成樂器旋律，沒有真人歌聲。",
+      "示範音符與時間來自程式產生的樂譜；唱法標記僅為教學選項。",
+      "已移除 1 個無效音高，保留歌詞並標示待確認；未替換成猜測音符。",
+      "1 個字缺少可靠時間，保留在「待對齊歌詞」，不參與同步亮字。",
+      "本次教學範圍最多到 360 秒；原片仍可正常播放，不會被此範圍截停。"
+    ],
+    "phrases": [
+      {
+        "start": 2,
+        "end": 7.15,
+        "section": "主歌",
+        "tokens": [
+          {
+            "text": "把",
+            "romanization": "ba3",
+            "start": 2,
+            "end": 2.691,
+            "notes": [],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "low"
+          },
+          {
+            "text": "微",
+            "romanization": "wei1",
+            "start": 2.736,
+            "end": 3.426,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "光",
+            "romanization": "guang1",
+            "start": 3.471,
+            "end": 4.162,
+            "notes": [
+              67,
+              69,
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [
+              "run"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "放",
+            "romanization": "fang4",
+            "start": 4.207,
+            "end": 4.898,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "在",
+            "romanization": "zai4",
+            "start": 4.943,
+            "end": 5.634,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "手",
+            "romanization": "shou3",
+            "start": 5.679,
+            "end": 6.369,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "心",
+            "romanization": "xin1",
+            "start": 6.414,
+            "end": 7.105,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "讓「光」的三個音連起來",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 7.8,
+        "end": 12.95,
+        "section": "主歌",
+        "tokens": [
+          {
+            "text": "讓",
+            "romanization": "rang4",
+            "start": 7.8,
+            "end": 8.491,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "吸",
+            "romanization": "xi1",
+            "start": 9.271,
+            "end": 9.962,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "陪",
+            "romanization": "pei2",
+            "start": 10.007,
+            "end": 10.698,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "我",
+            "romanization": "wo3",
+            "start": 10.743,
+            "end": 11.434,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "前",
+            "romanization": "qian2",
+            "start": 11.479,
+            "end": 12.169,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "行",
+            "romanization": "xing2",
+            "start": 12.214,
+            "end": 12.905,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [
+              "breath"
+            ],
+            "confidence": "high"
+          }
+        ],
+        "focus": "先留出舒服的換氣空間",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 13.6,
+        "end": 18.75,
+        "section": "主歌",
+        "tokens": [
+          {
+            "text": "越",
+            "romanization": "yue4",
+            "start": 13.6,
+            "end": 14.291,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "過",
+            "romanization": "guo4",
+            "start": 14.336,
+            "end": 15.026,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "夜",
+            "romanization": "ye4",
+            "start": 15.071,
+            "end": 15.762,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "裡",
+            "romanization": "li3",
+            "start": 15.807,
+            "end": 16.498,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "的",
+            "romanization": "de5",
+            "start": 16.543,
+            "end": 17.234,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "回",
+            "romanization": "hui2",
+            "start": 17.279,
+            "end": 17.969,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 18.014,
+            "end": 18.705,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "保持一句的方向感",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 19.4,
+        "end": 24.55,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.4,
+            "end": 19.927,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.972,
+            "end": 20.499,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "找",
+            "romanization": "zhao3",
+            "start": 20.544,
+            "end": 21.072,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "到",
+            "romanization": "dao4",
+            "start": 21.117,
+            "end": 21.644,
+            "notes": [
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "自",
+            "romanization": "zi4",
+            "start": 21.689,
+            "end": 22.216,
+            "notes": [
+              71
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "己",
+            "romanization": "ji3",
+            "start": 22.261,
+            "end": 22.788,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "的",
+            "romanization": "de5",
+            "start": 22.833,
+            "end": 23.361,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 23.406,
+            "end": 23.933,
+            "notes": [
+              65
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "音",
+            "romanization": "yin1",
+            "start": 23.978,
+            "end": 24.505,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [
+              "breath"
+            ],
+            "confidence": "high"
+          }
+        ],
+        "focus": "讓高低音自然銜接",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 25.2,
+        "end": 30.35,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "天",
+            "romanization": "tian1",
+            "start": 25.2,
+            "end": 25.799,
+            "notes": [
+              60
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "空",
+            "romanization": "kong1",
+            "start": 25.844,
+            "end": 26.442,
+            "notes": [
+              64
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "不",
+            "romanization": "bu2",
+            "start": 26.488,
+            "end": 27.086,
+            "notes": [
+              67
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "會",
+            "romanization": "hui4",
+            "start": 27.131,
+            "end": 27.73,
+            "notes": [
+              69
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "催",
+            "romanization": "cui1",
+            "start": 27.775,
+            "end": 28.374,
+            "notes": [
+              67
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "我",
+            "romanization": "wo3",
+            "start": 28.419,
+            "end": 29.017,
+            "notes": [
+              64
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "升",
+            "romanization": "sheng1",
+            "start": 29.062,
+            "end": 29.661,
+            "notes": [
+              62
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "高",
+            "romanization": "gao1",
+            "start": 29.706,
+            "end": 30.305,
+            "notes": [
+              60
+            ],
+            "technique": "head",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "不用急著把音唱高",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 31,
+        "end": 36.15,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "每",
+            "romanization": "mei3",
+            "start": 31,
+            "end": 31.527,
+            "notes": [
+              64
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "一",
+            "romanization": "yi2",
+            "start": 31.572,
+            "end": 32.099,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "步",
+            "romanization": "bu4",
+            "start": 32.144,
+            "end": 32.672,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "都",
+            "romanization": "dou1",
+            "start": 32.717,
+            "end": 33.244,
+            "notes": [
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "可",
+            "romanization": "ke3",
+            "start": 33.289,
+            "end": 33.816,
+            "notes": [
+              74,
+              76,
+              74,
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [
+              "run"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "以",
+            "romanization": "yi3",
+            "start": 33.861,
+            "end": 34.388,
+            "notes": [
+              72
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 34.433,
+            "end": 34.961,
+            "notes": [
+              71
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 35.006,
+            "end": 35.533,
+            "notes": [
+              69
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "唱",
+            "romanization": "chang4",
+            "start": 35.578,
+            "end": 36.105,
+            "notes": [
+              67
+            ],
+            "technique": "mix",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "先拆開，再連起來",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 36.8,
+        "end": 41.95,
+        "section": "副歌",
+        "tokens": [
+          {
+            "text": "當",
+            "romanization": "dang1",
+            "start": 36.8,
+            "end": 37.399,
+            "notes": [
+              67
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "風",
+            "romanization": "feng1",
+            "start": 37.444,
+            "end": 38.042,
+            "notes": [
+              69
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "再",
+            "romanization": "zai4",
+            "start": 38.087,
+            "end": 38.686,
+            "notes": [
+              72
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "次",
+            "romanization": "ci4",
+            "start": 38.731,
+            "end": 39.33,
+            "notes": [
+              74,
+              72
+            ],
+            "technique": "falsetto",
+            "ornaments": [
+              "slide"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 39.375,
+            "end": 39.974,
+            "notes": [
+              72
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 40.019,
+            "end": 40.617,
+            "notes": [
+              69
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "經",
+            "romanization": "jing1",
+            "start": 40.662,
+            "end": 41.261,
+            "notes": [
+              67
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "過",
+            "romanization": "guo4",
+            "start": 41.306,
+            "end": 41.905,
+            "notes": [
+              65
+            ],
+            "technique": "falsetto",
+            "ornaments": [],
+            "confidence": "high"
+          }
+        ],
+        "focus": "探索輕柔的音色",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      },
+      {
+        "start": 42.6,
+        "end": 47.75,
+        "section": "尾聲",
+        "tokens": [
+          {
+            "text": "我",
+            "romanization": "wo3",
+            "start": 42.6,
+            "end": 43.127,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "用",
+            "romanization": "yong4",
+            "start": 43.172,
+            "end": 43.699,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "自",
+            "romanization": "zi4",
+            "start": 43.744,
+            "end": 44.272,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "己",
+            "romanization": "ji3",
+            "start": 44.317,
+            "end": 44.844,
+            "notes": [
+              69
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "的",
+            "romanization": "de5",
+            "start": 44.889,
+            "end": 45.416,
+            "notes": [
+              72
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 45.461,
+            "end": 45.988,
+            "notes": [
+              71
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "音",
+            "romanization": "yin1",
+            "start": 46.033,
+            "end": 46.561,
+            "notes": [
+              69
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "發",
+            "romanization": "fa1",
+            "start": 46.606,
+            "end": 47.133,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "confidence": "high"
+          },
+          {
+            "text": "光",
+            "romanization": "guang1",
+            "start": 47.178,
+            "end": 47.705,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [
+              "breath"
+            ],
+            "confidence": "high"
+          }
+        ],
+        "focus": "把最後一句唱給自己",
+        "instruction": "先用舒服的小聲量，跟著提示音哼唱。轉音先把每個音唱清楚，再慢慢連成一個字；不用刻意增加音量。",
+        "pronunciation": "保留字的主要母音，尾音自然收好。歌曲旋律不需要跟口語聲調完全一樣；這是國語原創示範，可按自己的咬字方式微調。",
+        "exercise": "先聽一次慢速提示音，用「嗯」輕唱，再放回歌詞。高音不舒服時，先降低提示音。",
+        "caution": "唱法標記是教學示意，不是原唱的生理判定。不適時立即停止。"
+      }
+    ],
+    "unalignedLyrics": [
+      "呼"
+    ],
+    "dataQuality": {
+      "version": 1,
+      "mode": "partial",
+      "normalizedFields": 0,
+      "omittedNotes": 1,
+      "unknownPitchTokens": 1,
+      "untimedTokens": 1,
+      "timedTokens": 63,
+      "croppedTokens": 0,
+      "reorderedGroups": 0
+    },
+    "range": {
+      "low": 60,
+      "high": 76,
+      "typicalLow": 64,
+      "typicalHigh": 72
+    }
+  },
+  "untimed": {
+    "status": "ok",
+    "reason": "",
+    "title": "原創 QA 練習曲（模擬分析）",
+    "artist": "聲嶼測試資料",
+    "language": "mandarin",
+    "duration": 49.25,
+    "key": "C 大調",
+    "tempo": 83,
+    "summary": "不用一次唱好整首歌。先讓「光」的轉音，變得清楚而輕鬆。",
+    "warnings": [
+      "這是原創教學示範；音訊為合成樂器旋律，沒有真人歌聲。",
+      "示範音符與時間來自程式產生的樂譜；唱法標記僅為教學選項。",
+      "64 個字缺少可靠時間，保留在「待對齊歌詞」，不參與同步亮字。"
+    ],
+    "phrases": [],
+    "unalignedLyrics": [
+      "把微光放在手心",
+      "讓呼吸陪我前行",
+      "越過夜裡的回聲",
+      "慢慢找到自己的聲音",
+      "天空不會催我升高",
+      "每一步都可以輕輕唱",
+      "當風再次輕輕經過",
+      "我用自己的聲音發光"
+    ],
+    "dataQuality": {
+      "version": 1,
+      "mode": "partial",
+      "normalizedFields": 0,
+      "omittedNotes": 0,
+      "unknownPitchTokens": 0,
+      "untimedTokens": 64,
+      "timedTokens": 0,
+      "croppedTokens": 0,
+      "reorderedGroups": 0
+    },
+    "range": {
+      "low": null,
+      "high": null,
+      "typicalLow": null,
+      "typicalHigh": null
+    }
+  }
+}

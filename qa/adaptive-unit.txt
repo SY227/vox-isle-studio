@@ -1,0 +1,256 @@
+TAP version 13
+# Subtest: ready emitted after one whole-recording request and before all optional requests
+ok 1 - ready emitted after one whole-recording request and before all optional requests
+  ---
+  duration_ms: 13.776248
+  type: 'test'
+  ...
+# Subtest: high/medium/low scheduling is evidence-driven, not forced success percentages
+ok 2 - high/medium/low scheduling is evidence-driven, not forced success percentages
+  ---
+  duration_ms: 1.787559
+  type: 'test'
+  ...
+# Subtest: structural missing timing overrides an AI high confidence claim
+ok 3 - structural missing timing overrides an AI high confidence claim
+  ---
+  duration_ms: 0.660245
+  type: 'test'
+  ...
+# Subtest: unknown confidence defaults to review candidate rather than trusted high
+ok 4 - unknown confidence defaults to review candidate rather than trusted high
+  ---
+  duration_ms: 0.479852
+  type: 'test'
+  ...
+# Subtest: high confidence cannot conceal placeholder text or overlapping lines
+ok 5 - high confidence cannot conceal placeholder text or overlapping lines
+  ---
+  duration_ms: 0.327116
+  type: 'test'
+  ...
+# Subtest: timing budget never forces all uncertain lines into another listening pass
+ok 6 - timing budget never forces all uncertain lines into another listening pass
+  ---
+  duration_ms: 1.987322
+  type: 'test'
+  ...
+# Subtest: suspicious line receives only its actual +/-2 second window
+ok 7 - suspicious line receives only its actual +/-2 second window
+  ---
+  duration_ms: 1.005367
+  type: 'test'
+  ...
+# Subtest: medium-confidence agreeing line gets one review; low-confidence gets detailed second look
+ok 8 - medium-confidence agreeing line gets one review; low-confidence gets detailed second look
+  ---
+  duration_ms: 3.297398
+  type: 'test'
+  ...
+# Subtest: conflicting re-listens do not average timestamps or overwrite transcript words
+ok 9 - conflicting re-listens do not average timestamps or overwrite transcript words
+  ---
+  duration_ms: 1.598067
+  type: 'test'
+  ...
+# Subtest: deep review is budgeted; all-low-confidence recording cannot trigger unbounded calls
+ok 10 - deep review is budgeted; all-low-confidence recording cannot trigger unbounded calls
+  ---
+  duration_ms: 18.766489
+  type: 'test'
+  ...
+# Subtest: actual eighth teaching-batch failure preserves full lyrics and all later successful labels
+ok 11 - actual eighth teaching-batch failure preserves full lyrics and all later successful labels
+  ---
+  duration_ms: 13.679852
+  type: 'test'
+  ...
+# Subtest: one optional malformed response cannot send a delivered transcript back to error
+ok 12 - one optional malformed response cannot send a delivered transcript back to error
+  ---
+  duration_ms: 2.811175
+  type: 'test'
+  ...
+# Subtest: first pass failure emits no usable result and cannot invent demo lyrics
+ok 13 - first pass failure emits no usable result and cannot invent demo lyrics
+  ---
+  duration_ms: 0.370742
+  type: 'test'
+  ...
+# Subtest: optional worker concurrency is capped at three
+ok 14 - optional worker concurrency is capped at three
+  ---
+  duration_ms: 42.222098
+  type: 'test'
+  ...
+# Subtest: cancelling after ready stops scheduling additional work
+ok 15 - cancelling after ready stops scheduling additional work
+  ---
+  duration_ms: 4.544969
+  type: 'test'
+  ...
+# Subtest: fatal authentication during refinement stops future scheduling but returns partial lyrics
+ok 16 - fatal authentication during refinement stops future scheduling but returns partial lyrics
+  ---
+  duration_ms: 4.300709
+  type: 'test'
+  ...
+# Subtest: unknown word times stay null, with complete line text kept
+ok 17 - unknown word times stay null, with complete line text kept
+  ---
+  duration_ms: 0.224791
+  type: 'test'
+  ...
+# Subtest: unknown line time retains full text without invented sync
+ok 18 - unknown line time retains full text without invented sync
+  ---
+  duration_ms: 0.175996
+  type: 'test'
+  ...
+# Subtest: multi-character timestamp cannot become duplicate per-character timing
+ok 19 - multi-character timestamp cannot become duplicate per-character timing
+  ---
+  duration_ms: 0.123964
+  type: 'test'
+  ...
+# Subtest: repeated choruses at different positions retain all distinct occurrences
+ok 20 - repeated choruses at different positions retain all distinct occurrences
+  ---
+  duration_ms: 0.360592
+  type: 'test'
+  ...
+# Subtest: incomplete scan remains explicitly incomplete, not a false full-song claim
+ok 21 - incomplete scan remains explicitly incomplete, not a false full-song claim
+  ---
+  duration_ms: 0.484344
+  type: 'test'
+  ...
+# Subtest: source longer than support bound is rejected, not cut to first verses
+ok 22 - source longer than support bound is rejected, not cut to first verses
+  ---
+  duration_ms: 0.18852
+  type: 'test'
+  ...
+# Subtest: overlong line is kept as unaligned text rather than chopped
+ok 23 - overlong line is kept as unaligned text rather than chopped
+  ---
+  duration_ms: 0.569947
+  type: 'test'
+  ...
+# Subtest: adaptive provenance survives export/import while accuracyVerified cannot be forged
+ok 24 - adaptive provenance survives export/import while accuracyVerified cannot be forged
+  ---
+  duration_ms: 1.075385
+  type: 'test'
+  ...
+# Subtest: initial pitch range remains null when not heard; no mandatory pitch work on critical path
+ok 25 - initial pitch range remains null when not heard; no mandatory pitch work on critical path
+  ---
+  duration_ms: 0.46015
+  type: 'test'
+  ...
+# Subtest: available provisional pitch is retained separately from annotated range
+ok 26 - available provisional pitch is retained separately from annotated range
+  ---
+  duration_ms: 0.533755
+  type: 'test'
+  ...
+# Subtest: light teaching schema contains no full per-line lesson prose
+ok 27 - light teaching schema contains no full per-line lesson prose
+  ---
+  duration_ms: 0.273486
+  type: 'test'
+  ...
+# Subtest: first scan uses exact audio source, no lyrics sheet, no survey or clip gate
+ok 28 - first scan uses exact audio source, no lyrics sheet, no survey or clip gate
+  ---
+  duration_ms: 0.420809
+  type: 'test'
+  ...
+# Subtest: lesson is a separate short source-window request, not a scan-stage requirement
+ok 29 - lesson is a separate short source-window request, not a scan-stage requirement
+  ---
+  duration_ms: 1.298821
+  type: 'test'
+  ...
+# Subtest: malformed lesson cannot request arbitrary remote files or oversized source windows
+ok 30 - malformed lesson cannot request arbitrary remote files or oversized source windows
+  ---
+  duration_ms: 1.185807
+  type: 'test'
+  ...
+# Subtest: app-wide provider cap includes simultaneous user lessons and queued enrichment
+ok 31 - app-wide provider cap includes simultaneous user lessons and queued enrichment
+  ---
+  duration_ms: 34.250232
+  type: 'test'
+  ...
+# Subtest: queued provider task is removed immediately on cancellation
+ok 32 - queued provider task is removed immediately on cancellation
+  ---
+  duration_ms: 2.886611
+  type: 'test'
+  ...
+# Subtest: provided QA link canonicalization: https://www.youtube.com/watch?v=YaJ_lYFgr6c&list=RDeV9a5oUCbZQ&index=2
+ok 33 - provided QA link canonicalization: https://www.youtube.com/watch?v=YaJ_lYFgr6c&list=RDeV9a5oUCbZQ&index=2
+  ---
+  duration_ms: 0.238273
+  type: 'test'
+  ...
+# Subtest: provided QA link canonicalization: https://www.youtube.com/watch?v=4ULVNHHqbew&list=RD4ULVNHHqbew&start_radio=1
+ok 34 - provided QA link canonicalization: https://www.youtube.com/watch?v=4ULVNHHqbew&list=RD4ULVNHHqbew&start_radio=1
+  ---
+  duration_ms: 1.562217
+  type: 'test'
+  ...
+# Subtest: real HTTP response flushes ready before optional job is released
+ok 35 - real HTTP response flushes ready before optional job is released
+  ---
+  duration_ms: 45.086949
+  type: 'test'
+  ...
+# Subtest: real HTTP later-stage failure emits retained done partial, not fatal error
+ok 36 - real HTTP later-stage failure emits retained done partial, not fatal error
+  ---
+  duration_ms: 18.711702
+  type: 'test'
+  ...
+# Subtest: real HTTP /api/lesson is validated and does not start an analysis job
+ok 37 - real HTTP /api/lesson is validated and does not start an analysis job
+  ---
+  duration_ms: 7.23105
+  type: 'test'
+  ...
+# Subtest: server disconnect aborts outstanding enrichment work
+ok 38 - server disconnect aborts outstanding enrichment work
+  ---
+  duration_ms: 21.697978
+  type: 'test'
+  ...
+# Subtest: NDJSON client delivers ready/update in sequence even when chunks split Chinese bytes
+ok 39 - NDJSON client delivers ready/update in sequence even when chunks split Chinese bytes
+  ---
+  duration_ms: 8.080745
+  type: 'test'
+  ...
+# Subtest: NDJSON disconnect after ready retains result with partial state
+ok 40 - NDJSON disconnect after ready retains result with partial state
+  ---
+  duration_ms: 3.174726
+  type: 'test'
+  ...
+# Subtest: NDJSON explicit error before ready is not silently swallowed
+ok 41 - NDJSON explicit error before ready is not silently swallowed
+  ---
+  duration_ms: 1.091513
+  type: 'test'
+  ...
+1..41
+# tests 41
+# suites 0
+# pass 41
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 405.941634

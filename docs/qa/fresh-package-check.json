@@ -1,0 +1,26 @@
+{
+  "version": "1.1.2",
+  "passed": 17,
+  "checks": [
+    "ZIP CRC integrity",
+    "single correct project root",
+    "no real .env, private caches, font files or node_modules",
+    "no archive path traversal",
+    "existing .env survives extraction byte-for-byte",
+    "release version 1.1.2",
+    "runtime remains dependency-free",
+    "all 45 JavaScript modules pass after extraction",
+    "all 207 Node tests pass after extraction",
+    "fresh server starts and reports the new build",
+    "preserved API setting is loaded without exposing key",
+    "Chinese app and correctly versioned entry load",
+    "server uses correct build header and no-store",
+    "all changed assets resolve without credential leakage",
+    "environment, server source and test doubles are not public assets",
+    "real local WAV supports browser byte-range playback",
+    "fresh fixture marks all-AI pipeline but never certifies accuracy"
+  ],
+  "result": "passed",
+  "externalRequests": "none; local HTTP only",
+  "packageScope": "tested candidate; final packaging adds QA reports only"
+}

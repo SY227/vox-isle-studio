@@ -1,0 +1,2545 @@
+{
+  "normal": {
+    "listening": {
+      "version": "audio-first-v1",
+      "accuracyVerified": false,
+      "windowSeconds": 24,
+      "contextSeconds": 4,
+      "windows": 3,
+      "reviewedWindows": 3,
+      "relistenedWindows": 0,
+      "wordTimed": 64,
+      "lineOnly": 0,
+      "mergedOverlapWords": 17,
+      "boundaryDisagreements": 0
+    },
+    "status": "ok",
+    "reason": "",
+    "title": "微光練習曲",
+    "artist": "聲嶼原創 · 合成旋律示範",
+    "language": "mandarin",
+    "duration": 49.25,
+    "key": "C",
+    "tempo": 100,
+    "summary": "原創測試樂句",
+    "warnings": [
+      "歌詞和時間由本次錄音分段聆聽產生；第二次 AI 聆聽不是人工或聲學精度認證。",
+      "唱法是可嘗試的練習建議，不是原唱聲區的生理判定；時間與音高仍需核對。"
+    ],
+    "phrases": [
+      {
+        "start": 2,
+        "end": 7.105,
+        "section": "主歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "把",
+            "romanization": "ba3",
+            "start": 2,
+            "end": 2.691,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "微",
+            "romanization": "wei1",
+            "start": 2.736,
+            "end": 3.426,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "光",
+            "romanization": "guang1",
+            "start": 3.471,
+            "end": 4.162,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "放",
+            "romanization": "fang4",
+            "start": 4.207,
+            "end": 4.898,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "在",
+            "romanization": "zai4",
+            "start": 4.943,
+            "end": 5.634,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "手",
+            "romanization": "shou3",
+            "start": 5.679,
+            "end": 6.369,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "心",
+            "romanization": "xin1",
+            "start": 6.414,
+            "end": 7.105,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 7.8,
+        "end": 12.905,
+        "section": "主歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "讓",
+            "romanization": "rang4",
+            "start": 7.8,
+            "end": 8.491,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "呼",
+            "romanization": "hu1",
+            "start": 8.536,
+            "end": 9.226,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "吸",
+            "romanization": "xi1",
+            "start": 9.271,
+            "end": 9.962,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "陪",
+            "romanization": "pei2",
+            "start": 10.007,
+            "end": 10.698,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "我",
+            "romanization": "wo3",
+            "start": 10.743,
+            "end": 11.434,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "前",
+            "romanization": "qian2",
+            "start": 11.479,
+            "end": 12.169,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "行",
+            "romanization": "xing2",
+            "start": 12.214,
+            "end": 12.905,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 13.6,
+        "end": 18.705,
+        "section": "主歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "越",
+            "romanization": "yue4",
+            "start": 13.6,
+            "end": 14.291,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "過",
+            "romanization": "guo4",
+            "start": 14.336,
+            "end": 15.026,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "夜",
+            "romanization": "ye4",
+            "start": 15.071,
+            "end": 15.762,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "裡",
+            "romanization": "li3",
+            "start": 15.807,
+            "end": 16.498,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "的",
+            "romanization": "de5",
+            "start": 16.543,
+            "end": 17.234,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "回",
+            "romanization": "hui2",
+            "start": 17.279,
+            "end": 17.969,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 18.014,
+            "end": 18.705,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 19.4,
+        "end": 24.505,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.4,
+            "end": 19.927,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.972,
+            "end": 20.499,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "找",
+            "romanization": "zhao3",
+            "start": 20.544,
+            "end": 21.072,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "到",
+            "romanization": "dao4",
+            "start": 21.117,
+            "end": 21.644,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "自",
+            "romanization": "zi4",
+            "start": 21.689,
+            "end": 22.216,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "己",
+            "romanization": "ji3",
+            "start": 22.261,
+            "end": 22.788,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "的",
+            "romanization": "de5",
+            "start": 22.833,
+            "end": 23.361,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 23.406,
+            "end": 23.933,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "音",
+            "romanization": "yin1",
+            "start": 23.978,
+            "end": 24.505,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 25.2,
+        "end": 30.305,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "天",
+            "romanization": "tian1",
+            "start": 25.2,
+            "end": 25.799,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "空",
+            "romanization": "kong1",
+            "start": 25.844,
+            "end": 26.442,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "不",
+            "romanization": "bu2",
+            "start": 26.488,
+            "end": 27.086,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "會",
+            "romanization": "hui4",
+            "start": 27.131,
+            "end": 27.73,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "催",
+            "romanization": "cui1",
+            "start": 27.775,
+            "end": 28.374,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "我",
+            "romanization": "wo3",
+            "start": 28.419,
+            "end": 29.017,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "升",
+            "romanization": "sheng1",
+            "start": 29.062,
+            "end": 29.661,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "高",
+            "romanization": "gao1",
+            "start": 29.706,
+            "end": 30.305,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 31,
+        "end": 36.105,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "每",
+            "romanization": "mei3",
+            "start": 31,
+            "end": 31.527,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "一",
+            "romanization": "yi2",
+            "start": 31.572,
+            "end": 32.099,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "步",
+            "romanization": "bu4",
+            "start": 32.144,
+            "end": 32.672,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "都",
+            "romanization": "dou1",
+            "start": 32.717,
+            "end": 33.244,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "可",
+            "romanization": "ke3",
+            "start": 33.289,
+            "end": 33.816,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "以",
+            "romanization": "yi3",
+            "start": 33.861,
+            "end": 34.388,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 34.433,
+            "end": 34.961,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 35.006,
+            "end": 35.533,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "唱",
+            "romanization": "chang4",
+            "start": 35.578,
+            "end": 36.105,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 36.8,
+        "end": 41.905,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "當",
+            "romanization": "dang1",
+            "start": 36.8,
+            "end": 37.399,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "風",
+            "romanization": "feng1",
+            "start": 37.444,
+            "end": 38.042,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "再",
+            "romanization": "zai4",
+            "start": 38.087,
+            "end": 38.686,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "次",
+            "romanization": "ci4",
+            "start": 38.731,
+            "end": 39.33,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 39.375,
+            "end": 39.974,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 40.019,
+            "end": 40.617,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "經",
+            "romanization": "jing1",
+            "start": 40.662,
+            "end": 41.261,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "過",
+            "romanization": "guo4",
+            "start": 41.306,
+            "end": 41.905,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 42.6,
+        "end": 47.705,
+        "section": "尾聲",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "我",
+            "romanization": "wo3",
+            "start": 42.6,
+            "end": 43.127,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "用",
+            "romanization": "yong4",
+            "start": 43.172,
+            "end": 43.699,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "自",
+            "romanization": "zi4",
+            "start": 43.744,
+            "end": 44.272,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "己",
+            "romanization": "ji3",
+            "start": 44.317,
+            "end": 44.844,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "的",
+            "romanization": "de5",
+            "start": 44.889,
+            "end": 45.416,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 45.461,
+            "end": 45.988,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "音",
+            "romanization": "yin1",
+            "start": 46.033,
+            "end": 46.561,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "發",
+            "romanization": "fa1",
+            "start": 46.606,
+            "end": 47.133,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "光",
+            "romanization": "guang1",
+            "start": 47.178,
+            "end": 47.705,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      }
+    ],
+    "unalignedLyrics": [],
+    "dataQuality": {
+      "version": 1,
+      "mode": "complete",
+      "normalizedFields": 0,
+      "omittedNotes": 0,
+      "unknownPitchTokens": 0,
+      "untimedTokens": 0,
+      "timedTokens": 64,
+      "croppedTokens": 0,
+      "reorderedGroups": 0
+    },
+    "range": {
+      "low": 60,
+      "high": 67,
+      "typicalLow": 60,
+      "typicalHigh": 66
+    },
+    "teachingCoverage": {
+      "total": 64,
+      "identified": 64,
+      "unknown": 0,
+      "reviewed": 64,
+      "missing": 0
+    },
+    "provenance": {
+      "kind": "ai-estimate",
+      "pipeline": "audio-first-v1",
+      "createdAt": "2026-09-25T07:34:13.924Z",
+      "timing": "Recording-first, clipped, independently re-listened AI estimates; not acoustically benchmarked",
+      "transcriptSource": "recording-only",
+      "inputLyricsUsed": false,
+      "register": "Pedagogical suggestion; not identified physiology",
+      "sourceIdentity": "https://www.youtube.com/watch?v=YaJ_lYFgr6c",
+      "durationSource": "ai-survey",
+      "model": "gemini-3.8-flash",
+      "transport": "recording-first-listen-review-teaching",
+      "coverage": "fixed-transcript; all-occurrences-scheduled",
+      "teachingBatches": 1,
+      "failedTeachingBatches": 0
+    },
+    "usage": {
+      "inputTokens": 984,
+      "outputTokens": 3648
+    }
+  },
+  "line": {
+    "listening": {
+      "version": "audio-first-v1",
+      "accuracyVerified": false,
+      "windowSeconds": 24,
+      "contextSeconds": 4,
+      "windows": 3,
+      "reviewedWindows": 3,
+      "relistenedWindows": 0,
+      "wordTimed": 57,
+      "lineOnly": 7,
+      "mergedOverlapWords": 17,
+      "boundaryDisagreements": 0
+    },
+    "status": "ok",
+    "reason": "",
+    "title": "微光練習曲",
+    "artist": "聲嶼原創 · 合成旋律示範",
+    "language": "mandarin",
+    "duration": 49.25,
+    "key": "C",
+    "tempo": 100,
+    "summary": "原創測試樂句",
+    "warnings": [
+      "歌詞和時間由本次錄音分段聆聽產生；第二次 AI 聆聽不是人工或聲學精度認證。",
+      "7 個字的逐字起訖仍不確定，只跟隨樂句，不假造逐字亮字。",
+      "唱法是可嘗試的練習建議，不是原唱聲區的生理判定；時間與音高仍需核對。"
+    ],
+    "phrases": [
+      {
+        "start": 2,
+        "end": 7.105,
+        "section": "主歌",
+        "tokens": [
+          {
+            "timingMode": "line",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "把",
+            "romanization": "ba3",
+            "start": null,
+            "end": null,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "line",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "微",
+            "romanization": "wei1",
+            "start": null,
+            "end": null,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "line",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "光",
+            "romanization": "guang1",
+            "start": null,
+            "end": null,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "line",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "放",
+            "romanization": "fang4",
+            "start": null,
+            "end": null,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "line",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "在",
+            "romanization": "zai4",
+            "start": null,
+            "end": null,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "line",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "手",
+            "romanization": "shou3",
+            "start": null,
+            "end": null,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "line",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "心",
+            "romanization": "xin1",
+            "start": null,
+            "end": null,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 7.8,
+        "end": 12.905,
+        "section": "主歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "讓",
+            "romanization": "rang4",
+            "start": 7.8,
+            "end": 8.491,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "呼",
+            "romanization": "hu1",
+            "start": 8.536,
+            "end": 9.226,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "吸",
+            "romanization": "xi1",
+            "start": 9.271,
+            "end": 9.962,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "陪",
+            "romanization": "pei2",
+            "start": 10.007,
+            "end": 10.698,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "我",
+            "romanization": "wo3",
+            "start": 10.743,
+            "end": 11.434,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "前",
+            "romanization": "qian2",
+            "start": 11.479,
+            "end": 12.169,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "行",
+            "romanization": "xing2",
+            "start": 12.214,
+            "end": 12.905,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 13.6,
+        "end": 18.705,
+        "section": "主歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "越",
+            "romanization": "yue4",
+            "start": 13.6,
+            "end": 14.291,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "過",
+            "romanization": "guo4",
+            "start": 14.336,
+            "end": 15.026,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "夜",
+            "romanization": "ye4",
+            "start": 15.071,
+            "end": 15.762,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "裡",
+            "romanization": "li3",
+            "start": 15.807,
+            "end": 16.498,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "的",
+            "romanization": "de5",
+            "start": 16.543,
+            "end": 17.234,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "回",
+            "romanization": "hui2",
+            "start": 17.279,
+            "end": 17.969,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 18.014,
+            "end": 18.705,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 19.4,
+        "end": 24.505,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.4,
+            "end": 19.927,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "慢",
+            "romanization": "man4",
+            "start": 19.972,
+            "end": 20.499,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "找",
+            "romanization": "zhao3",
+            "start": 20.544,
+            "end": 21.072,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "到",
+            "romanization": "dao4",
+            "start": 21.117,
+            "end": 21.644,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "自",
+            "romanization": "zi4",
+            "start": 21.689,
+            "end": 22.216,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "己",
+            "romanization": "ji3",
+            "start": 22.261,
+            "end": 22.788,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "的",
+            "romanization": "de5",
+            "start": 22.833,
+            "end": 23.361,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 23.406,
+            "end": 23.933,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "音",
+            "romanization": "yin1",
+            "start": 23.978,
+            "end": 24.505,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 25.2,
+        "end": 30.305,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "天",
+            "romanization": "tian1",
+            "start": 25.2,
+            "end": 25.799,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "空",
+            "romanization": "kong1",
+            "start": 25.844,
+            "end": 26.442,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "不",
+            "romanization": "bu2",
+            "start": 26.488,
+            "end": 27.086,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "會",
+            "romanization": "hui4",
+            "start": 27.131,
+            "end": 27.73,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "催",
+            "romanization": "cui1",
+            "start": 27.775,
+            "end": 28.374,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "我",
+            "romanization": "wo3",
+            "start": 28.419,
+            "end": 29.017,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "升",
+            "romanization": "sheng1",
+            "start": 29.062,
+            "end": 29.661,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "高",
+            "romanization": "gao1",
+            "start": 29.706,
+            "end": 30.305,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 31,
+        "end": 36.105,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "每",
+            "romanization": "mei3",
+            "start": 31,
+            "end": 31.527,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "一",
+            "romanization": "yi2",
+            "start": 31.572,
+            "end": 32.099,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "步",
+            "romanization": "bu4",
+            "start": 32.144,
+            "end": 32.672,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "都",
+            "romanization": "dou1",
+            "start": 32.717,
+            "end": 33.244,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "可",
+            "romanization": "ke3",
+            "start": 33.289,
+            "end": 33.816,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "以",
+            "romanization": "yi3",
+            "start": 33.861,
+            "end": 34.388,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 34.433,
+            "end": 34.961,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 35.006,
+            "end": 35.533,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "唱",
+            "romanization": "chang4",
+            "start": 35.578,
+            "end": 36.105,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 36.8,
+        "end": 41.905,
+        "section": "副歌",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "當",
+            "romanization": "dang1",
+            "start": 36.8,
+            "end": 37.399,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "風",
+            "romanization": "feng1",
+            "start": 37.444,
+            "end": 38.042,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "再",
+            "romanization": "zai4",
+            "start": 38.087,
+            "end": 38.686,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "次",
+            "romanization": "ci4",
+            "start": 38.731,
+            "end": 39.33,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 39.375,
+            "end": 39.974,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "輕",
+            "romanization": "qing1",
+            "start": 40.019,
+            "end": 40.617,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "經",
+            "romanization": "jing1",
+            "start": 40.662,
+            "end": 41.261,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "過",
+            "romanization": "guo4",
+            "start": 41.306,
+            "end": 41.905,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      },
+      {
+        "start": 42.6,
+        "end": 47.705,
+        "section": "尾聲",
+        "tokens": [
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "我",
+            "romanization": "wo3",
+            "start": 42.6,
+            "end": 43.127,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "用",
+            "romanization": "yong4",
+            "start": 43.172,
+            "end": 43.699,
+            "notes": [
+              61
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "自",
+            "romanization": "zi4",
+            "start": 43.744,
+            "end": 44.272,
+            "notes": [
+              62
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "己",
+            "romanization": "ji3",
+            "start": 44.317,
+            "end": 44.844,
+            "notes": [
+              63
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "的",
+            "romanization": "de5",
+            "start": 44.889,
+            "end": 45.416,
+            "notes": [
+              64
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "聲",
+            "romanization": "sheng1",
+            "start": 45.461,
+            "end": 45.988,
+            "notes": [
+              65
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "音",
+            "romanization": "yin1",
+            "start": 46.033,
+            "end": 46.561,
+            "notes": [
+              66
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "發",
+            "romanization": "fa1",
+            "start": 46.606,
+            "end": 47.133,
+            "notes": [
+              67
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          },
+          {
+            "timingMode": "word",
+            "timingReview": "ai-agreement",
+            "timingConfidence": "high",
+            "text": "光",
+            "romanization": "guang1",
+            "start": 47.178,
+            "end": 47.705,
+            "notes": [
+              60
+            ],
+            "technique": "chest",
+            "ornaments": [],
+            "annotationStatus": "reviewed",
+            "confidence": "medium"
+          }
+        ],
+        "focus": "輕聲銜接",
+        "instruction": "可用舒服的聲量跟唱。",
+        "pronunciation": "保持字音。",
+        "exercise": "慢唱一次。",
+        "caution": "不適時停止。"
+      }
+    ],
+    "unalignedLyrics": [],
+    "dataQuality": {
+      "version": 1,
+      "mode": "partial",
+      "normalizedFields": 0,
+      "omittedNotes": 0,
+      "unknownPitchTokens": 0,
+      "untimedTokens": 7,
+      "timedTokens": 57,
+      "croppedTokens": 0,
+      "reorderedGroups": 0
+    },
+    "range": {
+      "low": 60,
+      "high": 67,
+      "typicalLow": 60,
+      "typicalHigh": 66
+    },
+    "teachingCoverage": {
+      "total": 64,
+      "identified": 64,
+      "unknown": 0,
+      "reviewed": 64,
+      "missing": 0
+    },
+    "provenance": {
+      "kind": "ai-estimate",
+      "pipeline": "audio-first-v1",
+      "createdAt": "2026-09-25T07:34:13.934Z",
+      "timing": "Recording-first, clipped, independently re-listened AI estimates; not acoustically benchmarked",
+      "transcriptSource": "recording-only",
+      "inputLyricsUsed": false,
+      "register": "Pedagogical suggestion; not identified physiology",
+      "sourceIdentity": "https://www.youtube.com/watch?v=YaJ_lYFgr6c",
+      "durationSource": "ai-survey",
+      "model": "gemini-3.8-flash",
+      "transport": "recording-first-listen-review-teaching",
+      "coverage": "fixed-transcript; all-occurrences-scheduled",
+      "teachingBatches": 1,
+      "failedTeachingBatches": 0
+    },
+    "usage": {
+      "inputTokens": 0,
+      "outputTokens": 0
+    }
+  },
+  "phases": [
+    {
+      "phase": "analyzing",
+      "message": "正在聆聽這個版本，辨識歌曲長度…",
+      "detail": {
+        "stage": "survey"
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在逐段聆聽 · 0 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "listening",
+        "completedWindows": 0,
+        "totalWindows": 3,
+        "window": 0,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在逐段聆聽 · 0 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "listening",
+        "completedWindows": 0,
+        "totalWindows": 3,
+        "window": 1,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在核對人聲與歌詞時間 · 0 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "checking",
+        "completedWindows": 0,
+        "totalWindows": 3,
+        "window": 0,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在核對人聲與歌詞時間 · 0 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "checking",
+        "completedWindows": 0,
+        "totalWindows": 3,
+        "window": 1,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在核對人聲與歌詞時間 · 1 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "checking",
+        "completedWindows": 1,
+        "totalWindows": 3,
+        "window": 0,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在逐段聆聽 · 1 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "listening",
+        "completedWindows": 1,
+        "totalWindows": 3,
+        "window": 2,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在核對人聲與歌詞時間 · 2 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "checking",
+        "completedWindows": 2,
+        "totalWindows": 3,
+        "window": 1,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在核對人聲與歌詞時間 · 2 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "checking",
+        "completedWindows": 2,
+        "totalWindows": 3,
+        "window": 2,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在核對人聲與歌詞時間 · 3 / 3 段完成",
+      "detail": {
+        "stage": "listening",
+        "activity": "checking",
+        "completedWindows": 3,
+        "totalWindows": 3,
+        "window": 2,
+        "sourceDuration": 49.25
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在接合片段邊界，保留每一次副歌…",
+      "detail": {
+        "stage": "merging",
+        "completedWindows": 3,
+        "totalWindows": 3
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在整理全曲唱法 · 0 / 64 字",
+      "detail": {
+        "stage": "teaching",
+        "completedBatches": 0,
+        "totalBatches": 1,
+        "examinedTokens": 0,
+        "totalTokens": 64
+      }
+    },
+    {
+      "phase": "analyzing",
+      "message": "正在整理全曲唱法 · 64 / 64 字",
+      "detail": {
+        "stage": "teaching",
+        "completedBatches": 1,
+        "totalBatches": 1,
+        "examinedTokens": 64,
+        "totalTokens": 64
+      }
+    },
+    {
+      "phase": "normalizing",
+      "message": "歌詞、人聲時間與全曲唱法已整理，正在展開…"
+    }
+  ]
+}

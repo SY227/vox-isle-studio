@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {validateInput,validateWave} from '../server/validation.mjs';
+import {normalizeAnalysis,normalizeCoach} from '../shared/schema.mjs';
+const demo=JSON.parse(readFileSync(new URL('../public/demo.json',import.meta.url),'utf8'));
+export function wave(seconds=1){const b=Buffer.alloc(44+Math.round(seconds*16000)*2);b.write('RIFF');b.writeUInt32LE(b.length-8,4);b.write('WAVEfmt ',8);b.writeUInt32LE(16,16);b.writeUInt16LE(1,20);b.writeUInt16LE(1,22);b.writeUInt32LE(16000,24);b.writeUInt32LE(32000,28);b.writeUInt16LE(2,32);b.writeUInt16LE(16,34);b.write('data',36);b.writeUInt32LE(b.length-44,40);return b;}
+test('demo schema is complete, sorted, and computes score range',()=>{const a=normalizeAnalysis(demo);assert.equal(a.phrases.length,8);assert.equal(a.range.low,60);assert.equal(a.range.high,76);});
+test('explicit unavailable media is not converted into a fabricated result',()=>assert.throws(()=>normalizeAnalysis({status:'unavailable',reason:'无法聆聽音訊'}),/无法聆聽/));
+test('invalid MIDI/negative time/unknown technique are rejected',()=>{for(const [field,value] of [['notes',[500]],['start',-5],['technique','diagnosed-mix']]){const a=structuredClone(demo);a.phrases[0].tokens[0][field]=value;assert.throws(()=>normalizeAnalysis(a));}});
+test('analysis with more than fifteen minutes is rejected',()=>{const a=structuredClone(demo);a.duration=901;assert.throws(()=>normalizeAnalysis(a));});
+test('untrusted extra fields are dropped',()=>{const a=normalizeAnalysis({...demo,apiKey:'not a real secret',html:'<script>'});assert.equal(a.apiKey,undefined);assert.equal(a.html,undefined);});
+test('valid normalized PCM WAV has correct duration',()=>{assert.equal(validateWave(wave().toString('base64')).duration,1);});
+test('malformed, truncated, foreign audio types are rejected',()=>{for(const b of [Buffer.from('random'),wave().subarray(0,100)])assert.throws(()=>validateWave(b.toString('base64')));const b=wave();b.writeUInt32LE(48000,24);assert.throws(()=>validateWave(b.toString('base64')));assert.throws(()=>validateWave('$$$$'));});
+test('too short / too long WAV is rejected',()=>{assert.throws(()=>validateWave(wave(.1).toString('base64')));assert.throws(()=>validateWave(wave(36).toString('base64'),35));});
+test('song request no longer requires a rights checkbox',()=>{assert.ok(validateInput({source:'youtube',url:'https://youtu.be/dQw4w9WgXcQ'}));});
+test('YouTube validation returns only canonical permitted source',()=>{const a=validateInput({rights:true,source:'youtube',url:'https://youtu.be/dQw4w9WgXcQ?si=tracking',language:'cantonese'});assert.equal(a.url,'https://www.youtube.com/watch?v=dQw4w9WgXcQ');});
+test('upload validation accepts only normalized WAV',()=>{const a=validateInput({rights:true,source:'upload',audioData:wave().toString('base64'),language:'mandarin'});assert.equal(a.duration,1);});
+test('coach validates reference phrase, consent and transpose',()=>{const raw={recordingConsent:true,audioData:wave().toString('base64'),phrase:demo.phrases[0],transpose:0};assert.ok(validateInput(raw,'coach'));assert.throws(()=>validateInput({...raw,transpose:24},'coach'));assert.throws(()=>validateInput({...raw,recordingConsent:false},'coach'));});
+test('coach rejects incomplete model output',()=>{assert.throws(()=>normalizeCoach({heard:'ok'}));});
